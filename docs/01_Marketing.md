@@ -1,8 +1,7 @@
 # BandMath: Comprehensive Feature Documentation
-**For Marketing & Customer Success Teams**
 *Last Updated: 2026-06-27*
 
-Welcome to the definitive feature guide for BandMath. This document is designed to serve as the foundational jumping-off point for marketing campaigns, copywriting, and customer success materials (like user guides and help center articles). 
+Welcome to the definitive feature guide for BandMath. Here's a full list of everything BandMath can do to help automate the hardest parts of touring finance. 
 
 ---
 
@@ -51,4 +50,3 @@ Bands own their data. BandMath makes it easy to plug into the broader music indu
 * **Email Contact List Export**: A dedicated button instantly downloads a deduplicated, clean CSV of all fan emails collected during the POS checkout. Bands can seamlessly upload this directly into Mailchimp, Klaviyo, or any other marketing tool.
 
 ---
-*Note to Marketing/CS: These features represent the current production capabilities of the BandMath platform. Focus on the core value propositions: time saved, arguments prevented, and profits maximized.*

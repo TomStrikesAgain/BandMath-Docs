@@ -4,6 +4,7 @@
   /* Fonts */
   --ifm-font-family-base: 'DM Sans', sans-serif;
   --ifm-heading-font-family: 'Archivo Black', sans-serif;
+  --ifm-heading-font-weight: 400;
 
   /* Base colors for light mode (though we forced dark mode) */
   --ifm-color-primary: #dfff00;
@@ -27,12 +28,12 @@
   --ifm-color-primary-lighter: #e9ff33;
   --ifm-color-primary-lightest: #efff4d;
   
-  --ifm-background-color: #000000;
-  --ifm-background-surface-color: #252525;
+  --ifm-background-color: #252525;
+  --ifm-background-surface-color: #000000;
   --ifm-color-content: #ffffff;
   --ifm-menu-color: #ffffff;
-  --ifm-navbar-background-color: #252525;
-  --ifm-footer-background-color: #252525;
+  --ifm-navbar-background-color: #000000;
+  --ifm-footer-background-color: #000000;
 
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
 }
@@ -43,7 +44,7 @@
 }
 
 .button--secondary {
-  background-color: #252525;
+  background-color: #000000;
   color: #ffffff;
   border-color: #dfff00;
 }
@@ -51,4 +52,16 @@
 .button--secondary:hover {
   background-color: #dfff00;
   color: #000000;
+}
+
+h1 {
+  font-size: 2.2rem !important;
+}
+
+h2 {
+  font-size: 1.6rem !important;
+}
+
+h3 {
+  font-size: 1.3rem !important;
 }

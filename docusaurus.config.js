@@ -80,11 +80,6 @@ const config = {
             label: 'Blog', 
             position: 'left'
           },
-          {
-            href: 'https://github.com/TomStrikesAgain/BandMath-Docs',
-            label: 'GitHub',
-            position: 'right',
-          },
         ],
       },
       footer: {
