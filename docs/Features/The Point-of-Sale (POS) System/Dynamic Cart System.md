@@ -2,4 +2,4 @@
 
 Easily add multiple products and sizes to a cart.
 
-<!-- GIF PLACEHOLDER -->
+{/* GIF PLACEHOLDER */}
