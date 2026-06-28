@@ -106,10 +106,6 @@ const config = {
           {
             title: 'More',
             items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/TomStrikesAgain/BandMath-Docs',
-              },
             ],
           },
         ],

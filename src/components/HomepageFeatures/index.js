@@ -4,27 +4,17 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'AI Workflows',
+    title: 'User Guides',
     emoji: '🤖',
     description: (
       <>
         Learn how our autonomous AI agents interact with the platform,
-        process data, and manage edge cases.
+        process data, and help you rock.
       </>
     ),
   },
   {
-    title: 'Marketing Strategies',
-    emoji: '📈',
-    description: (
-      <>
-        Explore our best practices for growing your band's audience,
-        optimizing ad spend, and running campaigns.
-      </>
-    ),
-  },
-  {
-    title: 'Edge Cases',
+    title: 'Troubleshooting Tips',
     emoji: '⚠️',
     description: (
       <>
@@ -37,7 +27,7 @@ const FeatureList = [
 
 function Feature({emoji, title, description}) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--6')}>
       <div className="text--center" style={{fontSize: '4rem'}}>
         {emoji}
       </div>
