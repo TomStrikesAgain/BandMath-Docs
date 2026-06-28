@@ -47,8 +47,6 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          editUrl:
-            'https://github.com/TomStrikesAgain/BandMath-Docs/tree/main/',
         },
         blog: false,
         theme: {
