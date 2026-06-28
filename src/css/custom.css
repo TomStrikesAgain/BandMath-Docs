@@ -56,19 +56,28 @@
   color: #000000 !important;
 }
 
+.hero--primary {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.hero--primary .hero__title {
+  color: #ffffff !important;
+}
+
 /* Specific component overrides to ensure the black text on yellow looks good */
 .button--primary {
   color: #000000 !important;
 }
 
 .button--secondary {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #dfff00;
+  color: #000000;
   border-color: #dfff00;
 }
 
 .button--secondary:hover {
-  background-color: #dfff00;
+  background-color: #c8e600;
   color: #000000;
 }
 

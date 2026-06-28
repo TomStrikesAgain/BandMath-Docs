@@ -8,8 +8,7 @@ const FeatureList = [
     emoji: '🤖',
     description: (
       <>
-        Learn how our autonomous AI agents interact with the platform,
-        process data, and help you rock.
+        Learn about all the cool things you can do with BandMath.
       </>
     ),
   },
@@ -18,8 +17,8 @@ const FeatureList = [
     emoji: '⚠️',
     description: (
       <>
-        A comprehensive guide to handling unexpected scenarios, from
-        incorrect merch logging to API rate limits.
+        A comprehensive guide to handling unexpected scenarios, like
+        incorrectly logged merch or at-cost and discounted transactions.
       </>
     ),
   },
