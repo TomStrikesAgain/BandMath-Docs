@@ -107,3 +107,13 @@ h3 {
     padding-right: 3rem !important;
   }
 }
+
+/* Fix search result active state text color (black on yellow) */
+.aa-Item[aria-selected="true"],
+.aa-Item[aria-selected="true"] *,
+.search-result-item[aria-selected="true"],
+.search-result-item[aria-selected="true"] *,
+.search-result-item.active,
+.search-result-item.active * {
+  color: #000000 !important;
+}
