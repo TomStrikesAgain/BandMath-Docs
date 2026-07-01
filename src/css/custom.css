@@ -102,8 +102,8 @@ h3 {
 
 /* Increase gap between sidebar and main content */
 @media (min-width: 997px) {
-  .theme-doc-page main {
-    padding-left: 2.5rem !important;
-    padding-right: 2.5rem !important;
+  main .container {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
   }
 }
