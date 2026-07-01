@@ -108,12 +108,23 @@ h3 {
   }
 }
 
-/* Fix search result active state text color (black on yellow) */
-.aa-Item[aria-selected="true"],
-.aa-Item[aria-selected="true"] *,
-.search-result-item[aria-selected="true"],
-.search-result-item[aria-selected="true"] *,
-.search-result-item.active,
-.search-result-item.active * {
+/* Local Search Plugin Overrides */
+:root {
+  --search-local-hit-active-color: #000000;
+}
+
+[data-theme='dark'] {
+  --search-local-hit-active-color: #000000;
+}
+
+/* Make search page titles white instead of yellow */
+.searchResultItem h2,
+.searchResultItem h2 a {
+  color: #ffffff !important;
+}
+
+/* Ensure highlighted matches in titles are readable */
+.searchResultItem h2 mark {
+  background-color: var(--ifm-color-primary) !important;
   color: #000000 !important;
 }
