@@ -104,5 +104,6 @@ h3 {
 @media (min-width: 997px) {
   .theme-doc-page main {
     padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
   }
 }
