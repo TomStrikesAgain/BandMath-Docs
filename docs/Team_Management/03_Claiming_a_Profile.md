@@ -10,8 +10,8 @@ To get your invite code, ask your band's Admin. They can find it next to your na
 
 ## How to Claim Your Profile
 
-1. Download the BandMath app from the App Store or Google Play.
-2. Open the app and create a new user account (you can use email, Google, or Apple Sign-In).
+1. Download the BandMath pre-beta app using the direct link provided by your Admin.
+2. Open the app and create a new user account using your email address.
 3. On the welcome screen, select **Join Existing Band**.
 4. Enter the 6-character Invite Code provided by your Admin.
 
