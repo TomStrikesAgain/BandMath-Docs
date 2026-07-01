@@ -31,4 +31,4 @@ Did someone buy gas for the van?
 
 At the end of the night (or the end of the tour), navigate to the **Standings** page. 
 
-Here, you'll see the magic of BandMath's [Automated Debt Settlement](../Features/custodial-accounting/Automated%20Debt%20Settlement.md). Instead of a tangled web of "who owes who," BandMath calculates the absolute simplest way for everyone to settle up using the minimum number of money transfers.
+Here, you'll see the magic of BandMath's [Automated Debt Settlement](../Features/custodial-accounting/automated-debt-settlement.md). Instead of a tangled web of "who owes who," BandMath calculates the absolute simplest way for everyone to settle up using the minimum number of money transfers.
