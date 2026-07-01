@@ -9,6 +9,9 @@ When you first sign up for BandMath, you will be prompted to create your Band Pr
 ### Setting Your Base Currency
 
 During setup, you will be asked to select your band's base currency (e.g., USD, EUR, GBP). 
+
+![Band Creation Dashboard](./assets/band-creation-dashboard.png)
+
 > [!IMPORTANT]
 > The base currency is the primary currency used for all ledger calculations, settlements, and reporting. While you can log transactions in other currencies, BandMath will always reconcile your final balances in your chosen base currency.
 

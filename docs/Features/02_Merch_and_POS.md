@@ -17,6 +17,8 @@ When you're at the merch table, speed is everything.
 * **Discounts & Tips:** Easily apply custom discounts to a cart, or log tips given by generous fans.
 * **Customer Email Capture:** Grow your mailing list directly from the checkout flow.
 
+![POS Checkout Cart](./assets/pos-checkout-cart.png)
+
 ## Real-Time Stock Depletion
 
 As soon as an item is sold through the POS, BandMath automatically deducts it from your global inventory. You'll always know exactly how many Medium shirts you have left in the van.

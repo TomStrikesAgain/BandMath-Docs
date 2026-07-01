@@ -11,6 +11,8 @@ As an Admin, you can invite new members to your band by generating an **Invite C
 3. Click **Add Member** and enter their name and role.
 4. An invite code will be automatically generated. Share this 6-character code with your bandmate.
 
+![Team Roster Invite](./assets/team-roster-invite.png)
+
 ## The Invite Code Process
 
 When your bandmate downloads the BandMath app, they will create their own user account. On the welcome screen, they will select **Join Existing Band** and enter the 6-character invite code you provided. 

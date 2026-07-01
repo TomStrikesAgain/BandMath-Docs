@@ -16,3 +16,5 @@ Never run out of your best sellers mid-tour. The Merch Analyzer tracks your aver
 ## Trophy Awards
 
 We've gamified merch sales! The Analyzer automatically awards trophies to your best-performing items (e.g., "Fastest Seller", "Highest Profit Margin"), so you can quickly identify the stars of your merch table at a glance.
+
+![Merch Analyzer Dashboard](./assets/merch-analyzer-dashboard.png)

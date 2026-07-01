@@ -8,6 +8,8 @@ You can view the current available tiers and their features by navigating to the
 * **Core Ledger:** Basic transaction tracking, automated debt settlement, and basic team management.
 * **Merch Manager:** Unlocks the Point-of-Sale (POS) system, advanced inventory tracking, and deep insights from the Merch Analyzer.
 
+![Pricing Tiers Upgrade](./assets/pricing-tiers-upgrade.png)
+
 ## How to Upgrade
 
 To upgrade your band's workspace:
