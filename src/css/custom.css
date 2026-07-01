@@ -30,8 +30,9 @@
   
   --ifm-background-color: #252525;
   --ifm-background-surface-color: #000000;
-  --ifm-color-content: #ffffff;
-  --ifm-menu-color: #ffffff;
+  --ifm-font-color-base: #e8e8e8;
+  --ifm-color-content: #e8e8e8;
+  --ifm-menu-color: #e8e8e8;
   --ifm-navbar-background-color: #dfff00;
   --ifm-navbar-link-color: #000000;
   --ifm-navbar-link-hover-color: #252525;
@@ -118,13 +119,24 @@ h3 {
 }
 
 /* Make search page titles white instead of yellow */
-.searchResultItem h2,
-.searchResultItem h2 a {
-  color: #ffffff !important;
+article h2,
+article h2 a {
+  color: #e8e8e8 !important;
 }
 
 /* Ensure highlighted matches in titles are readable */
-.searchResultItem h2 mark {
+article h2 mark,
+article h2 a mark {
   background-color: var(--ifm-color-primary) !important;
   color: #000000 !important;
+}
+
+/* Limit line width of main column for better readability */
+@media (min-width: 997px) {
+  .theme-doc-markdown,
+  header,
+  .theme-doc-breadcrumbs,
+  .pagination-nav {
+    max-width: 600px;
+  }
 }
