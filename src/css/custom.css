@@ -92,3 +92,10 @@ h2 {
 h3 {
   font-size: 1.3rem !important;
 }
+
+/* Sidebar adjustments */
+.menu__link {
+  font-size: 0.85rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
