@@ -12,8 +12,8 @@ During setup, you will be asked to select your band's base currency (e.g., USD, 
 
 ![Band Creation Dashboard](./assets/band-creation-dashboard.png)
 
-> [!IMPORTANT]
-> The base currency is the primary currency used for all ledger calculations, settlements, and reporting. While you can log transactions in other currencies, BandMath will always reconcile your final balances in your chosen base currency.
+> [!NOTE]
+> BandMath handles all math natively using integers, which means the currency setting is purely a **display symbol**. You can change your workspace's currency symbol at any time in the settings. For tours in foreign countries, check out our [Multi-Currency Touring](../Advanced_Workflows/02_Multi_Currency_Touring.md) guide.
 
 ## The Default Banks
 

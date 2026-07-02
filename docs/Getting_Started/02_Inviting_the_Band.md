@@ -9,7 +9,7 @@ As an Admin, you can invite new members to your band by generating an **Invite C
 1. Navigate to the **Band Settings** page.
 2. Select **Manage Members**.
 3. Click **Add Member** and enter their name and role.
-4. An invite code will be automatically generated. Share this 6-character code with your bandmate.
+4. An invite code will be automatically generated. Once the new member appears in the roster, **press and hold on their card** and the invite code will be copied to your clipboard to easily share with them.
 
 ![Team Roster Invite](./assets/team-roster-invite.png)
 
