@@ -140,3 +140,11 @@ article h2 a mark {
     max-width: 600px;
   }
 }
+
+/* Mobile sidebar text color */
+.navbar-sidebar,
+.navbar-sidebar .menu__link,
+.navbar-sidebar .clean-btn,
+.navbar-sidebar .navbar-sidebar__back {
+  color: #000000 !important;
+}
