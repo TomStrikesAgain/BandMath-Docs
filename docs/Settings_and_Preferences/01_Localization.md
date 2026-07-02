@@ -6,10 +6,12 @@ Because BandMath is used by touring bands around the world, you can easily custo
 
 When you first [create your band workspace](../Getting_Started/01_Creating_a_Band.md), you will be prompted to select a **Base Currency**. 
 
-> [!WARNING]  
-> The base currency is a permanent setting for your workspace. Once your first transaction is logged, the base currency cannot be changed. This ensures that historical financial data and settlements remain perfectly accurate.
+> [!NOTE]  
+> BandMath handles all math natively using integers, which means the currency setting is purely a **display symbol**. You can change your workspace's currency symbol at any time in the settings without breaking your ledger!
+>
+> However, because it is purely a display symbol, **BandMath does not perform automated currency conversion or exchange rates**. All transactions in a workspace are assumed to be 1:1 with whatever base currency you have selected.
 
-The base currency is the primary currency used for all:
+The base currency symbol is used to format all:
 * Ledger calculations
 * Debt settlements and payouts
 * Merch inventory valuations

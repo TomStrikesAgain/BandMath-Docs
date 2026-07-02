@@ -4,8 +4,8 @@ BandMath offers different subscription tiers to fit the needs of your tour. Whet
 
 ## Subscription Tiers
 
-You can view the current available tiers and their features by navigating to the **Billing** tab in your Band Settings. 
-* **Core Ledger:** Basic transaction tracking, automated debt settlement, and basic team management.
+All the Core Ledger features in BandMath are free. You can view the current available tiers and their features by navigating to the **Upgrade** tab.
+* **Core Ledger:** Basic transaction tracking, automated debt settlement, and team management.
 * **Merch Manager:** Unlocks the Point-of-Sale (POS) system, advanced inventory tracking, and deep insights from the Merch Analyzer.
 
 ![Pricing Tiers Upgrade](./assets/pricing-tiers-upgrade.png)
@@ -14,9 +14,8 @@ You can view the current available tiers and their features by navigating to the
 
 To upgrade your band's workspace:
 1. Navigate to the **Band Settings** page.
-2. Select **Billing**.
-3. Choose the tier you want to upgrade to and tap **Subscribe**.
-4. You will be redirected to our secure Stripe checkout portal to enter your payment details.
+2. Select **Upgrade**.
+3. You will be redirected to our secure Stripe checkout portal to enter your payment details.
 
 Once the payment is successful, BandMath will automatically unlock the premium features for your entire band workspace. Note that only one subscription is required per band, not per user!
 
@@ -29,6 +28,6 @@ If your tour is over and you no longer need the advanced features, you can downg
 
 1. Go to the **Billing** tab in Band Settings.
 2. Select **Manage Subscription**.
-3. You will be taken to the Stripe customer portal where you can select a lower tier.
+3. You will be taken to the Stripe customer portal where you can cancel your subcription.
 
-Your premium features will remain active until the end of your current billing cycle, after which you will be moved to the downgraded tier. Your historical data from the higher tier (like past merch sales) will be preserved, but you may lose access to the advanced analytics dashboards.
+Your premium features will remain active until the end of your current billing cycle, after which you will be moved to the downgraded tier. Your historical data from the higher tier (like past merch sales) will be preserved, but you may lose access to the advanced analytics dashboards. Pick back up where you left off when the time is right for you!
