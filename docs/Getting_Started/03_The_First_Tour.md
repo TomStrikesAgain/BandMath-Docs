@@ -18,7 +18,10 @@ Before you can sell merchandise, you need to tell BandMath what you have in stoc
 
 1. **Create Items:** Navigate to the Create Items menu to define your "Merch Types". A merch type is anything you can print on—from T-Shirts and hats, to lighters or even a Limited Edition custom flowerpot. Merch types are totally customizable and unlimited.
 
-   ![Create Items](./assets/create-items.png)
+   <div style={{display: 'flex', justifyContent: 'space-between'}}>
+     <img src={require('./assets/create-items-1.png').default} alt="Create Items 1" style={{width: '49%'}} />
+     <img src={require('./assets/create-items-2.png').default} alt="Create Items 2" style={{width: '49%'}} />
+   </div>
 
 2. **Add Designs:** Next, you add Designs to your merch types. Give the design a name and upload an image of the item. If you don't have an image handy, just click submit and a stock groovitar image will be used instead.
 
