@@ -19,4 +19,6 @@ The base currency is the primary currency used for all:
 
 BandMath automatically formats your financial inputs and displays based on your selected base currency. This means that if you choose Euro (€) as your base currency, the app will automatically inject the `€` symbol into input fields like the merch inventory pricing, preventing typos and ensuring a clean user experience.
 
+![Currency Formatting](./assets/currency-formatting.png)
+
 If you notice a currency symbol is missing or incorrect, please reach out to support.

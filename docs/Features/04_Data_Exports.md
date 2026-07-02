@@ -7,6 +7,8 @@ We believe your data belongs to you. BandMath makes it easy to export your infor
 Need to send your financial records to an accountant for tax season? 
 You can export your entire ledger to a detailed CSV file. The export includes every transaction, the exact date, the payer, the receivers, and the calculated balances.
 
+![Data Exports Screen](./assets/data-exports-screen.png)
+
 ## Email Contact List Export
 
 If you've been using the POS system to capture customer emails at the merch table, you can easily export this list. 

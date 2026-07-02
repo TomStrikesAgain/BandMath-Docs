@@ -27,5 +27,7 @@ Members **cannot**:
 * Remove other members from the band.
 * Change the band's core settings or billing tier.
 
+![Admin vs Member Roles](./assets/admin-member-roles.png)
+
 > [!TIP]
 > A band can have multiple Admins. An existing Admin can promote any Member to an Admin role from the Band Settings page.

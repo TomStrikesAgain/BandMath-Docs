@@ -12,6 +12,8 @@ If your credit card has expired, or you simply want to switch the billing to a d
 4. This will open a secure browser window to the Stripe Customer Portal.
 5. Under the **Payment Methods** section, you can add a new card, delete an old card, or set a new default payment method.
 
+![Stripe Customer Portal](./assets/stripe-customer-portal.png)
+
 ## Failed Payments
 
 If a recurring subscription payment fails, Stripe will automatically attempt to retry the charge a few days later. You will receive an email notification prompting you to update your payment method.
