@@ -2,7 +2,17 @@
 
 Ready to hit the road? Here is a quick 5-minute walkthrough of the core BandMath loop to get you started on your first tour.
 
-## 1. Add Your Inventory
+## 1. Log an Expense
+
+Did someone buy gas for the van?
+1. Go to the **Transactions** page.
+2. Tap **Add Transaction** -> **Expense**.
+3. Select *who paid* for the gas, and select the band members who should split the cost in the *who owes* section.
+4. BandMath automatically splits the expense and updates everyone's internal balances.
+
+![Log Expense](./assets/log-expense.png)
+
+## 2. Add Your Inventory
 
 Before you can sell merchandise, you need to tell BandMath what you have in stock. This is a simple 3-step process:
 
@@ -12,7 +22,7 @@ Before you can sell merchandise, you need to tell BandMath what you have in stoc
 
 ![Add Inventory Flow](./assets/add-inventory-flow.png)
 
-## 2. Log a Sale (The POS System)
+## 3. Log a Sale (The POS System)
 
 When you're at the merch table after a show:
 1. Open the **Point-of-Sale (POS)** tab.
@@ -23,16 +33,6 @@ When you're at the merch table after a show:
 BandMath instantly records the revenue, deducts the items from your inventory, and calculates the profit.
 
 ![POS Log Sale](./assets/pos-log-sale.png)
-
-## 3. Log an Expense
-
-Did someone buy gas for the van?
-1. Go to the **Transactions** page.
-2. Tap **Add Transaction** -> **Expense**.
-3. Select *who paid* for the gas, and select the band members who should split the cost in the *who owes* section.
-4. BandMath automatically splits the expense and updates everyone's internal balances.
-
-![Log Expense](./assets/log-expense.png)
 
 ## 4. Check the Standings
 
