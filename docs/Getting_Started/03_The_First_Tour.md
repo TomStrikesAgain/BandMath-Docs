@@ -17,10 +17,16 @@ Did someone buy gas for the van?
 Before you can sell merchandise, you need to tell BandMath what you have in stock. This is a simple 3-step process:
 
 1. **Create Items:** Navigate to the Create Items menu to define your "Merch Types". A merch type is anything you can print on—from T-Shirts and hats, to lighters or even a Limited Edition custom flowerpot. Merch types are totally customizable and unlimited.
+
+   ![Create Items](./assets/create-items.png)
+
 2. **Add Designs:** Next, you add Designs to your merch types. Give the design a name and upload an image of the item. If you don't have an image handy, just click submit and a stock groovitar image will be used instead.
+
+   ![Add Designs](./assets/add-designs.png)
+
 3. **Add Inventory:** Now that the item conceptually exists, go to the Add Inventory page. Choose your Product Type and Design, input the unit cost and retail price, and finally input how many of each size you bought (items without sizes like hats or lighters go in "N/A").
 
-![Add Inventory Flow](./assets/add-inventory-flow.png)
+   ![Add Inventory Flow](./assets/add-inventory-flow.png)
 
 ## 3. Log a Sale (The POS System)
 
