@@ -22,7 +22,7 @@ Absolutely. You can export your entire ledger to a detailed CSV file at any time
 The Band Bank is a permanent member profile created automatically for your band. It represents the communal pool of money owned by the band as a business entity (like your shared business checking account or the physical cash box).
 
 **8. What happens if I make a mistake on a transaction?**
-Admins can edit or delete any transaction at any time. Standard members can only edit or delete transactions that they created themselves.
+Anyone in the band can edit or delete any transaction at any time, regardless of who created it.
 
 **9. Can we sell items at-cost to band members?**
 Yes! When logging a sale in the Point-of-Sale (POS) system, you can toggle the "At Cost" switch for any band member, which allows them to take an item at its exact unit cost rather than the retail markup.

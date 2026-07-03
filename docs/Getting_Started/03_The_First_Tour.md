@@ -25,7 +25,7 @@ Before you can sell merchandise, you need to tell BandMath what you have in stoc
      <img src={require('./assets/create-items-2.png').default} alt="Create Items 2" style={{width: '49%'}} />
    </div>
 
-2. **Add Designs:** Next, you add Designs to your merch types. Give the design a name and upload an image of the item. If you don't have an image handy, just click submit and a stock groovitar image will be used instead.
+2. **Add Designs:** Next, you add Designs to your merch types. Give the design a name and upload an image of the item. If you don't have an image handy, just click submit and a stock Groovatar image will be used instead.
 
    ![Add Designs](./assets/add-designs.png)
 
@@ -36,8 +36,8 @@ Before you can sell merchandise, you need to tell BandMath what you have in stoc
 ## 3. Log a Sale (The POS System)
 
 When you're at the merch table after a show:
-1. Open the **Merch Manager** tab in the bottom nav bar.
-2. Tap the items the fan wants to buy to add them to the cart.
+1. Open the **Merch Manager** tab in the bottom nav bar by clicking the Price Tag icon on the far right side.
+2. Tap the Sell button next to each item the fan wants to buy to add them to the cart.
 
    ![POS Add to Cart](./assets/pos-add-to-cart.png)
 

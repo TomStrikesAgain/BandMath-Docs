@@ -10,7 +10,6 @@ Admins have full control over the band's workspace. Their capabilities include:
 * **Managing Members:** Adding new members, generating invite codes, and removing members.
 * **Managing Settings:** Changing the band's name, base currency, and other core settings.
 * **Managing Billing:** Upgrading or downgrading the band's subscription tier.
-* **Full Transaction Control:** Admins can edit, void, or delete any transaction in the ledger, regardless of who created it.
 * **Merch Management:** Full access to add, edit, and delete merchandise inventory and product definitions.
 
 ## Members
@@ -19,11 +18,12 @@ Members are the standard users within a band workspace. They have the ability to
 
 Members can:
 * **Log Transactions:** Add new expenses, incomes, or transfers to the ledger.
+* **Edit Transactions:** Edit or delete any transaction in the ledger, regardless of who created it.
 * **View the Ledger:** See all transactions and the current standings/settlements.
 * **Sell Merchandise:** Use the Point-of-Sale (POS) system to log merch sales.
 
 Members **cannot**:
-* Delete or edit transactions created by other people.
+* Access the Band Settings page.
 * Remove other members from the band.
 * Change the band's core settings or billing tier.
 
