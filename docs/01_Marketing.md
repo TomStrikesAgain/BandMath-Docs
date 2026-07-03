@@ -1,3 +1,6 @@
+---
+sidebar_position: 99
+---
 # BandMath: Comprehensive Feature Documentation
 *Last Updated: 2026-06-27*
 
