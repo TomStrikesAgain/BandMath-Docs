@@ -1,0 +1,31 @@
+# Frequently Asked Questions
+
+**1. Can I use BandMath if some of my band members don't want to download the app?**
+Yes! You can create a "Shadow Profile" for them. An Admin can log transactions on their behalf, allowing you to track their balances perfectly without them ever needing to open the app.
+
+**2. How does Automated Debt Settlement work?**
+Instead of tracking a tangled web of "who owes who" for every individual receipt, BandMath analyzes the net balances of everyone in the band. It then calculates the absolute simplest way to settle all debts with the fewest number of cash transfers.
+
+**3. Does BandMath handle multiple currencies for international tours?**
+The base currency of a workspace is permanent once your first transaction is logged. For international tours, we recommend creating a separate, dedicated workspace for that specific tour to keep your accounting clean.
+
+**4. How do we handle taxes on merch sales?**
+BandMath features a "VAT Bank" – a special, automated profile that holds Value-Added Tax (or sales tax). When you sell merch, the tax portion is automatically transferred to the VAT Bank, ensuring you don't accidentally spend money you owe to the government.
+
+**5. What is a Groovatar?**
+A Groovy Avatar! These are funky, musically-themed characters that pop up on loading screens throughout the app. They are also used as default placeholder images when transaction receipts or merch inventory photos are not available.
+
+**6. Can we export our data for tax season?**
+Absolutely. You can export your entire ledger to a detailed CSV file at any time, which includes every transaction, date, payer, and calculated balance.
+
+**7. What is the "Band Bank"?**
+The Band Bank is a permanent member profile created automatically for your band. It represents the communal pool of money owned by the band as a business entity (like your shared business checking account or the physical cash box).
+
+**8. What happens if I make a mistake on a transaction?**
+Admins can edit or delete any transaction at any time. Standard members can only edit or delete transactions that they created themselves.
+
+**9. Can we sell items at-cost to band members?**
+Yes! When logging a sale in the Point-of-Sale (POS) system, you can toggle the "At Cost" switch for any band member, which allows them to take an item at its exact unit cost rather than the retail markup.
+
+**10. How does BandMath handle fractions of a cent?**
+Our "Penny Catcher" algorithm ensures that when an expense is split unevenly (e.g. $10.00 split 3 ways), fractions of a cent are never lost or infinitely rounded. The ledger will always balance perfectly to the penny.

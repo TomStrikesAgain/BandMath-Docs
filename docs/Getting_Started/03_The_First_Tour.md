@@ -5,10 +5,12 @@ Ready to hit the road? Here is a quick 5-minute walkthrough of the core BandMath
 ## 1. Log an Expense
 
 Did someone buy gas for the van?
-1. Go to the **Transactions** page.
-2. Tap **Add Transaction** -> **Expense**.
-3. Select *who paid* for the gas, and select the band members who should split the cost in the *who owes* section.
-4. BandMath automatically splits the expense and updates everyone's internal balances.
+1. Tap the shopping bag icon in the bottom nav bar and navigate to the **Add Transactions** page.
+2. Tap the **Expense** button.
+3. Select *who paid* for the gas, type in Gas and enter the amount paid. Then select the band members who should split the cost in the *who owes* section.
+4. Upload a photo of the receipt. 
+5. BandMath automatically splits the expense and updates everyone's internal balances.
+6. Check out the results in the Transaction Feed and on the Standings page by tapping the . 
 
 ![Log Expense](./assets/log-expense.png)
 
@@ -36,8 +38,13 @@ Before you can sell merchandise, you need to tell BandMath what you have in stoc
 When you're at the merch table after a show:
 1. Open the **Point-of-Sale (POS)** tab.
 2. Tap the items the fan wants to buy to add them to the cart.
+
+   ![POS Add to Cart](./assets/pos-add-to-cart.png)
+
 3. Select the payment method (Cash or Card).
 4. Hit **Checkout**. 
+
+   ![POS Checkout](./assets/pos-checkout.png) 
 
 BandMath instantly records the revenue, deducts the items from your inventory, and calculates the profit.
 

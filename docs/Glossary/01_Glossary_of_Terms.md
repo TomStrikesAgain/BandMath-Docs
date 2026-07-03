@@ -19,3 +19,6 @@ A member profile created by an Admin to track the finances of someone who has no
 
 ### The VAT Bank
 A special, permanent member profile used exclusively to hold Value-Added Tax (VAT) or sales tax. When you sell merch, the tax portion of the sale is automatically transferred to the VAT Bank, ensuring you don't accidentally spend money that you owe to the government.
+
+### Groovatar
+A Groovy Avatar! These are funky, musically-themed characters that pop up on loading screens throughout the app. They are also used as default placeholder images when transaction receipts or merch inventory photos are not available.
