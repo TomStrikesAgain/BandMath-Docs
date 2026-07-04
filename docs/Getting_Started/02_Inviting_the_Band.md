@@ -2,8 +2,11 @@
 
 BandMath is built for collaboration. To get the most out of the platform, you should invite your bandmates and tour managers to join your band's workspace.
 
-> [!TIP]
-> If you are working with hired, hourly merch sellers, we recommend setting up generic profiles rather than inviting them directly. See [Working with Hired Merch Sellers](../Advanced_Workflows/03_Hired_Merch_Sellers.md).
+:::tip
+
+If you are working with hired, hourly merch sellers, we recommend setting up generic profiles rather than inviting them directly. See [Working with Hired Merch Sellers](../Advanced_Workflows/03_Hired_Merch_Sellers.md).
+
+:::
 ## How to Invite Members
 
 As an Admin, you can invite new members to your band by generating an **Invite Code**.

@@ -29,5 +29,8 @@ Members **cannot**:
 
 ![Admin vs Member Roles](./assets/admin-member-roles.png)
 
-> [!TIP]
-> A band can have multiple Admins. An existing Admin can promote any Member to an Admin role from the Band Settings page.
+:::tip
+
+A band can have multiple Admins. An existing Admin can promote any Member to an Admin role from the Band Settings page.
+
+:::

@@ -15,5 +15,8 @@ To get your invite code, ask your band's Admin. They can find it next to your na
 3. On the welcome screen, select **Join Existing Band**.
 4. Enter the 6-character Invite Code provided by your Admin.
 
-> [!IMPORTANT]
-> Once you enter the invite code, your new user account is permanently bound to the Shadow Profile. You will instantly inherit all past transactions, debts, and credits associated with that profile, and your Admin will no longer need to track your finances on your behalf.
+:::info
+
+Once you enter the invite code, your new user account is permanently bound to the Shadow Profile. You will instantly inherit all past transactions, debts, and credits associated with that profile, and your Admin will no longer need to track your finances on your behalf.
+
+:::

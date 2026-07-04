@@ -24,8 +24,11 @@ We believe your financial data belongs to you. You can export your entire ledger
 
 If you want to permanently erase your band's data from our servers:
 
-> [!CAUTION]  
-> Deleting your band workspace is **irreversible**. All ledger history, merch inventory, and member profiles will be permanently erased.
+:::danger
+
+Deleting your band workspace is **irreversible**. All ledger history, merch inventory, and member profiles will be permanently erased.
+
+:::
 
 1. Go to **Band Settings**.
 2. Scroll to the very bottom and tap **Delete Band Workspace**.

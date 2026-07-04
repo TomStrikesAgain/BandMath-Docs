@@ -19,8 +19,11 @@ To upgrade your band's workspace:
 
 Once the payment is successful, BandMath will automatically unlock the premium features for your entire band workspace. Note that only one subscription is required per band, not per user!
 
-> [!WARNING]  
-> Only **Admins** have the permission to change the band's subscription tier. If you are a Member and need to upgrade, please contact your Admin.
+:::warning
+
+Only **Admins** have the permission to change the band's subscription tier. If you are a Member and need to upgrade, please contact your Admin.
+
+:::
 
 ## Downgrading
 
