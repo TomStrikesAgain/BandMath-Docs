@@ -6,7 +6,7 @@ The Ledger is the core of BandMath. It is a double-entry accounting system tailo
 
 Adding, modifying, and deleting transactions is simple. BandMath supports recording:
 * **Income:** Anything from nightly venue payouts, to tips, to merch sales.
-* **Expenses:** Gas for the van, hotels, gear repairs, and food buyouts.
+* **Expenses:** Gas for the van, hotels, gear repairs, or just a round of beers at the bar.
 * **Transfers:** Moving money between the Band Bank, VAT Bank, or individual members.
 
 You have full editing capabilities to ensure the ledger is always perfectly accurate.

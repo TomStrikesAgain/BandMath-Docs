@@ -13,7 +13,7 @@ BandMath allows you to define your products with extreme granularity:
 When you're at the merch table, speed is everything.
 
 * **Dynamic Cart System:** Add items to the cart with a single tap.
-* **Cash & Card Tracking:** Split payments or log the exact method of payment to make end-of-night reconciliation a breeze.
+* **Cash & Card Tracking:** Log the exact method of payment to make end-of-night reconciliation a breeze.
 * **Discounts & Tips:** Easily apply custom discounts to a cart, or log tips given by generous fans.
 * **Customer Email Capture:** Grow your mailing list directly from the checkout flow.
 

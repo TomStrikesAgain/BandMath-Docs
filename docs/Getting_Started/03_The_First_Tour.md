@@ -10,7 +10,7 @@ Did someone buy gas for the van?
 3. Select *who paid* for the gas, type in Gas and enter the amount paid. Then select the band members who should split the cost in the *who owes* section.
 4. Upload a photo of the receipt. 
 5. BandMath automatically splits the expense and updates everyone's internal balances.
-6. Check out the results in the Transaction Feed and on the Standings page by tapping the . 
+6. Check out the results in the Transaction Feed and on the Standings page by tapping the graph icon in the nav bar. 
 
 ![Log Expense](./assets/log-expense.png)
 
