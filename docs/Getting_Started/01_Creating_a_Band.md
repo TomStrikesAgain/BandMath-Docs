@@ -24,7 +24,7 @@ Upon creating your band, BandMath automatically creates two special "members" in
 1. **The Band Bank:** Represents the communal pool of money owned by the band as an entity (e.g., your actual shared bank account or a physical cash box).
 2. **The VAT Bank:** Used exclusively for setting aside value-added tax (VAT) or sales tax collected during merch sales. 
 
-These banks are crucial for the double-entry accounting system and cannot be deleted.
+These banks are crucial for the double-entry accounting system and cannot be deleted. However, you won't see them displayed on the Standings page unless they are being used.
 
 ## Managing Multiple Bands
 
