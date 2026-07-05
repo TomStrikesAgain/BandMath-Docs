@@ -26,12 +26,14 @@ Upon creating your band, BandMath automatically creates two special "members" in
 
 These banks are crucial for the double-entry accounting system and cannot be deleted.
 
-## Next Steps
-
-Once your band profile is created, you automatically become the **Admin**. Your next step is to start building out your roster by [inviting your band members](./02_Inviting_the_Band.md).
-
 ## Managing Multiple Bands
 
 BandMath supports multiple bands for each user! You can be a member of an unlimited number of bands, and you can create or be an Admin for up to 5 bands simultaneously. 
 
 To switch between your bands, navigate to the **User Settings** page and use the **Band Dropdown** to select whichever band you want to view.
+
+![Band Dropdown](./assets/band-dropdown.png)
+
+## Next Steps
+
+Once your band profile is created, you automatically become the **Admin**. Your next step is to start building out your roster by [inviting your band members](./02_Inviting_the_Band.md).
