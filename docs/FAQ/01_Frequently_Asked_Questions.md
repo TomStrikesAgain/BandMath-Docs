@@ -29,3 +29,6 @@ Yes! When logging a sale in the Point-of-Sale (POS) system, you can toggle the "
 
 **10. How does BandMath handle fractions of a cent?**
 Our "Penny Catcher" algorithm ensures that when an expense is split unevenly (e.g. $10.00 split 3 ways), fractions of a cent are never lost or infinitely rounded. The ledger will always balance perfectly to the penny.
+
+**11. Can I be in multiple bands on BandMath?**
+Yes! BandMath supports multiple bands for each user. You can be a member of an unlimited number of bands and an Admin for up to 5 bands. You can easily switch between your bands at any time from the Band Dropdown on the User Settings page.

@@ -10,8 +10,6 @@ When an Admin adds a new member to the band's roster, BandMath creates a "Shadow
 
 Because the Shadow Profile exists in your band's ledger, you can immediately start assigning transactions to them. You can log that the Shadow Profile paid for gas, or that they owe a split of the hotel bill. BandMath will calculate their balances and settlements perfectly, just as it would for an active user.
 
-![Shadow Profile Badge](./assets/shadow-profile-badge.png)
-
 ## Active Profiles vs. Shadow Profiles
 
 * **Active Profiles:** These are members who have downloaded the BandMath app, created an account, and joined the band using an invite code. They can log in and see their own balances on their phone.
