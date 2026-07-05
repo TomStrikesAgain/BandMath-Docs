@@ -15,7 +15,7 @@ Supported types: `:::note`, `:::tip`, `:::info`, `:::warning`, `:::danger`.
 ## 2. Image Link Validation
 Docusaurus strictly validates all internal image paths during the build process. 
 - If you add a Markdown image link (e.g. `![Placeholder](./assets/my-image.png)`), the physical image file **MUST** exist at that path before you run the build.
-- If you need a temporary placeholder to test the build, you should copy an existing image from the `assets` folder and rename it, rather than leaving the link broken.
+- If you need a temporary placeholder to test the build, you should generate a blank 1px by 1px placeholder image (or use a script to create one) and save it to the correct path, rather than leaving the link broken.
 
 ## 3. Mandatory Build Verification
 Before committing ANY changes to the repository, you must always run `npm run build` locally. This ensures that no broken links, missing images, or malformed MDX files are pushed to production. 
