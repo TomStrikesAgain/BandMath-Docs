@@ -19,7 +19,7 @@ A Groovy Avatar! These are funky, musically-themed characters that pop up on loa
 Absolutely. You can export your entire ledger to a detailed CSV file at any time, which includes every transaction, date, payer, and calculated balance.
 
 **7. What is the "Band Bank"?**
-The Band Bank is a permanent member profile created automatically for your band. It represents the communal pool of money owned by the band as a business entity (like your shared business checking account or the physical cash box).
+The Band Bank is a permanent member profile created automatically for your band. It represents the communal pool of money owned by the band as a business entity (like your shared business checking account or the physical cash box). Unlike traditional spreadsheets that only compute a flat percentage of overall ownership, BandMath continuously tracks exactly how much of that communal money belongs to each individual member on an ongoing basis.
 
 **8. What happens if I make a mistake on a transaction?**
 Anyone in the band can edit or delete any transaction at any time, regardless of who created it.
