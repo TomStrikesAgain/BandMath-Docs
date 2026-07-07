@@ -160,8 +160,29 @@ article h2 a mark {
   filter: brightness(0) !important;
 }
 
-/* Center footer links */
+/* Center footer links and prevent them from stretching far apart */
 .footer__links {
   justify-content: center;
   gap: 15%;
+}
+
+.footer__links .col {
+  flex: 0 0 auto !important;
+}
+
+/* Make hero banner fill the empty space to remove the grey bar */
+.hero--primary {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Make the search bar square */
+.navbar__search input,
+.searchBarContainer input,
+.searchBarContainer .searchBarInput {
+  border-radius: 0 !important;
 }
