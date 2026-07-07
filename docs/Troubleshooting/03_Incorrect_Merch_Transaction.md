@@ -18,3 +18,11 @@ When you hit "Delete" on a Merch Sale, the backend triggers a cascading self-hea
 * **The Math Realignment:** The primary transaction and all associated profit splits are instantly deleted, perfectly resetting every band member's standings back to where they were before the sale.
 * **The Auto-Restock:** The backend opens up the associated order, looks at every single item and size that was in the cart, and automatically adds those exact quantities back into your active inventory.
 * **The Analytics:** The order records are purged, meaning your Merch Analyzer's ROI, velocity, and "Trophy" metrics remain completely uncontaminated by the mistake.
+
+---
+
+### What if the customer paid by Credit Card?
+
+If a customer paid by credit card and the **total dollar amount** charged was correct, but the merch seller simply selected the wrong item or size (e.g., ringing up a Medium shirt instead of a Large), you **should not delete the transaction**. Deleting the transaction in BandMath does not automatically refund the credit card processor (like Stripe or Square), and you do not want to force the customer to swipe their card again for a simple inventory mistake.
+
+**The Solution:** Leave the transaction alone. The financial ledger perfectly matches the money deposited into your bank account. To fix the inventory discrepancy, an Admin should navigate to the **Merch Inventory** page and manually adjust the stock counts (e.g., manually add +1 to the Medium shirt stock, and subtract -1 from the Large shirt stock). This corrects the physical inventory for the rest of the tour without disrupting the financial ledger.
