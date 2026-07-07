@@ -49,3 +49,7 @@ Software experiences bugs, updates, and occasional downtime. To protect our abil
 * **"As-Is" Platform:** BandMath is provided on an "as-is" and "as-available" basis, without guarantees of continuous, uninterrupted uptime.
 * **WAIVER OF CONSEQUENTIAL DAMAGES:** UNDER NO CIRCUMSTANCES SHALL BANDMATH BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES. THIS INCLUDES LOST REVENUE, MISSED MERCHANDISE SALES, OR DATA LOSS RESULTING FROM APP DOWNTIME, BUGS, OR SERVER OUTAGES.
 * **Liability Cap:** In the event that BandMath is found legally liable for any claim arising out of your use of the platform, our maximum total liability to you shall not exceed the total amount you paid to BandMath in the twelve (12) months immediately preceding the incident.
+
+### 9. Analytics, Projections, and Venue Splits
+
+The Pro Tier provides advanced analytics, restock warnings, and venue split calculators. These features are strictly informational tools based on the data you input. BandMath does not guarantee the accuracy of future sales projections. Restock warnings are algorithmic estimates based on past sales velocity, not guaranteed financial or purchasing advice. Furthermore, venue split calculations are provided solely for your convenience. BandMath is not a party to your venue contracts, and we are not legally liable for any inventory purchasing decisions you make or any payout disputes that arise between your band and a venue or promoter.
