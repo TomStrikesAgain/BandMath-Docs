@@ -159,3 +159,9 @@ article h2 a mark {
 .navbar-sidebar .menu__link--sublist-caret::after {
   filter: brightness(0) !important;
 }
+
+/* Center footer links */
+.footer__links {
+  justify-content: center;
+  gap: 15%;
+}

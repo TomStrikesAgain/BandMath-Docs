@@ -110,13 +110,8 @@ const config = {
               },
             ],
           },
-          {
-            title: 'More',
-            items: [
-            ],
-          },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} BandMath. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} BandMath.`,
       },
       prism: {
         theme: prismThemes.github,
