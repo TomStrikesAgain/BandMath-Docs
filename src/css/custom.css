@@ -161,23 +161,29 @@ article h2 a mark {
 }
 
 /* Center footer links and prevent them from stretching far apart */
-.footer__links {
+.footer__links .row {
   justify-content: center;
   gap: 15%;
 }
 
 .footer__links .col {
   flex: 0 0 auto !important;
+  max-width: none !important;
 }
 
-/* Make hero banner fill the empty space to remove the grey bar */
+/* Make hero banner tall enough to hide grey gap, but not so tall it scrolls */
 .hero--primary {
   background-color: #000000 !important;
   color: #ffffff !important;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 250px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/* Make copyright smaller */
+.footer__copyright {
+  font-size: 0.8rem;
 }
 
 /* Make the search bar square */
