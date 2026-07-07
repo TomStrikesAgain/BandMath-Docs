@@ -34,6 +34,7 @@ export default function Home() {
       title={siteConfig.title}
       description="BandMath Knowledge Base">
       <HomepageHeader />
+      <main style={{ flexGrow: 1, backgroundColor: '#000000' }}></main>
     </Layout>
   );
 }

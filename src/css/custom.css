@@ -162,23 +162,21 @@ article h2 a mark {
 
 /* Center footer links and prevent them from stretching far apart */
 .footer__links .row {
-  justify-content: center;
-  gap: 15%;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  gap: 15% !important;
 }
 
 .footer__links .col {
   flex: 0 0 auto !important;
-  max-width: none !important;
+  width: auto !important;
 }
 
-/* Make hero banner tall enough to hide grey gap, but not so tall it scrolls */
+/* Hero banner colors */
 .hero--primary {
   background-color: #000000 !important;
   color: #ffffff !important;
-  min-height: calc(100vh - 250px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 /* Make copyright smaller */
