@@ -1,19 +1,18 @@
 # Claiming a Profile
 
-If you've been operating as a [Shadow Profile](./02_Shadow_Profiles.md) and you finally decide to download the BandMath app, you can easily "claim" your profile to view your balances and log your own transactions.
+Users can claim a [Shadow Profile](./02_Shadow_Profiles.md) to view balances and log transactions.
 
 ## The Invite Code
 
 Every Shadow Profile automatically generates a unique 6-character **Invite Code**. This code acts as a secure key to bind your new user account to the existing financial data your band has been tracking for you.
 
-To get your invite code, ask your band's Admin. They can find it next to your name on the **Manage Members** screen in the Band Settings.
+Admins: Long press on the member name in the roster on the **Manage Members** screen in the Band Settings to copy the invite code.
 
 ## How to Claim Your Profile
 
-1. Download the BandMath pre-beta app using the direct link provided by your Admin.
-2. Open the app and create a new user account using your email address.
-3. On the welcome screen, select **Join Existing Band**.
-4. Enter the 6-character Invite Code provided by your Admin.
+1. Open the app and create a new user account using your email address.
+2. On the welcome screen, select **Join Existing Band**.
+3. Enter the 6-character Invite Code provided by your Admin.
 
 :::info
 

@@ -6,7 +6,7 @@ Whether it's a stubborn drummer or a temporary hired musician, you still need to
 
 ## What is a Shadow Profile?
 
-When an Admin adds a new member to the band's roster, BandMath creates a "Shadow Profile" in the database. This profile has a name and a role, but it is not yet attached to a real user account (in technical terms, their `user_id` is null).
+When an Admin adds a new member to the band's roster, BandMath creates a "Shadow Profile" in the database. This profile has a name and a role, but it is not yet attached to a real user account.
 
 Because the Shadow Profile exists in your band's ledger, you can immediately start assigning transactions to them. You can log that the Shadow Profile paid for gas, or that they owe a split of the hotel bill. BandMath will calculate their balances and settlements perfectly, just as it would for an active user.
 

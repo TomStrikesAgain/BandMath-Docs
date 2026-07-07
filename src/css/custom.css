@@ -147,3 +147,15 @@ article h2 a mark {
 .navbar-sidebar .navbar-sidebar__back {
   color: #000000 !important;
 }
+
+/* Ensure mobile sidebar icons and carets are black */
+.navbar-sidebar svg {
+  color: #000000 !important;
+  fill: #000000 !important;
+}
+
+.navbar-sidebar .menu__caret::before,
+.navbar-sidebar .menu__caret::after,
+.navbar-sidebar .menu__link--sublist-caret::after {
+  filter: brightness(0) !important;
+}

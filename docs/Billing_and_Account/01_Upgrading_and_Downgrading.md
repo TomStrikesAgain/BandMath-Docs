@@ -1,6 +1,6 @@
 # Upgrading and Downgrading
 
-BandMath offers different subscription tiers to fit the needs of your tour. Whether you just need the core financial ledger, or you want to unlock advanced features like the Merch Analyzer, managing your subscription is easy.
+BandMath offers two subscription tiers to fit the needs of your tour. For the garage bands out there the core financial ledger is all you need, but when you start moving merch that's when  you're going to want to unlock the power of the Merch Manager with advanced features like the Point Of Sale, the Merch Analyzer, and the Venue Split Calculator. Managing your subscription is easy.
 
 ## Subscription Tiers
 
@@ -33,4 +33,4 @@ If your tour is over and you no longer need the advanced features, you can downg
 2. Select **Manage Subscription**.
 3. You will be taken to the Stripe customer portal where you can cancel your subcription.
 
-Your premium features will remain active until the end of your current billing cycle, after which you will be moved to the downgraded tier. Your historical data from the higher tier (like past merch sales) will be preserved, but you may lose access to the advanced analytics dashboards. Pick back up where you left off when the time is right for you!
+Your premium features will remain active until the end of your current billing cycle, after which you will be moved to the standard tier. Your historical data from the higher tier (like past merch sales) will be preserved, but you may lose access to the advanced analytics dashboards. Pick back up where you left off when the time is right for you!

@@ -18,7 +18,7 @@ Did someone buy gas for the van?
 
 Before you can sell merchandise, you need to tell BandMath what you have in stock. This is a simple 3-step process:
 
-1. **Create Items:** Navigate to the Create Items menu from the pop out drawer on the right side to define your "Merch Types". A merch type is anything you can print on—from T-Shirts and hats, to lighters or even a Limited Edition custom flowerpot. Merch types are totally customizable and unlimited.
+1. **Create Items:** Navigate to the Create Items menu from the pop out drawer on the right side then select "Add/Edit Merch Types". A merch type is anything you can print on—from T-Shirts and hats, to lighters or even a Limited Edition custom flowerpot. Merch types are totally customizable and unlimited.
 
    <div style={{display: 'flex', justifyContent: 'space-between'}}>
      <img src={require('./assets/create-items-1.png').default} alt="Create Items 1" style={{width: '49%'}} />

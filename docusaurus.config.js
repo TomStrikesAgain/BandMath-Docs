@@ -97,7 +97,7 @@ const config = {
             items: [
               {
                 label: 'User Guides',
-                to: '/docs/Marketing',
+                to: '/docs/Getting_Started/Creating_a_Band',
               },
             ],
           },
