@@ -8,7 +8,7 @@ Whether the customer paid with Cash or Credit Card, you **should not delete the 
 
 To fix the error:
 1. Leave the transaction alone in the Ledger. The financial amount perfectly matches the money deposited into your cash box or bank account. 
-2. An Admin should navigate to the **Merch Inventory** page.
+2. An Admin should navigate to the **Merch Inventory** page and long press the item. 
 3. Manually adjust the stock counts to reflect reality (e.g., manually add +1 to the Medium shirt stock, and subtract -1 from the Large shirt stock). 
 
 This instantly corrects your physical inventory counts for the rest of the tour without creating a messy trail of deleted transactions in your financial ledger.
