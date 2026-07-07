@@ -9,7 +9,7 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx('hero hero--primary', styles.heroBanner)} style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
@@ -34,7 +34,6 @@ export default function Home() {
       title={siteConfig.title}
       description="BandMath Knowledge Base">
       <HomepageHeader />
-      <main style={{ flexGrow: 1, backgroundColor: '#000000' }}></main>
     </Layout>
   );
 }
