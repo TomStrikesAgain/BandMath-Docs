@@ -1,28 +1,14 @@
 # The Incorrect Merch Transaction
 
 **The Scenario:** 
-A band member was rushing at the merch table and accidentally checked out the wrong size or applied the wrong discount. They realize the mistake a few minutes later and need to fix it.
+A band member was rushing at the merch table and accidentally checked out the wrong item or size (e.g., ringing up a Medium shirt instead of a Large). They realize the mistake a few minutes later and need to fix it.
 
-**The Nightmare:** 
-In most systems, deleting a sale destroys the financial record, but leaves the inventory permanently skewed. You would have to manually go back into the stock room, figure out exactly which items were logged in that specific cart, and manually add them back to your inventory counts one by one.
+**The Solution: Manual Inventory Override**
+Whether the customer paid with Cash or Credit Card, you **should not delete the transaction** if the total dollar amount charged was correct. Deleting a transaction that was paid via Credit Card in BandMath does not automatically refund your payment processor (like Stripe or Square), and you do not want to force the customer to swipe their card again or hand back cash for a simple inventory logging mistake.
 
-**The BandMath Solution (The Self-Healing Ledger):**
-BandMath's database is deeply interconnected. To fix a bad merch sale, you simply delete it.
+To fix the error:
+1. Leave the transaction alone in the Ledger. The financial amount perfectly matches the money deposited into your cash box or bank account. 
+2. An Admin should navigate to the **Merch Inventory** page.
+3. Manually adjust the stock counts to reflect reality (e.g., manually add +1 to the Medium shirt stock, and subtract -1 from the Large shirt stock). 
 
-1. Go to the **Transaction Feed** (the Ledger).
-2. Locate the incorrect Merch Sale and tap **Delete**.
-3. Re-ring the customer correctly in the POS.
-
-**Why this works flawlessly:**
-When you hit "Delete" on a Merch Sale, the backend triggers a cascading self-heal:
-* **The Math Realignment:** The primary transaction and all associated profit splits are instantly deleted, perfectly resetting every band member's standings back to where they were before the sale.
-* **The Auto-Restock:** The backend opens up the associated order, looks at every single item and size that was in the cart, and automatically adds those exact quantities back into your active inventory.
-* **The Analytics:** The order records are purged, meaning your Merch Analyzer's ROI, velocity, and "Trophy" metrics remain completely uncontaminated by the mistake.
-
----
-
-### What if the customer paid by Credit Card?
-
-If a customer paid by credit card and the **total dollar amount** charged was correct, but the merch seller simply selected the wrong item or size (e.g., ringing up a Medium shirt instead of a Large), you **should not delete the transaction**. Deleting the transaction in BandMath does not automatically refund the credit card processor (like Stripe or Square), and you do not want to force the customer to swipe their card again for a simple inventory mistake.
-
-**The Solution:** Leave the transaction alone. The financial ledger perfectly matches the money deposited into your bank account. To fix the inventory discrepancy, an Admin should navigate to the **Merch Inventory** page and manually adjust the stock counts (e.g., manually add +1 to the Medium shirt stock, and subtract -1 from the Large shirt stock). This corrects the physical inventory for the rest of the tour without disrupting the financial ledger.
+This instantly corrects your physical inventory counts for the rest of the tour without creating a messy trail of deleted transactions in your financial ledger.
