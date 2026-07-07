@@ -134,7 +134,6 @@ article h2 a mark {
 /* Limit line width of main column for better readability */
 @media (min-width: 997px) {
   .theme-doc-markdown,
-  header,
   .theme-doc-breadcrumbs,
   .pagination-nav {
     max-width: 600px;
