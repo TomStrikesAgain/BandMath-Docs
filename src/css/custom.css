@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap');
 
 :root {
   /* Fonts */
-  --ifm-font-family-base: 'DM Sans', sans-serif;
+  --ifm-font-family-base: 'Inter', sans-serif;
   --ifm-heading-font-family: 'Space Grotesk', sans-serif;
-  --ifm-heading-font-weight: 400;
+  --ifm-heading-font-weight: 700;
 
   /* Base colors for light mode (though we forced dark mode) */
   --ifm-color-primary: #E5FE00;
