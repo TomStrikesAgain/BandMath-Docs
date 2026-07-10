@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;700&display=swap');
 
 :root {
   /* Fonts */
   --ifm-font-family-base: 'DM Sans', sans-serif;
-  --ifm-heading-font-family: 'Archivo Black', sans-serif;
+  --ifm-heading-font-family: 'Space Grotesk', sans-serif;
   --ifm-heading-font-weight: 400;
 
   /* Base colors for light mode (though we forced dark mode) */
@@ -53,7 +53,7 @@
 }
 
 .navbar__title {
-  color: #E5FE00 !important;
+  color: #ffffff !important;
 }
 
 .navbar__item {
