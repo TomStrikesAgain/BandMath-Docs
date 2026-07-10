@@ -7,38 +7,45 @@
   --ifm-heading-font-weight: 400;
 
   /* Base colors for light mode (though we forced dark mode) */
-  --ifm-color-primary: #dfff00;
-  --ifm-color-primary-dark: #c8e600;
+  --ifm-color-primary: #E5FE00;
+  --ifm-color-primary-dark: #ccff00;
   --ifm-color-primary-darker: #b2cc00;
   --ifm-color-primary-darkest: #8c9900;
-  --ifm-color-primary-light: #e4ff1a;
-  --ifm-color-primary-lighter: #e9ff33;
-  --ifm-color-primary-lightest: #efff4d;
+  --ifm-color-primary-light: #eaff1a;
+  --ifm-color-primary-lighter: #eeff33;
+  --ifm-color-primary-lightest: #f2ff4d;
 
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-global-radius: 0px;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #dfff00;
-  --ifm-color-primary-dark: #c8e600;
+  --ifm-color-primary: #E5FE00;
+  --ifm-color-primary-dark: #ccff00;
   --ifm-color-primary-darker: #b2cc00;
   --ifm-color-primary-darkest: #8c9900;
-  --ifm-color-primary-light: #e4ff1a;
-  --ifm-color-primary-lighter: #e9ff33;
-  --ifm-color-primary-lightest: #efff4d;
+  --ifm-color-primary-light: #eaff1a;
+  --ifm-color-primary-lighter: #eeff33;
+  --ifm-color-primary-lightest: #f2ff4d;
   
-  --ifm-background-color: #252525;
+  --ifm-background-color: #1A1A1A;
   --ifm-background-surface-color: #000000;
   --ifm-font-color-base: #e8e8e8;
   --ifm-color-content: #e8e8e8;
   --ifm-menu-color: #e8e8e8;
-  --ifm-navbar-background-color: #dfff00;
-  --ifm-navbar-link-color: #000000;
-  --ifm-navbar-link-hover-color: #252525;
+  --ifm-navbar-background-color: rgba(0, 0, 0, 0.5); /* Glassmorphism base */
+  --ifm-navbar-link-color: #E5FE00;
+  --ifm-navbar-link-hover-color: #ffffff;
   --ifm-footer-background-color: #000000;
 
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+}
+
+.navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(229, 254, 0, 0.2);
 }
 
 .footer--dark {
@@ -46,15 +53,19 @@
 }
 
 .navbar__title {
-  color: #000000 !important;
+  color: #E5FE00 !important;
 }
 
 .navbar__item {
-  color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.navbar__item:hover {
+  color: #E5FE00 !important;
 }
 
 .navbar__toggle {
-  color: #000000 !important;
+  color: #E5FE00 !important;
 }
 
 .hero--primary {
@@ -67,19 +78,20 @@
 }
 
 /* Specific component overrides to ensure the black text on yellow looks good */
-.button--primary {
-  color: #000000 !important;
-}
-
+.button,
+.button--primary,
 .button--secondary {
-  background-color: #dfff00;
-  color: #000000;
-  border-color: #dfff00;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid var(--ifm-color-primary) !important;
+  border-radius: 0 !important;
 }
 
+.button:hover,
+.button--primary:hover,
 .button--secondary:hover {
-  background-color: #c8e600;
-  color: #000000;
+  background-color: var(--ifm-color-primary) !important;
+  color: #000000 !important;
 }
 
 h1 {
@@ -145,19 +157,20 @@ article h2 a mark {
 .navbar-sidebar .menu__link,
 .navbar-sidebar .clean-btn,
 .navbar-sidebar .navbar-sidebar__back {
-  color: #000000 !important;
+  color: #ffffff !important;
+  background-color: #1A1A1A;
 }
 
-/* Ensure mobile sidebar icons and carets are black */
+/* Ensure mobile sidebar icons and carets are white */
 .navbar-sidebar svg {
-  color: #000000 !important;
-  fill: #000000 !important;
+  color: #ffffff !important;
+  fill: #ffffff !important;
 }
 
 .navbar-sidebar .menu__caret::before,
 .navbar-sidebar .menu__caret::after,
 .navbar-sidebar .menu__link--sublist-caret::after {
-  filter: brightness(0) !important;
+  filter: brightness(1) !important;
 }
 
 /* Center footer links and prevent them from stretching far apart */

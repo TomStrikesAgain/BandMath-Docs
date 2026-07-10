@@ -32,3 +32,9 @@ Our "Penny Catcher" algorithm ensures that when an expense is split unevenly (e.
 
 **11. Can I be in multiple bands on BandMath?**
 Yes! BandMath supports multiple bands for each user. You can be a member of an unlimited number of bands and an Admin for up to 5 bands. You can easily switch between your bands at any time from the Band Dropdown on the User Settings page.
+
+**12. How can I get help or contact support?**
+We use Crisp as our customer support platform. You can reach out to our support team at any time using the chat widget located in the bottom corner of the web portal (`itsbandmath.com/Account`), or by tapping the "Support" link directly in the app's menu.
+
+**13. How do I upgrade my subscription?**
+All subscriptions are managed securely via our web portal. To upgrade, simply log in at `itsbandmath.com/Account` using your Admin credentials and select the tier that fits your band's needs.

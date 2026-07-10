@@ -13,7 +13,7 @@ All the Core Ledger features in BandMath are free. You can view the current avai
 ## How to Upgrade
 
 To upgrade your band's workspace:
-1. Navigate to the **Band Settings** page.
+1. Navigate to our web portal at **itsbandmath.com/Account** and log in with your Admin credentials.
 2. Select **Upgrade**.
 3. You will be redirected to our secure Stripe checkout portal to enter your payment details.
 
@@ -29,7 +29,7 @@ Only **Admins** have the permission to change the band's subscription tier. If y
 
 If your tour is over and you no longer need the advanced features, you can downgrade your workspace at any time.
 
-1. Go to the **Billing** tab in Band Settings.
+1. Go to the web portal at **itsbandmath.com/Account**.
 2. Select **Manage Subscription**.
 3. You will be taken to the Stripe customer portal where you can cancel your subcription.
 

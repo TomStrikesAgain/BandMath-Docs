@@ -5,8 +5,8 @@ If the band breaks up (we hope not!) or you simply no longer need to use BandMat
 ## Canceling Your Subscription
 
 To stop future billing:
-1. Navigate to **Band Settings** > **Billing**.
-2. Tap **Manage Subscription** to open the Stripe portal.
+1. Navigate to the web portal at **itsbandmath.com/Account**.
+2. Select **Manage Subscription** to open the Stripe portal.
 3. Select **Cancel Plan**.
 
 Your premium features will remain active until the end of your current billing cycle. After that, your workspace will be downgraded to the free tier. Your data is not deleted when you cancel a premium subscription.
