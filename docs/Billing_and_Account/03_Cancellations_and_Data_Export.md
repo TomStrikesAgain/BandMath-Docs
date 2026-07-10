@@ -5,7 +5,7 @@ If the band breaks up (we hope not!) or you simply no longer need to use BandMat
 ## Canceling Your Subscription
 
 To stop future billing:
-1. Navigate to the web portal at **itsbandmath.com/Account**.
+1. Navigate to the web portal at **account.itsbandmath.com**.
 2. Select **Manage Subscription** to open the Stripe portal.
 3. Select **Cancel Plan**.
 

@@ -2,7 +2,7 @@
 
 ### How do I upgrade my subscription?
 
-All subscriptions are managed securely via our web portal. To upgrade, simply log in at `itsbandmath.com/Account` using your Admin credentials and select the tier that fits your band's needs.
+All subscriptions are managed securely via our web portal. To upgrade, simply log in at `account.itsbandmath.com` using your Admin credentials and select the tier that fits your band's needs.
 
 ### Can I be in multiple bands on BandMath?
 
@@ -50,4 +50,4 @@ Our "Penny Catcher" algorithm ensures that when an expense is split unevenly (e.
 
 ### How can I get help or contact support?
 
-We use Crisp as our customer support platform. You can reach out to our support team at any time using the chat widget located in the bottom corner of the web portal (`itsbandmath.com/Account`), or by tapping the "Support" link directly in the app's menu.
+We use Crisp as our customer support platform. You can reach out to our support team at any time using the chat widget located in the bottom corner of the web portal (`account.itsbandmath.com`), or by tapping the "Support" link directly in the app's menu.

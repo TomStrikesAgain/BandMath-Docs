@@ -6,7 +6,7 @@ BandMath partners with **Stripe** to securely handle all billing and subscriptio
 
 If your credit card has expired, or you simply want to switch the billing to a different card, you can do so through the Stripe Customer Portal.
 
-1. Navigate to **itsbandmath.com/Account** in your web browser.
+1. Navigate to **account.itsbandmath.com** in your web browser.
 2. Log in and select **Manage Subscription**.
 3. This will open the secure Stripe Customer Portal.
 4. Under the **Payment Methods** section, you can add a new card, delete an old card, or set a new default payment method.
