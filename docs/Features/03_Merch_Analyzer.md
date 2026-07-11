@@ -24,4 +24,4 @@ While this might be giving away some of our "secret sauce", we believe in full t
 
 We've gamified merch sales! The Analyzer automatically awards trophies to your best-performing items (e.g., "Fastest Seller", "Highest Profit Margin"), so you can quickly identify the stars of your merch table at a glance.
 
-![Merch Analyzer Dashboard](https://itsbandmath.com/automated-assets/11-merch-analyzer.png)
+![Merch Analyzer Dashboard](/automated-assets/11-merch-analyzer.png)

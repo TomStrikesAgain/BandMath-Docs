@@ -27,11 +27,11 @@ Before you can sell merchandise, you need to tell BandMath what you have in stoc
 
 2. **Add Designs:** Next, you add Designs to your merch types. Give the design a name and upload an image of the item. If you don't have an image handy, just click submit and a stock Groovatar image will be used instead.
 
-   ![Add Designs](https://itsbandmath.com/automated-assets/08-create-items.png)
+   ![Add Designs](/automated-assets/08-create-items.png)
 
 3. **Add Inventory:** Now that the item conceptually exists, go to the Add Inventory page. Choose your Product Type and Design, input the unit cost and retail price, and finally input how many of each size you bought (items without sizes like hats or lighters go in "N/A").
 
-   ![Add Inventory Flow](https://itsbandmath.com/automated-assets/09-add-inventory.png)
+   ![Add Inventory Flow](/automated-assets/09-add-inventory.png)
 
 ## 3. Log a Sale (The POS System)
 
@@ -39,7 +39,7 @@ When you're at the merch table after a show:
 1. Open the **Merch Manager** tab in the bottom nav bar by clicking the Price Tag icon on the far right side.
 2. Tap the Sell button next to each item the fan wants to buy to add them to the cart.
 
-   ![POS Add to Cart](https://itsbandmath.com/automated-assets/04-tab3.png)
+   ![POS Add to Cart](/automated-assets/04-tab3.png)
 
 3. Select the payment method (Cash or Card).
 4. Hit **Checkout**. 
@@ -56,4 +56,4 @@ At the end of the night (or the end of the tour), navigate to the **Standings** 
 
 Here, you'll see the magic of BandMath's [Automated Debt Settlement](../Features/01_The_Ledger.md#automated-debt-settlement). Instead of a tangled web of "who owes who," BandMath calculates the absolute simplest way for everyone to settle up using the minimum number of money transfers.
 
-![Standings Summary](https://itsbandmath.com/automated-assets/02-dashboard-standings.png)
+![Standings Summary](/automated-assets/02-dashboard-standings.png)
