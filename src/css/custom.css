@@ -216,3 +216,13 @@ article h2 a mark {
 .searchBarContainer .searchBarInput {
   border-radius: 0 !important;
 }
+
+/* Constrain images (especially tall mobile screenshots) so they don't dominate the screen */
+.theme-doc-markdown img {
+  max-height: 550px;
+  width: auto;
+  display: block;
+  margin: 2rem auto; /* Center the image */
+  border-radius: 12px;
+  border: 1px solid rgba(229, 254, 0, 0.2);
+}
