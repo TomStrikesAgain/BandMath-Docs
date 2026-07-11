@@ -11,7 +11,7 @@ Adding, modifying, and deleting transactions is simple. BandMath supports record
 
 You have full editing capabilities to ensure the ledger is always perfectly accurate.
 
-![Add Modify Delete 1](./assets/add-modify-and-delete-transactions_01.png)
+![My Transactions](https://itsbandmath.com/automated-assets/07-my-transactions.png)
 
 ## Shared Expenses & Credits
 
@@ -27,7 +27,7 @@ This is the magic of BandMath. Instead of creating a complex web of "who owes wh
 
 It outputs the absolute simplest way to settle all debts with the fewest number of cash transfers.
 
-![Automated Debt Settlement](./assets/automated-debt-settlement_01.png)
+![Automated Debt Settlement](https://itsbandmath.com/automated-assets/02-dashboard-standings.png)
 
 ## Advanced Profit Splitting (The Penny Catcher)
 

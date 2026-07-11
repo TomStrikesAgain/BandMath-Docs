@@ -17,7 +17,7 @@ When you're at the merch table, speed is everything.
 * **Discounts & Tips:** Easily apply custom discounts to a cart, or log tips given by generous fans.
 * **Customer Email Capture:** Grow your mailing list directly from the checkout flow.
 
-![POS Checkout Cart](./assets/pos-checkout-cart.png)
+![POS Checkout Cart](https://itsbandmath.com/automated-assets/04-tab3.png)
 
 ## Real-Time Stock Depletion
 

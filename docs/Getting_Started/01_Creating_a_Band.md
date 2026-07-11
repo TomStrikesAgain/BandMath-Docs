@@ -32,7 +32,7 @@ BandMath supports multiple bands for each user! You can be a member of an unlimi
 
 To switch between your bands, navigate to the **User Settings** page and use the **Band Dropdown** to select whichever band you want to view.
 
-![Band Dropdown](./assets/band-dropdown.png)
+![Band Dropdown](https://itsbandmath.com/automated-assets/06-end-drawer.png)
 
 ## Next Steps
 
