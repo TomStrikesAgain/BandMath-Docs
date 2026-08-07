@@ -1,5 +1,11 @@
 # The Merch Analyzer
 
+<div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/01_merch_analyzer_top.png" alt="Merch Analyzer 1" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/02_merch_analyzer_scrolled.png" alt="Merch Analyzer 2" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/03_merch_analyzer_bottom.png" alt="Merch Analyzer 3" style={{width: '32%'}} />
+</div>
+
 Data is power. The Merch Analyzer is an advanced analytics suite available to Merch Manager subscribers. It provides deep insights into your inventory performance so you can make smarter decisions for the next tour.
 
 ## Profit & ROI Tracking
@@ -23,9 +29,3 @@ While this might be giving away some of our "secret sauce", we believe in full t
 ## Trophy Awards
 
 We've gamified merch sales! The Analyzer automatically awards trophies to your best-performing items (e.g., "Fastest Seller", "Highest Profit Margin"), so you can quickly identify the stars of your merch table at a glance.
-
-<div style={{display: 'flex', justifyContent: 'space-between'}}>
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/01_merch_analyzer_top.png" alt="Merch Analyzer 1" style={{width: '32%'}} />
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/02_merch_analyzer_scrolled.png" alt="Merch Analyzer 2" style={{width: '32%'}} />
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/03_merch_analyzer_bottom.png" alt="Merch Analyzer 3" style={{width: '32%'}} />
-</div>

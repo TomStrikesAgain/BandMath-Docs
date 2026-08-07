@@ -64,3 +64,9 @@ Our proprietary Penny Catcher algorithm ensures that fractions of a cent are nev
 Need to calculate a complicated merch split with a venue? The built-in Venue Split Calculator handles the math for you.
 
 When you sell merch or log taxable income, the tax portion of the sale is automatically transferred to the **VAT Bank**. This ensures you don't accidentally spend money that you owe to the government.
+
+<div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/04_venue_split_gross.png" alt="Venue Split Gross" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/05_venue_split_net.png" alt="Venue Split Net" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/06_venue_split_who_paid_out.png" alt="Venue Split Payout" style={{width: '32%'}} />
+</div>

@@ -12,7 +12,7 @@ Did someone buy gas for the van?
 5. BandMath automatically splits the expense and updates everyone's internal balances.
 6. Check out the results in the Transaction Feed and on the Standings page by tapping the graph icon in the nav bar. 
 
-![Log Expense](https://itsbandmath.com/automated-assets/my_transactions_flow/01_my_transactions_page.png)
+![Log Expense](https://itsbandmath.com/automated-assets/financials/add_expense/02_feed_before.png)
 
 ## 2. Add Your Inventory
 
@@ -56,4 +56,4 @@ At the end of the night (or the end of the tour), navigate to the **Standings** 
 
 Here, you'll see the magic of BandMath's [Automated Debt Settlement](../Features/01_The_Ledger.md#automated-debt-settlement). Instead of a tangled web of "who owes who," BandMath calculates the absolute simplest way for everyone to settle up using the minimum number of money transfers.
 
-![Standings Summary](https://itsbandmath.com/automated-assets/merch_and_venue_split/06_venue_split_who_paid_out.png)
+![Standings Summary](https://itsbandmath.com/automated-assets/financials/add_expense/01_standings_before.png)
