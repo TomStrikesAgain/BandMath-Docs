@@ -27,7 +27,7 @@ Members **cannot**:
 * Remove other members from the band.
 * Change the band's core settings or billing tier.
 
-![Admin vs Member Roles](./assets/admin-member-roles.png)
+![Admin vs Member Roles](https://itsbandmath.com/automated-assets/band_settings/01_band_settings_top.png)
 
 :::tip
 

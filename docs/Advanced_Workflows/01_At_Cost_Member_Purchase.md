@@ -14,7 +14,7 @@ Because BandMath handles inventory and double-entry routing seamlessly, this is 
 3. Tap **Cash**, ensure the active band member is set to the person taking the shirt, and tap **Go!** to checkout.
 *Note: No physical cash actually needs to change hands.*
 
-![POS At Cost Toggle](./assets/pos-at-cost-toggle.png)
+![POS At Cost Toggle](https://itsbandmath.com/automated-assets/pos_flow/06_checkout_2_filled.png)
 
 **Why this works flawlessly:**
 * **Inventory & Analytics:** The POS system automatically deducts the shirt from inventory and logs the sale at $5. This ensures the Merch Analyzer's ROI and profit margins remain 100% accurate (it doesn't look like a shirt was "lost" or stolen).

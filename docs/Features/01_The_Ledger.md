@@ -11,7 +11,7 @@ Adding, modifying, and deleting transactions is simple. BandMath supports record
 
 You have full editing capabilities to ensure the ledger is always perfectly accurate.
 
-![My Transactions](/automated-assets/07-my-transactions.png)
+![My Transactions](https://itsbandmath.com/automated-assets/07-my-transactions.png)
 
 ## Shared Expenses & Credits
 
@@ -19,7 +19,7 @@ Touring is a team effort. Anyone in the band can pay for an expense and automati
 
 Similarly, anyone can take a payout (like the cash from the venue) and automatically credit the other members for their cut.
 
-![Shared Expenses](./assets/shared-expenses-credits_01.png)
+![Shared Expenses](https://itsbandmath.com/automated-assets/04-tab3.png)
 
 ## Automated Debt Settlement
 
@@ -27,7 +27,7 @@ This is the magic of BandMath. Instead of creating a complex web of "who owes wh
 
 It outputs the absolute simplest way to settle all debts with the fewest number of cash transfers.
 
-![Automated Debt Settlement](/automated-assets/02-dashboard-standings.png)
+![Automated Debt Settlement](https://itsbandmath.com/automated-assets/02-dashboard-standings.png)
 
 ## Advanced Profit Splitting (The Penny Catcher)
 

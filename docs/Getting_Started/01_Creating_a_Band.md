@@ -10,7 +10,7 @@ When you first sign up for BandMath, you will be prompted to create your Band Pr
 
 During setup, you will be asked to select your band's base currency (e.g., USD, EUR, GBP). 
 
-![Band Creation Dashboard](./assets/band-creation-dashboard.png)
+![Band Creation Dashboard](https://itsbandmath.com/automated-assets/onboarding/05_onboarding_flow_2.png)
 
 :::note
 
@@ -32,7 +32,7 @@ BandMath supports multiple bands for each user! You can be a member of an unlimi
 
 To switch between your bands, navigate to the **User Settings** page and use the **Band Dropdown** to select whichever band you want to view.
 
-![Band Dropdown](/automated-assets/06-end-drawer.png)
+![Band Dropdown](https://itsbandmath.com/automated-assets/06-end-drawer.png)
 
 ## Next Steps
 
