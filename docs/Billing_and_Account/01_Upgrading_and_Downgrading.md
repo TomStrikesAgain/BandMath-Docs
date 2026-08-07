@@ -8,7 +8,9 @@ All the Core Ledger features in BandMath are free. You can view the current avai
 * **Core Ledger:** Basic transaction tracking, automated debt settlement, and team management.
 * **Merch Manager:** Unlocks the Point-of-Sale (POS) system, advanced inventory tracking, and deep insights from the Merch Analyzer.
 
-![Band Settings](https://itsbandmath.com/automated-assets/12-band-settings.png)
+![Web Portal Upgrade 1](./assets/web_portal_upgrade_1.png)
+
+![Web Portal Upgrade 2](./assets/web_portal_upgrade_2.png)
 
 ## How to Upgrade
 

@@ -20,6 +20,8 @@ We believe your financial data belongs to you. You can export your entire ledger
 3. Choose the date range you wish to export, and tap **Download CSV**.
 4. The generated CSV will contain every transaction, including the date, amount, payer, receivers, and itemized merch sales.
 
+![Data Export and Deletion](https://itsbandmath.com/automated-assets/band_settings/03_band_settings_bottom.png)
+
 ## Deleting Your Workspace
 
 If you want to permanently erase your band's data from our servers:
