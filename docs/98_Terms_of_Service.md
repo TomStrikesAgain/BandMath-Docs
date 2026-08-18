@@ -1,55 +1,35 @@
 ---
 sidebar_position: 98
+title: Terms & Conditions
 ---
-# BandMath Terms of Service
+# Terms & Conditions
 
-Welcome to BandMath. By creating an account or using our platform, you agree to these Terms of Service. If you do not agree, please do not use the app.
+By using BandMath, you agree to abide by our terms. We provide tools to help bands manage finances, but you are responsible for the accuracy of your own ledger.
 
-### 1. Eligibility & Account Security
+### Mentions Légales (Legal Notice)
 
-To create a BandMath account, you must be at least 16 years old. You are responsible for maintaining the security of your login credentials. If you suspect someone else has gained access to your account, you must notify us immediately.
+In accordance with French law, the publisher of this website is BandMath (Registration Number / SIRET: 98199623400010). Our registered address is 5 avenue berthelot, 69007 Lyon, France. This website is hosted by Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.
 
-### 2. Acceptable Use, Platform Integrity, & Account Limits
+### Data Protection & GDPR Rights
 
-BandMath is built to help musicians track their finances. You agree not to misuse the platform. This means you may not attempt to hack, reverse engineer, scrape data from, or intentionally overwhelm our servers. To protect our platform from spam and abuse, individual user accounts are limited to creating and administering a maximum of 5 bands. You may, however, join an unlimited number of bands created by other users. Any attempts to compromise the security or stability of the platform will result in an immediate and permanent account ban.
+We respect your privacy and are fully committed to complying with the General Data Protection Regulation (GDPR). When you use BandMath to manage your band's financial ledger or process fan transactions, you (the band) act as the "Data Controller" of your fans' data, and BandMath acts strictly as the "Data Processor" providing the software infrastructure. You must obtain explicit consent from your fans before using their data for marketing purposes. You and your fans have the right to access, rectify, or request the deletion of personal data (the "Right to be Forgotten"). For more details, please review our Privacy Policy.
 
-### 3. User Uploads & Receipt Tracking
+### Payment Processing & Point of Sale
+
+BandMath provides software that allows bands to accept payments in-person using Stripe Terminal via Tap to Pay on iPhone and Tap to Pay on Android. All financial transactions are processed entirely by Stripe, Inc. BandMath does not charge a platform fee on these sales, nor do we store, process, or transmit raw credit card data. By using the point-of-sale features, you agree to the Stripe Connected Account Agreement (or applicable Stripe Services Agreement).  
+  
+You acknowledge that you are solely the "Merchant of Record" for all merchandise sales. As such, you are 100% responsible for the fulfillment of goods, handling refunds, and resolving any fan disputes or chargebacks. BandMath assumes zero liability for fraudulent transactions, hardware failures, or lost revenue. Furthermore, you agree not to use the BandMath point-of-sale system to sell any illegal goods or items that violate Stripe's restricted business policies.
+
+### User Uploads & Content
 
 Our platform allows you to upload photos and documents for receipt tracking. You retain full ownership of any files you upload. By uploading a file, you grant BandMath a license strictly to host and display that file within your account. You agree not to upload any content that is illegal, highly explicit, or infringes on the intellectual property rights of others. We reserve the right to remove any files that violate these terms.
 
-### 4. Free Tools & Pro Tier (Merch Manager) Upgrades
+### Apple Disclaimers
 
-The core BandMath expense tracking tools are completely free to use. We offer an optional Pro Tier upgrade for merchandise tracking and Point of Sale (POS) tools.
+Tap to Pay on iPhone requires a supported payment app and the latest version of iOS. Update to the latest version by going to Settings > General > Software Update. Tap Download and Install. Some contactless cards may not be accepted by your payment app. Transaction limits may apply. The Contactless Symbol is a trademark owned by and used with permission of EMVCo, LLC. Tap to Pay on iPhone is not available in all markets. For Tap to Pay on iPhone countries and regions, see developer.apple.com/tap-to-pay/regions.  
+  
+Apple Pay is a service provided by Apple Payments Services LLC, a subsidiary of Apple Inc. Neither Apple Inc. nor Apple Payments Services LLC is a bank. Any card used in Apple Pay is offered by the card issuer.
 
-* **14-Day Free Trial (No Credit Card Required):** Your Pro Tier upgrade begins with a 14-day free trial. You do not need to provide a credit card to start this trial. If you do nothing, your trial will expire and you will not be charged.
-* **Upgrading & Monthly Billing:** To keep your Pro Tier active, you must proactively add your payment information. Once activated, you will be billed €20 per month (or your local currency equivalent) on a month-to-month basis.
-* **Pausing Your Subscription:** You have the right to "Pause" your subscription indefinitely through the billing portal. While paused, you will not be billed, and your merch data will remain safely stored.
-* **Refunds:** Because we offer a risk-free 14-day trial without requiring a credit card upfront, we do not offer refunds for partial months once you actively choose to upgrade.
+### Subscriptions & Billing
 
-### 5. Payments, Tap to Pay, & Stripe Connect
-
-BandMath integrates with Stripe Connect to allow bands to process fan payments (such as merch sales) directly. By utilizing these payment features, you agree to the following:
-
-* **You Are the Merchant of Record:** BandMath provides the software conduit for payments, but we are not the Merchant of Record. Your band is establishing a direct relationship with Stripe. You must comply with all Stripe Connected Account agreements, including identity verification (KYC) requirements.
-* **Chargebacks and Refunds:** Your band is 100% financially responsible for any chargebacks, disputes, or refunds initiated by your fans. BandMath will not cover negative balances or dispute fees incurred by your band.
-* **Taxes and Compliance:** You are solely responsible for calculating, collecting, and remitting any applicable taxes (including VAT or sales tax) to the proper government authorities, as well as providing legally compliant receipts to your fans if required by your local jurisdiction.
-
-### 6. Your Data Rights & Export
-
-Your financial data belongs to you. We have built native export tools directly into the app so you can download a complete record of your transactions at any time. If you wish to delete your account and all associated data permanently, you can initiate that process within your account settings.
-
-### 7. Disclaimers: Not a Bank or Financial Institution
-
-BandMath is strictly an expense tracking, inventory management, and software platform. We are not a bank, a payment processor, or a certified accounting firm. The platform acts as a shared, transparent ledger to help you track balances. Use BandMath alongside your trusted banking services, and never make purchases without your bandmates' consent.
-
-### 8. Limitation of Liability & Outages
-
-Software experiences bugs, updates, and occasional downtime. To protect our ability to operate as an independent developer, the following legal limits apply:
-
-* **"As-Is" Platform:** BandMath is provided on an "as-is" and "as-available" basis, without guarantees of continuous, uninterrupted uptime.
-* **WAIVER OF CONSEQUENTIAL DAMAGES:** UNDER NO CIRCUMSTANCES SHALL BANDMATH BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES. THIS INCLUDES LOST REVENUE, MISSED MERCHANDISE SALES, OR DATA LOSS RESULTING FROM APP DOWNTIME, BUGS, OR SERVER OUTAGES.
-* **Liability Cap:** In the event that BandMath is found legally liable for any claim arising out of your use of the platform, our maximum total liability to you shall not exceed the total amount you paid to BandMath in the twelve (12) months immediately preceding the incident.
-
-### 9. Analytics, Projections, and Venue Splits
-
-The Pro Tier provides advanced analytics, restock warnings, and venue split calculators. These features are strictly informational tools based on the data you input. BandMath does not guarantee the accuracy of future sales projections. Restock warnings are algorithmic estimates based on past sales velocity, not guaranteed financial or purchasing advice. Furthermore, venue split calculations are provided solely for your convenience. BandMath is not a party to your venue contracts, and we are not legally liable for any inventory purchasing decisions you make or any payout disputes that arise between your band and a venue or promoter.
+Payments for Pro Tier and Bootstrappers Club memberships are non-refundable unless explicitly stated otherwise. We reserve the right to modify our pricing, but active lifetime memberships will be honored. All disputes involving consumers will be subject to the competent courts of the consumer's domicile, and we do not enforce mandatory arbitration for consumers.
