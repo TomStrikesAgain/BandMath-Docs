@@ -159,6 +159,7 @@ article h2 a mark {
 .navbar-sidebar .navbar-sidebar__back {
   color: #ffffff !important;
   background-color: #1A1A1A;
+  z-index: 1000 !important;
 }
 
 /* Ensure mobile sidebar icons and carets are white */
@@ -223,6 +224,6 @@ article h2 a mark {
   width: auto;
   display: block;
   margin: 2rem auto; /* Center the image */
-  border-radius: 12px;
+  border-radius: 0;
   border: 1px solid rgba(229, 254, 0, 0.2);
 }
