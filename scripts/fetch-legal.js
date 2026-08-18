@@ -3,6 +3,9 @@ const path = require('path');
 const TurndownService = require('turndown');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
+const PROD_URL = 'https://gktdqqfghkmdsgtyzfmt.supabase.co';
+const PROD_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrdGRxcWZnaGttZHNndHl6Zm10Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODI5NjgsImV4cCI6MjA4NTM1ODk2OH0.fEf1LlitGPURFNN2e78lt8mcSeuSNS6fPK3wpVhLCBM';
+
 const SUPABASE_URL = process.env.SUPABASE_URL || 'http://127.0.0.1:54321';
 const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0';
 
@@ -10,15 +13,26 @@ const turndownService = new TurndownService();
 
 async function fetchDocuments() {
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/legal_documents`, {
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`
-      }
-    });
+    let res;
+    try {
+      res = await fetch(`${SUPABASE_URL}/rest/v1/legal_documents`, {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`
+        }
+      });
+    } catch (e) {
+      console.log('Local fetch failed, falling back to production...');
+      res = await fetch(`${PROD_URL}/rest/v1/legal_documents`, {
+        headers: {
+          'apikey': PROD_KEY,
+          'Authorization': `Bearer ${PROD_KEY}`
+        }
+      });
+    }
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch documents: ${res.statusText}`);
+    if (!res || !res.ok) {
+      throw new Error(`Failed to fetch documents: ${res?.statusText}`);
     }
 
     const docs = await res.json();
