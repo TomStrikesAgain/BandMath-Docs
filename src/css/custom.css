@@ -43,9 +43,18 @@
 }
 
 .navbar {
+  border-bottom: 1px solid rgba(229, 254, 0, 0.2);
+  background-color: transparent !important;
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(229, 254, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5); /* Glassmorphism base */
+  z-index: -1;
 }
 
 .footer--dark {

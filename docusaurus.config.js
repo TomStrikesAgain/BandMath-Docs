@@ -81,13 +81,7 @@ const config = {
           alt: 'BandMath Logo',
           src: 'img/logo.png',
         },
-        items: [
-          {
-            href: 'https://blog.itsbandmath.com', 
-            label: 'Blog', 
-            position: 'left'
-          },
-        ],
+        items: [],
       },
       footer: {
         style: 'dark',
