@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # Inviting the Band
 
 BandMath is built for collaboration. To get the most out of the platform, you should invite your bandmates and tour managers to join your band's workspace.

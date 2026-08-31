@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # The First Tour: A Quick Walkthrough
 
 Ready to hit the road? Here is a quick 5-minute walkthrough of the core BandMath loop to get you started on your first tour.

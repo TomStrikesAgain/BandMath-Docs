@@ -1,3 +1,6 @@
+---
+sidebar_position: 2
+---
 # Creating a Band
 
 Welcome to BandMath! Setting up your band is the first step toward gaining total financial clarity for your tours and merchandise.
