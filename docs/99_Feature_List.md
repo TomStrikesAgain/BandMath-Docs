@@ -43,7 +43,7 @@ Know exactly what is in the trailer at all times.
 * **Real-time Stock Depletion**: Every time a cart is checked out in the POS, the inventory count for those specific items and sizes is instantly and automatically deducted.
 * **Historical Cost Tracking**: BandMath locks in the "Cost Goods Sold" (COGS) at the time of purchase. If a band buys a batch of shirts for $5 each, and a second batch for $7 each, the app calculates profit using the exact cost of the specific item sold.
 
-## 6. The Merch Analyzer
+## 6. The Sales Analyzer
 A powerful, automated reporting dashboard that acts as the band's virtual merch manager.
 
 * **Profit & ROI Tracking**: View high-level metrics like Gross Revenue, Total Profit, Average Order Value, and Total Items Sold.

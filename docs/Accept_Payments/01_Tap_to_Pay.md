@@ -31,6 +31,13 @@ If the customer's bank requires a PIN for security (common in Europe), the Andro
 
 *Note: This requires the customer's physical card to support "Online PINs". Older cards that only support "Offline PINs" will be rejected because your smartphone does not have a physical microchip slot to read the offline PIN data.*
 
+## Processing Fees
+
+When you accept a payment via Tap to Pay on iPhone or Android, the transaction is processed securely through Stripe Terminal. It can be confusing because Stripe batches some of these fees together at the end of the day. Here is exactly how the fees break down for European cards:
+
+1. **Standard Transaction Fee (1.4% + €0.10)**: This is Stripe's standard payment processing fee, taken out of every single transaction individually at the time of the sale. (e.g., on a €15 charge, the fee is €0.21 + €0.10 = €0.31).
+2. **Terminal "Tap on Mobile" Fee (€0.10)**: Stripe charges an additional flat fee of €0.10 per physical tap/authorization. Instead of taking this out of each transaction, Stripe batches them up and bills you once at the end of the day (e.g., 9 taps = €0.90 billed for that day).
+3. **Radar Fraud Fee (€0.05)**: Normally, in-person Tap to Pay transactions do not incur this fee because the physical card is present. However, if a tap fails and you manually type the card number in, or you send the fan a payment link to pay on their own phone, Stripe treats it as an "online" transaction. This triggers their machine-learning fraud protection tool, Radar, which charges a single €0.05 fee per screened transaction.
 ## Security and Privacy
 
 Tap to Pay uses the built-in features of your smartphone to keep your business and your customers' data private and secure. 

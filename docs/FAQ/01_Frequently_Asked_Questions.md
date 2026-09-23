@@ -10,7 +10,7 @@ Yes! BandMath supports multiple bands for each user. You can be a member of an u
 
 ### Does BandMath handle multiple currencies for international tours?
 
-The currency symbol in BandMath is really just for display purposes. You CAN change the base currency of your workspace at any time, but you probably shouldn't if you've already logged transactions, as it doesn't convert past amounts. For international tours, we strongly recommend creating a separate, dedicated workspace for that specific tour to keep your accounting clean.
+Yes! You do not need to create a new workspace or change your base currency when touring abroad. For in-person card payments, you can seamlessly accept foreign currencies using our [Stripe QR Codes](../Accept_Payments/02_Stripe_QR_Codes.md) workflow. Stripe handles the foreign exchange conversion dynamically, and deposits the funds into your home bank account. For physical cash, see our guide on the [Merch Float](../Advanced_Workflows/02_Multi_Currency_Touring.md#the-merch-float--foreign-cash-walkthrough).
 
 ### What is the "Band Bank"?
 
@@ -51,3 +51,17 @@ Our "Penny Catcher" algorithm ensures that when an expense is split unevenly (e.
 ### How can I get help or contact support?
 
 We use Crisp as our customer support platform. You can reach out to our support team at any time using the chat widget located in the bottom corner of the web portal (`account.itsbandmath.com`), or by tapping the "Support" link directly in the app's menu.
+
+### What are the processing fees for card payments?
+
+When you accept an in-person card payment using Tap to Pay on iPhone or Android, the transaction is processed through Stripe Terminal. The standard processing rate is **1.4% + €0.10** per transaction. 
+
+Additionally, Stripe charges a **€0.10** "Tap on Mobile" fee for every physical tap. Instead of taking this out of each transaction, Stripe batches them together and bills your account once at the end of the day. For a full breakdown of fees (including Radar fraud protection for manually entered cards), see the [Tap to Pay Guide](../Accept_Payments/01_Tap_to_Pay.md#processing-fees).
+
+### How do I send receipts to my fans?
+
+Immediately after completing a transaction in the Merch Manager, you will be prompted with an option to email a receipt to the customer on the success screen. 
+
+If you accidentally close that screen, or if the customer typed their email address wrong, don't panic! Simply go to your **Transaction Feed**, tap on that specific transaction to open the detail page, and scroll to the bottom. From there, you can see where the receipt was sent, update the email address, and resend it.
+
+**For Automated & Refund Receipts:** Because BandMath uses Stripe Connect, your band owns its own merchant account. To automatically email your fans a receipt for refunds or successful payments without doing it manually, be sure to enable **Customer Emails** in your Stripe Dashboard. (Settings > Business Settings > Customer Emails).

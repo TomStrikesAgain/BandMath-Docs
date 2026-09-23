@@ -1,6 +1,6 @@
 # Upgrading and Downgrading
 
-BandMath offers two subscription tiers to fit the needs of your tour. For the garage bands out there, the core financial ledger is all you need. But when you start moving merch, that's when you're going to want to unlock the power of the Merch Manager with advanced features like the Point Of Sale, the Merch Analyzer, and the Venue Split Calculator.
+BandMath offers two subscription tiers to fit the needs of your tour. For the garage bands out there, the core financial ledger is all you need. But when you start moving merch, that's when you're going to want to unlock the power of the Merch Manager with advanced features like the Point Of Sale, the Sales Analyzer, and the Venue Split Calculator.
 
 ![Accounts Portal Billing](https://itsbandmath.com/automated-assets/web_portal/02_billing.png)
 
@@ -15,7 +15,7 @@ You can securely manage your subscription at any time by navigating to **account
 All the Core Ledger features in BandMath are 100% free. You can view the available premium tiers and manage your subscription by navigating to the **Billing** tab in the Web Accounts Portal.
 
 * **Core Ledger:** Basic transaction tracking, automated debt settlement, and team management.
-* **Merch Manager:** Unlocks the Point-of-Sale (POS) system, advanced inventory tracking, and deep insights from the Merch Analyzer.
+* **Merch Manager:** Unlocks the Point-of-Sale (POS) system, advanced inventory tracking, and deep insights from the Sales Analyzer.
 
 ## How to Upgrade
 

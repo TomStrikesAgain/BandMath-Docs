@@ -12,7 +12,7 @@ If a recurring subscription payment fails, you will receive an email from our bi
 
 We are actively developing push notifications to alert you when:
 * You are added to a transaction by another member
-* Your band's inventory levels drop below a critical threshold (The Merch Analyzer currently provides these warnings in-app, but soon they will be pushed to your phone).
+* Your band's inventory levels drop below a critical threshold (The Sales Analyzer currently provides these warnings in-app, but soon they will be pushed to your phone).
 * A settlement period has closed.
 
 Stay tuned to our blog for updates on these features!

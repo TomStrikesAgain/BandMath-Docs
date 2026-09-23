@@ -17,5 +17,5 @@ Because BandMath handles inventory and double-entry routing seamlessly, this is 
 ![POS At Cost Toggle](https://itsbandmath.com/automated-assets/pos_flow/06_checkout_2_filled.png)
 
 **Why this works flawlessly:**
-* **Inventory & Analytics:** The POS system automatically deducts the shirt from inventory and logs the sale at $5. This ensures the Merch Analyzer's ROI and profit margins remain 100% accurate (it doesn't look like a shirt was "lost" or stolen).
+* **Inventory & Analytics:** The POS system automatically deducts the shirt from inventory and logs the sale at $5. This ensures the Sales Analyzer's ROI and profit margins remain 100% accurate (it doesn't look like a shirt was "lost" or stolen).
 * **The Settlement Routing:** The algorithm registers that the band member "collected" $5 in cash. Since no actual cash was put into a lockbox, that member is personally holding the $5. The algorithm will automatically split that $5 revenue among the band, meaning the member will effectively "owe" the rest of the band out of their share, perfectly reimbursing the group for the cost of the shirt!

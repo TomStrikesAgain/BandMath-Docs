@@ -1,23 +1,23 @@
-# The Merch Analyzer
+# The Sales Analyzer
 
-Data is power. The Merch Analyzer is an advanced analytics suite available to Merch Manager subscribers. It provides deep insights into your inventory performance so you can make smarter decisions for the next tour.
+Data is power. The Sales Analyzer is an advanced analytics suite available to Merch Manager subscribers. It provides deep insights into your inventory performance so you can make smarter decisions for the next tour.
 
 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/01_merch_analyzer_top.png" alt="Merch Analyzer 1" style={{width: '32%'}} />
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/02_merch_analyzer_scrolled.png" alt="Merch Analyzer 2" style={{width: '32%'}} />
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/03_merch_analyzer_bottom.png" alt="Merch Analyzer 3" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/01_sales_analyzer_top.png" alt="Sales Analyzer 1" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/02_sales_analyzer_scrolled.png" alt="Sales Analyzer 2" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/03_sales_analyzer_bottom.png" alt="Sales Analyzer 3" style={{width: '32%'}} />
 </div>
 
 ## Profit & ROI Tracking
 
-Stop guessing which designs are actually making you money. The Merch Analyzer breaks down:
+Stop guessing which designs are actually making you money. The Sales Analyzer breaks down:
 * Total revenue generated per item.
 * Exact profit margins (factoring in historical production costs).
 * Return on Investment (ROI) for specific merchandise runs.
 
 ## Restock Warnings
 
-Never run out of your best sellers mid-tour. The Merch Analyzer tracks your average sales velocity and visually flags items that are running dangerously low on stock.
+Never run out of your best sellers mid-tour. The Sales Analyzer tracks your average sales velocity and visually flags items that are running dangerously low on stock.
 
 While this might be giving away some of our "secret sauce", we believe in full transparency so you can decide if you want to make purchasing decisions based on this model. Here is exactly how the restock warning algorithm works under the hood:
 

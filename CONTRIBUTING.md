@@ -11,6 +11,7 @@ Before pushing any changes to GitHub, you should verify them locally:
 ## 2. Working with Images
 Docusaurus strictly checks all local image links. If you add an image link to a markdown file (e.g., `![My Image](./assets/my-image.png)`), that file **must physically exist** in the `assets` folder before you build or commit. 
 - If you need to drop an image link as a placeholder for someone else to fill in later, you should generate a blank 1px by 1px placeholder image and save it to the correct path so the build doesn't crash.
+- **Automated Screenshots:** Whenever possible, hardlink directly to production assets (e.g., `![Entry Screen](https://itsbandmath.com/automated-assets/...)`) so Playwright E2E tests can automatically update the docs without manual placeholder replacement.
 
 ## 3. Callouts & Admonitions
 Do not use standard GitHub alerts (like `> [!NOTE]`). Docusaurus does not natively support rendering these nicely. Instead, use the built-in [Docusaurus Admonitions](https://docusaurus.io/docs/markdown-features/admonitions) syntax:
