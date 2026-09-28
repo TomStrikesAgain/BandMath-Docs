@@ -61,6 +61,6 @@ The Tap to Pay PIN entry screen includes built-in accessibility options. This en
 <br />
 <small>
 
-[Terms apply.](../98_Terms_of_Service.md#10-apple-disclaimers)
+[Terms apply.](../98_Terms_of_Service.md#apple-disclaimers)
 
 </small>
