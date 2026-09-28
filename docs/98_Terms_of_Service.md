@@ -4,6 +4,8 @@ title: Terms & Conditions
 ---
 # Terms & Conditions
 
+### Welcome to BandMath
+
 By using BandMath, you agree to abide by our terms. We provide tools to help bands manage finances, but you are responsible for the accuracy of your own ledger.
 
 ### Mentions Légales (Legal Notice)
@@ -12,13 +14,11 @@ In accordance with French law, the publisher of this website is BandMath (Regist
 
 ### Data Protection & GDPR Rights
 
-We respect your privacy and are fully committed to complying with the General Data Protection Regulation (GDPR). When you use BandMath to manage your band's financial ledger or process fan transactions, you (the band) act as the "Data Controller" of your fans' data, and BandMath acts strictly as the "Data Processor" providing the software infrastructure. You must obtain explicit consent from your fans before using their data for marketing purposes. You and your fans have the right to access, rectify, or request the deletion of personal data (the "Right to be Forgotten"). For more details, please review our Privacy Policy.
+We respect your privacy and are fully committed to complying with the General Data Protection Regulation (GDPR). When you use BandMath to manage your band's financial ledger or process fan transactions, you (the band) act as the "Data Controller" of your fans' data, and BandMath acts strictly as the "Data Processor" providing the software infrastructure. You must obtain explicit consent from your fans before processing their personal data.
 
-### Payment Processing & Point of Sale
+### Liability & Merchant of Record
 
-BandMath provides software that allows bands to accept payments in-person using Stripe Terminal via Tap to Pay on iPhone and Tap to Pay on Android. All financial transactions are processed entirely by Stripe, Inc. BandMath does not charge a platform fee on these sales, nor do we store, process, or transmit raw credit card data. By using the point-of-sale features, you agree to the Stripe Connected Account Agreement (or applicable Stripe Services Agreement).  
-  
-You acknowledge that you are solely the "Merchant of Record" for all merchandise sales. As such, you are 100% responsible for the fulfillment of goods, handling refunds, and resolving any fan disputes or chargebacks. BandMath assumes zero liability for fraudulent transactions, hardware failures, or lost revenue. Furthermore, you agree not to use the BandMath point-of-sale system to sell any illegal goods or items that violate Stripe's restricted business policies.
+If you use BandMath's Stripe Connect integration (Tap to Pay on iPhone or Tap to Pay on Android), you are solely the "Merchant of Record" for all merchandise sales. As such, you are 100% responsible for the fulfillment of goods, handling refunds, and resolving any fan disputes or chargebacks. BandMath assumes zero liability for fraudulent transactions, hardware failures, or lost revenue. Furthermore, you agree not to use the BandMath point-of-sale system to sell any illegal goods or items that violate Stripe's restricted business policies. By using the point-of-sale features, you agree to the Stripe Connected Account Agreement (or applicable Stripe Services Agreement).
 
 ### User Uploads & Content
 
@@ -30,6 +30,6 @@ Tap to Pay on iPhone requires a supported payment app and the latest version of 
   
 Apple Pay is a service provided by Apple Payments Services LLC, a subsidiary of Apple Inc. Neither Apple Inc. nor Apple Payments Services LLC is a bank. Any card used in Apple Pay is offered by the card issuer.
 
-### Subscriptions & Billing
+### Merchant Services Subscription & Billing
 
-Payments for Pro Tier and Bootstrappers Club memberships are non-refundable unless explicitly stated otherwise. We reserve the right to modify our pricing, but active lifetime memberships will be honored. All disputes involving consumers will be subject to the competent courts of the consumer's domicile, and we do not enforce mandatory arbitration for consumers.
+Our core software features are provided free of charge. Access to our credit card processing infrastructure and automated revenue-splitting requires a Merchant Services Subscription. Payments for the Merchant Services Subscription and Bootstrappers Club memberships are non-refundable unless explicitly stated otherwise. We reserve the right to modify our pricing, but active lifetime memberships will be honored. All disputes involving consumers will be subject to the competent courts of the consumer's domicile, and we do not enforce mandatory arbitration for consumers.

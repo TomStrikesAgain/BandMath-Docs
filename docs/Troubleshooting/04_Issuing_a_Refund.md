@@ -15,6 +15,18 @@ When you hit "Delete" on a Merch Sale to process a return, the backend triggers 
 * **The Auto-Restock:** The backend opens up the associated order, looks at every single item and size that was in the cart, and automatically adds those exact quantities back into your active inventory (since you physically took the shirt back).
 * **The Analytics:** The order records are purged, meaning your Sales Analyzer's ROI and velocity metrics remain completely uncontaminated by the refunded sale.
 
+## Issuing a Partial Refund
+
+Sometimes a full return isn't necessary. For example, if you accidentally overcharge a fan by €3 because the physical sign at the merch stand was outdated, or if there was a miscommunication on pricing, you can issue a **partial refund** without deleting the original transaction in BandMath.
+
+Because BandMath provisions your band with a fully-featured Standard Stripe Connect account, you have direct control over your transactions. 
+
+1. **Log into your Stripe Dashboard** (the same account you connected to BandMath).
+2. Locate the specific payment in your **Payments** tab.
+3. Click the **Refund** button and enter the exact amount you want to return to the fan (e.g., €3.00).
+
+For more detailed help on navigating your merchant account, check out the [Stripe Knowledge Base on Issuing Refunds](https://support.stripe.com/questions/how-to-issue-a-refund).
+
 ## Sending Automated Refund Receipts
 
 Because BandMath uses Stripe Connect (Standard), your band acts as the actual merchant of record and you own your own fully-featured Stripe account. This gives you complete liability protection, but it also means that automated email receipts are controlled by *your* Stripe settings, not BandMath's platform.

@@ -15,7 +15,7 @@ To provide the BandMath service, we collect:
 *   **Account Data:** Your email address and basic profile information to create and secure your account.
 *   **Financial & App Data:** The numerical data, expense logs, and inventory numbers you input into the ledger.
 *   **User Uploads:** Any photos or documents you choose to upload for receipt tracking.
-*   **Payment Information:** If you upgrade to the Pro Tier, your payment details are collected directly by Stripe. BandMath does not store or have access to your full credit card number.
+*   **Payment Information:** If you activate a Merchant Services Subscription, your payment details are collected directly by Stripe. BandMath does not store or have access to your full credit card number.
 
 ### 3\. Stripe Connect & In-Person Payments (Tap to Pay on iPhone and Tap to Pay on Android)
 
@@ -23,12 +23,12 @@ If your band uses our Stripe Connect integration to process fan payments via Tap
 
 ### 4\. Third-Party Services We Use
 
-We run a lean operation and rely on a few trusted third-party tools (subprocessors) to keep the app running. Your data interacts with:
+We run a lean operation and rely on a few trusted third-party categories of service providers to keep the app running securely. Your data interacts with:
 
-*   **Supabase:** Our secure backend database where your user account, app data, and receipt uploads are stored.
-*   **FlutterFlow:** The framework that builds and hosts the app interface.
-*   **Stripe:** To process your Pro Tier subscription and facilitate your band's Tap to Pay on iPhone and Tap to Pay on Android transactions.
-*   **Substack:** To manage our email list and send you transparent development updates.
+*   **Cloud Hosting & Database Providers:** To securely store your user account, app data, and receipt uploads.
+*   **App Framework Providers:** To build and host the app interface you interact with.
+*   **Payment Processors:** To process your Merchant Services Subscription and facilitate your band's Tap to Pay on iPhone and Tap to Pay on Android transactions.
+*   **Communication Platforms:** To manage our email list and send you transparent development updates.
 
 ### 5\. Your Data Rights (GDPR)
 

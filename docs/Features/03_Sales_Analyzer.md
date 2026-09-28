@@ -3,9 +3,9 @@
 Data is power. The Sales Analyzer is an advanced analytics suite available to Merch Manager subscribers. It provides deep insights into your inventory performance so you can make smarter decisions for the next tour.
 
 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/01_sales_analyzer_top.png" alt="Sales Analyzer 1" style={{width: '32%'}} />
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/02_sales_analyzer_scrolled.png" alt="Sales Analyzer 2" style={{width: '32%'}} />
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/03_sales_analyzer_bottom.png" alt="Sales Analyzer 3" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/01_merch_analyzer_top.png" alt="Sales Analyzer 1" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/02_merch_analyzer_scrolled.png" alt="Sales Analyzer 2" style={{width: '32%'}} />
+  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/03_merch_analyzer_bottom.png" alt="Sales Analyzer 3" style={{width: '32%'}} />
 </div>
 
 ## Profit & ROI Tracking
@@ -21,7 +21,7 @@ Never run out of your best sellers mid-tour. The Sales Analyzer tracks your aver
 
 While this might be giving away some of our "secret sauce", we believe in full transparency so you can decide if you want to make purchasing decisions based on this model. Here is exactly how the restock warning algorithm works under the hood:
 
-1. **Calculate the Timebox Duration:** First, the analyzer looks at the date range you've selected for the report and calculates exactly how many days you played a show during that timebox (e.g., 14 shows).
+1. **Calculate the Timebox Duration:** First, the analyzer looks at the date range you've selected for the report. By default, the app automatically sets the **End Time** to right now, and the **Start Time** to 12 hours ago (which is perfect for analyzing a single night's sales). However, if you manually expand this to analyze a full tour, it will calculate exactly how many days you played a show during that selected timebox (e.g., 14 shows).
 2. **Calculate Sales Velocity:** For every individual item and size, it takes the total quantity sold during that timebox and divides it by the number of shows played to get your **Per-Show Sales Velocity**. (e.g., If you sold 28 Large Tour Tees across 14 shows, your velocity is `2.0 / show`).
 3. **Project Shows Remaining:** It then takes your current physical stock on hand for that item and divides it by the Per-Show Sales Velocity to predict exactly how many shows worth of inventory you have left. (e.g., If you have 4 Large Tour Tees left, and you're selling 2.0 a show, you have `2.0 shows` of stock remaining).
 4. **The Trigger:** If the projection determines you have less than your customized **"Shows until stock alert"** threshold of stock remaining at your current sales velocity, it triggers an Actionable Warning in the UI, recommending that you restock.

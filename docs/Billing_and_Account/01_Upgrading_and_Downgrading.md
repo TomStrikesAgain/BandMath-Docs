@@ -8,7 +8,7 @@ BandMath offers two subscription tiers to fit the needs of your tour. For the ga
 
 To keep subscription costs low for independent bands and avoid exorbitant App Store fees, all billing activities are managed exclusively through our dedicated Web Accounts Portal, rather than inside the mobile app.
 
-You can securely manage your subscription at any time by navigating to **account.itsbandmath.com** on your desktop or mobile browser.
+You can securely manage your subscription at any time by navigating to **[account.itsbandmath.com](https://account.itsbandmath.com)** on your desktop or mobile browser.
 
 ## Subscription Tiers
 
@@ -20,7 +20,7 @@ All the Core Ledger features in BandMath are 100% free. You can view the availab
 ## How to Upgrade
 
 To upgrade your band's workspace:
-1. Navigate to the web portal at **account.itsbandmath.com** and log in with your Admin credentials.
+1. Navigate to the web portal at **[account.itsbandmath.com](https://account.itsbandmath.com)** and log in with your Admin credentials.
 2. Select your band from the dashboard and click on the **Billing** tab.
 3. Choose your desired tier and click **Subscribe** (or **Get Lifetime** for the Bootstrapper's Club).
 4. You will be redirected to our secure Stripe checkout portal to enter your payment details.
@@ -39,7 +39,7 @@ Only **Admins** have the permission to change the band's subscription tier. If y
 
 If your tour is over and you no longer need the advanced features, you can downgrade your workspace at any time.
 
-1. Go to the web portal at **account.itsbandmath.com**.
+1. Go to the web portal at **[account.itsbandmath.com](https://account.itsbandmath.com)**.
 2. Select your band and navigate to the **Billing** tab.
 3. Click on the **Customer Portal** button under "Manage Billing".
 4. You will be taken to the secure Stripe customer portal where you can cancel your subscription or update your payment methods.
