@@ -1,7 +1,7 @@
 # Inventory Missing or Showing Zero
 
 **The Problem:** 
-You are looking at your Merch Manager and an item is showing a much lower quantity than you physically have on hand, or it is reporting `0` inventory entirely—but you know for a fact that you still have some in the merch bin!
+You are looking at your Merch Stand and an item is showing a much lower quantity than you physically have on hand, or it is reporting `0` inventory entirely—but you know for a fact that you still have some in the merch bin!
 
 **The Cause:** 
 You likely have items sitting in your active shopping cart. 

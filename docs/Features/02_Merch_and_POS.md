@@ -1,6 +1,6 @@
 # Merch & POS
 
-BandMath's Merch Manager tier provides everything you need to track your inventory and sell merchandise at shows.
+BandMath's Merch Stand tier provides everything you need to track your inventory and sell merchandise at shows.
 
 ## Inventory Management
 

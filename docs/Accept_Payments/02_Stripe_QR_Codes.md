@@ -5,7 +5,7 @@ Stripe QR Code Checkout provides a secure, reliable way to accept card payments 
 ## How It Works
 
 When a fan makes a purchase at the merch table:
-1. In the BandMath Merch Manager, complete the checkout flow as usual.
+1. In the BandMath Merch Stand, complete the checkout flow as usual.
 2. Select **Card** as the payment method, and then tap **Show QR Code**.
 3. A unique, 30-minute expiring QR code is generated on your screen.
 4. The fan scans the QR code with their own smartphone camera.

@@ -31,4 +31,4 @@ This line-by-line breakdown allows you to instantly spot which items are your mo
 
 ## Quick Updates
 
-The Inventory Analyzer isn't just for looking at data. If you spot a discrepancy or need to make a quick adjustment, simply **tap on any item row**. This will instantly slide up the **Update Quantity** sheet, allowing you to seamlessly adjust the stock level, unit cost, or retail price without having to navigate back to the main Merch Manager.
+The Inventory Analyzer isn't just for looking at data. If you spot a discrepancy or need to make a quick adjustment, simply **tap on any item row**. This will instantly slide up the **Update Quantity** sheet, allowing you to seamlessly adjust the stock level, unit cost, or retail price without having to navigate back to the main Merch Stand.

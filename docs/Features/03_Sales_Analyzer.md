@@ -1,6 +1,6 @@
 # The Sales Analyzer
 
-Data is power. The Sales Analyzer is an advanced analytics suite available to Merch Manager subscribers. It provides deep insights into your inventory performance so you can make smarter decisions for the next tour.
+Data is power. The Sales Analyzer is an advanced analytics suite available to Merch Stand subscribers. It provides deep insights into your inventory performance so you can make smarter decisions for the next tour.
 
 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
   <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/01_merch_analyzer_top.png" alt="Sales Analyzer 1" style={{width: '32%'}} />

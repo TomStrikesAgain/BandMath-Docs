@@ -6,7 +6,7 @@ BandMath's cash management system is built around the concept of **Cash Custody*
 
 When a fan wants to pay with physical cash at the merch table:
 
-1. **Build the Cart:** Complete your checkout flow in the **Merch Manager** by adding the items to the cart.
+1. **Build the Cart:** Complete your checkout flow in the **Merch Stand** by adding the items to the cart.
 2. **Select Cash:** Choose **Cash** as the payment method.
 3. **Assign Custody:** You will see a dropdown asking **"Who received it?"** Select your own name (or the name of the band member who is physically taking the money).
 4. **Pocket the Cash:** Take the physical cash from the fan and put it in your pocket, lockbox, or backpack. 

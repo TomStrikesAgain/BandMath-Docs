@@ -12,7 +12,7 @@ These technologies turn your standard smartphone into a secure contactless card 
 ## How to Accept a Payment (iPhone)
 
 When you are ready to check out a fan at the merch table:
-1. Complete your checkout flow in the BandMath **Merch Manager** as usual.
+1. Complete your checkout flow in the BandMath **Merch Stand** as usual.
 2. Select **Tap to Pay on iPhone** as the payment method.
 3. Present your iPhone to the customer. The screen will clearly indicate the charge amount, your band's name, and an instruction for the customer on where to tap.
 4. Ask the customer to hold their contactless card horizontally, or their device (like an iPhone or Apple Watch), at the **top edge of your iPhone**, over the contactless symbol.
@@ -20,7 +20,7 @@ When you are ready to check out a fan at the merch table:
 
 ## How to Accept a Payment (Android)
 
-1. Complete your checkout flow in the BandMath **Merch Manager** as usual.
+1. Complete your checkout flow in the BandMath **Merch Stand** as usual.
 2. Select **Tap to Pay on Android** as the payment method.
 3. Present your Android phone to the customer. 
 4. Ask the customer to hold their contactless card or smart device against the **back of your phone**. 

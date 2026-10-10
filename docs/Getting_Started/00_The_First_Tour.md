@@ -39,7 +39,7 @@ Before you can sell merchandise, you need to tell BandMath what you have in stoc
 ## 3. Log a Sale (The POS System)
 
 When you're at the merch table after a show:
-1. Open the **Merch Manager** tab in the bottom nav bar by clicking the Price Tag icon on the far right side.
+1. Open the **Merch Stand** tab in the bottom nav bar by clicking the Price Tag icon on the far right side.
 2. Tap the Sell button next to each item the fan wants to buy to add them to the cart.
 
    ![POS Add to Cart](https://itsbandmath.com/automated-assets/pos_flow/02_added_to_cart.png)

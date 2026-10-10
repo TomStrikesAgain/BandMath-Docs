@@ -125,7 +125,7 @@ Additionally, Stripe charges a **€0.10** "Tap on Mobile" fee for every physica
 <summary>How do I send receipts to my fans?</summary>
 
 
-Immediately after completing a transaction in the Merch Manager, you will be prompted with an option to email a receipt to the customer on the success screen. 
+Immediately after completing a transaction in the Merch Stand, you will be prompted with an option to email a receipt to the customer on the success screen. 
 
 If you accidentally close that screen, or if the customer typed their email address wrong, don't panic! Simply go to your **Transaction Feed**, tap on that specific transaction to open the detail page, and scroll to the bottom. From there, you can see where the receipt was sent, update the email address, and resend it.
 
@@ -137,5 +137,19 @@ If you accidentally close that screen, or if the customer typed their email addr
 <summary>What is the Cash Box?</summary>
 
 The Cash Box is a special account that represents the physical cash currently sitting at your merch table. It acts as a temporary holding area for unclaimed cash that needs to be distributed or deposited before the end of the night. Learn more in our [Cash Box](./Team_Management/05_The_Cash_Box.md) guide.
+
+</details>
+
+<details name="faq_accordion">
+<summary>What happens to the ledger if a member deletes their account?</summary>
+
+When a user deletes their account under GDPR or CCPA, BandMath securely anonymizes their profile instead of destroying it. Their name is permanently changed to "Deleted User" and their personal data is wiped, but the ledger math stays perfectly intact. You can read the full mechanical breakdown of this process in our [Deleted Users](./Team_Management/07_Deleted_Users.md) article.
+
+</details>
+
+<details name="faq_accordion">
+<summary>How do I log a merch sale?</summary>
+
+Before you can log a sale, you first need to define your items and input your stock. You can do this by using the **Create Items** and **Add Inventory** menus in the end drawer. Once your inventory is set up, you can head over to the **Merch Stand** tab, tap the prices to add items to your cart, and complete the checkout. For a complete step-by-step walkthrough of this process, check out our guide on [The First Tour](./Getting_Started/00_The_First_Tour.md#2-add-your-inventory).
 
 </details>
