@@ -59,11 +59,11 @@ When an expense or income is split among multiple members, the division rarely w
 
 Our proprietary Penny Catcher algorithm ensures that fractions of a cent are never lost or infinitely rounded, guaranteeing that the ledger balances perfectly to the penny.
 
-## The Venue Split Calculator & VAT Integration
+## Event Settlement & VAT Integration
 
-Need to calculate a complicated merch split with a venue? The built-in Venue Split Calculator handles the math for you.
+Need to settle a multi-band show, calculate a venue merch cut, or split door tickets and shared show expenses? BandMath's [Closing Room](../Events_and_Closing_Room/04_Multi_Band_Closing_Room.md) handles the entire nightly settlement and commits your band's exact payout or expense share directly into the Ledger—letting you specify whether it was paid via **Cash** or **Bank Transfer** and whether it landed in the **Cash Box**, **Band Bank**, or a specific band member's pocket.
 
-When you sell merch or log taxable income, the tax portion of the sale is automatically transferred to the **VAT Bank**. This ensures you don't accidentally spend money that you owe to the government.
+When you sell merch or log taxable income, the tax portion of the sale is automatically transferred to the **[VAT Bank](../Team_Management/06_The_VAT_Bank.md)**. This ensures you don't accidentally spend money that you owe to the government.
 
 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
   <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/04_venue_split_gross.png" alt="Venue Split Gross" style={{width: '32%'}} />

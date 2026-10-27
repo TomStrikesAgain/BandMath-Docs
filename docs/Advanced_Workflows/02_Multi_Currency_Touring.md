@@ -65,5 +65,6 @@ That missing $70 is the cost of doing business. It acts as a "catch-all" bucket 
 
 By doing this, the ledger balances perfectly without anyone having to do manual currency conversions on the road.
 
-> [!TIP] FX Gains
-> If the foreign currency *strengthens* during the tour, you might get back more than the Cashbox owes (e.g., $2,250 USD). In this edge case, the Cashbox would have a $30 surplus. Instead of an Expense, you would log a $30 **Income** (FX Gain) collected by the Cashbox to zero it out!
+:::tip FX Gains
+If the foreign currency *strengthens* during the tour, you might get back more than the Cashbox owes (e.g., $2,250 USD). In this edge case, the Cashbox would have a $30 surplus. Instead of an Expense, you would log a $30 **Income** (FX Gain) collected by the Cashbox to zero it out!
+:::

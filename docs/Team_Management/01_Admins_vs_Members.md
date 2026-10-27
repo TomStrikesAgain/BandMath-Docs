@@ -35,3 +35,11 @@ Members **cannot**:
 A band can have multiple Admins. An existing Admin can promote any Member to an Admin role from the Band Settings page.
 
 :::
+
+## Leaving a Band vs. Removing a Member
+
+Lineups change, and BandMath makes it clean to step away from a band without breaking historical accounting:
+
+* **Leaving a Band Voluntarily (`Leave Band`):** Any member can leave a band at any time from **Settings**. Leaving a band marks your membership profile as inactive (`is_active = false` and `receives_merch_cut = false`). You will no longer be included in future expense splits or merch sales, while 100% of your past transactions and historical ledger math remain intact.
+* **The Sole Admin Guard:** Every active band must have at least one Admin. If you are the **only Admin** in a band that still has other active members, BandMath will prevent you from leaving until you first promote another bandmate to **Admin** in Band Settings (or, if you are the final remaining member, you can delete the band workspace).
+* **Leaving vs. Deleting Your Account:** Leaving a single band only disconnects you from that specific band workspace—your personal BandMath login and any other bands you belong to remain completely untouched. For full GDPR/CCPA account deletion across all bands, see [Deleted Users](./07_Deleted_Users.md).

@@ -150,6 +150,50 @@ When a user deletes their account under GDPR or CCPA, BandMath securely anonymiz
 <details name="faq_accordion">
 <summary>How do I log a merch sale?</summary>
 
-Before you can log a sale, you first need to define your items and input your stock. You can do this by using the **Create Items** and **Add Inventory** menus in the end drawer. Once your inventory is set up, you can head over to the **Merch Stand** tab, tap the prices to add items to your cart, and complete the checkout. For a complete step-by-step walkthrough of this process, check out our guide on [The First Tour](./Getting_Started/00_The_First_Tour.md#2-add-your-inventory).
+Before you can log a sale, you first need to define your items and input your stock inside the **Merch Warehouse** on the **Shop** tab. Once your inventory is set up, tap the items in the **Merch Stand** to add them to your cart and complete the checkout. For a complete step-by-step walkthrough of this process, check out our guide on [The First Tour](./Getting_Started/00_The_First_Tour.md#3-stock-your-merch-warehouse).
+
+</details>
+
+<details name="faq_accordion">
+<summary>What is the difference between Band, Venue, and Tour Manager personas?</summary>
+
+BandMath supports three account personas tailored to your role at the show:
+* **Band:** Gives you the full 5-tab workspace (`Home`, `Shop`, `Events`, `Standings`, `Cart`), multi-member ledger accounting, the Merch Warehouse, Setlist Organizer, and Band Calendar.
+* **Venue & Tour Manager:** Gives you a focused 3-tab box office and settlement hub (`Events`, `Bouncer`, `Cart`) with your own dedicated Merchant Account & Cashbox. You can switch between Band, Venue, and Tour Manager personas at any time inside **User Settings**. Read the full [Venues & Tour Managers Quickstart](./Getting_Started/03_Venues_and_Tour_Managers.md).
+
+</details>
+
+<details name="faq_accordion">
+<summary>How do multiple bands and venues connect to the same show?</summary>
+
+Every event in BandMath generates a unique **6-Character Show Access Code**. Any free Band, Venue, or Tour Manager can create the event (`[ + CREATE EVENT ]`) and share the 6-character code with everyone on the bill. Bands can join (`[ JOIN SHOW ]`) as Headliner, Co-Headliner, Support, or Opener at any time—even mid-show! See [Creating & Joining Multi-Band Shows](./Events_and_Closing_Room/01_Creating_and_Joining_Shows.md).
+
+</details>
+
+<details name="faq_accordion">
+<summary>Who claims online ticket sales on a multi-band bill, and when does it lock?</summary>
+
+Any participant on the show with an active Pro subscription and connected Stripe account (Venue, Tour Manager, or Band) can click **`[ CLAIM ONLINE TICKETING ]`**. It remains switchable while `0` tickets have been sold, and permanently locks (`🔒`) the instant the first online ticket is purchased so all pre-sale funds and ticket tax set-asides remain unified in one merchant account. Learn more in [Online Ticketing & Promo Links](./Events_and_Closing_Room/02_Online_Ticketing_and_Promoter_Links.md).
+
+</details>
+
+<details name="faq_accordion">
+<summary>How do we track how many pre-sale tickets each band sold?</summary>
+
+When any band on the bill taps **`[ Share Link ]`** on the event page, BandMath automatically attaches their band's attribution tag (`?ref=`) to their checkout link and QR flyer so the Closing Table tracks exact pre-sale tickets sold per band. Fans and street-team promoters can also share their own referral pass to climb the event's **Referral Leaderboard**! See [Online Ticketing & Promo Links](./Events_and_Closing_Room/02_Online_Ticketing_and_Promoter_Links.md#2-automatic-per-band-promoter-attribution-links-ref).
+
+</details>
+
+<details name="faq_accordion">
+<summary>Can I hand my phone to a door person to scan QR tickets without showing them our band's money?</summary>
+
+Yes! Open **Bouncer Mode** and enable the **Bouncer Safety Lock** before handing your phone to door staff. They will be able to scan QR tickets with the mobile camera (on iOS and Android) and check off the Guest List all night, but exiting Bouncer Mode requires your device's Face ID, Touch ID, or Passcode. Read more in [Door Tickets & Bouncer Mode](./Events_and_Closing_Room/03_Door_Tickets_and_Bouncer_Mode.md#2-bouncer-mode--the-hand-off-safety-lock).
+
+</details>
+
+<details name="faq_accordion">
+<summary>What happens when a band member pockets the cash payout envelope at the end of a show?</summary>
+
+When your band's payout or expense share is marked settled in [The Closing Room](./Events_and_Closing_Room/04_Multi_Band_Closing_Room.md#4-granular-settlement-to-ledger-commits), you choose **`Cash` vs. `Bank Transfer`** and select who received or paid it (`Cashbox`, `Band Bank`, or a specific active member like `John`). If John pockets the cash envelope, BandMath automatically credits every bandmate their share of the show income and records that John is holding the cash—updating your **Standings** immediately.
 
 </details>

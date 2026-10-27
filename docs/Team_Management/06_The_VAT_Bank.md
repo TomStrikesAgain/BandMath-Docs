@@ -39,3 +39,7 @@ However, before enabling Stripe Tax, you must consider the following:
 * **Debt Settlement Disconnect:** Tax liabilities calculated entirely on Stripe's end will not natively flow back into BandMath's internal debt settlement algorithm.
 
 **Our Advice:** Choose one system. If you need to track tax liability for cash sales or want everything cleanly tied into your band's internal debt settlement, use the **VAT Bank** (by setting your rate in Band Settings). If you want Stripe to handle complex multi-region compliance and don't care about cash taxes, you can use **Stripe Tax**—but you must set your BandMath tax rate to **0%** to prevent double-counting.
+
+:::tip Touring Across Borders & Settling With Venues
+Wondering how Ticket VAT vs. Merch VAT works in the EU, how US state sales tax affects flat merch pricing, or how BandMath backs out tax before calculating Venue Merch Cuts? Read our deep-dive guide on [Live Music Touring Tax, Ticket VAT & Nightly Settlements](../Advanced_Workflows/04_Touring_Tax_and_Nightly_Settlements.md).
+:::

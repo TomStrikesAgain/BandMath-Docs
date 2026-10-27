@@ -16,3 +16,7 @@ Instead of removing the member's profile from the band entirely, BandMath secure
 By preserving this anonymized "ghost" profile, all historical ledger math remains perfectly intact. If that user paid for gas or owed the band $50 before they left, the ledger will accurately reflect those past balances attributed to "Deleted User". 
 
 This ensures that the rest of the band's finances and historical records are never compromised when someone decides to delete their account.
+
+:::note Leaving One Band vs. Deleting Your Entire Account
+If a bandmate is simply leaving your band (or wrapping up a tour as a hired session player) and does **not** want to erase their entire BandMath account, they should use **Leave Band** in Settings (or an Admin can deactivate them in **Band Settings**). Deactivating a member excludes them from future splits and merch cuts while keeping their name and historical ledger records intact. See [Admins vs. Members](./01_Admins_vs_Members.md#leaving-a-band-vs-removing-a-member) for details.
+:::

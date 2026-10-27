@@ -27,3 +27,11 @@ BandMath automatically formats your financial inputs and displays based on your 
 ![Currency Formatting](https://itsbandmath.com/automated-assets/band_settings/03_band_settings_bottom.png)
 
 If you notice a currency symbol is missing or incorrect, please reach out to support.
+
+## The Unified User Settings Hub
+
+In addition to Band Settings, tapping the settings icon in the top navigation bar opens your personal **User Settings** hub, where you can:
+* **Switch Your Active Persona:** Toggle seamlessly between **Band**, **Venue**, and **Tour Manager** modes at any time.
+* **Switch Active Bands (Band Persona):** Jump between any of the bands you belong to via the Band Switcher dropdown.
+* **Configure Merchant & Stripe Payouts (Venue & Tour Manager Personas):** Connect your Stripe account, set your base currency symbol, and launch the Web Billing Portal (`account.itsbandmath.com`).
+* **Send Support & Feedback:** Open the built-in Support modal to message the BandMath team directly from the app.

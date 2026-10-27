@@ -5,6 +5,7 @@ sidebar_label: Support
 
 # Contact Support
 
-To get help, simply log into the BandMath app, open the end drawer (the menu on the right side of the screen), and tap **Support** at the bottom of the list. From there, you can send a message directly to our team, and you'll receive a response straight to your email inbox. 
+Need a hand at the merch table or have a question about a show settlement? You can reach our team directly from inside the app or via email:
 
-Alternatively, you can always reach out to us directly by emailing <span onClick={(e) => { e.preventDefault(); if (typeof navigator !== 'undefined') { navigator.clipboard.writeText('support@itsbandmath.com'); const originalText = e.target.innerText; e.target.innerText = 'Copied!'; setTimeout(() => e.target.innerText = originalText, 2000); } }} style={{cursor: 'pointer', color: 'var(--ifm-color-primary)', fontWeight: 'bold', textDecoration: 'underline'}} title="Click to copy email">support{'@'}itsbandmath.com</span>.
+1. **In-App Support & Feedback Modal:** Open **User Settings** (from the top navigation bar across Band, Venue, or Tour Manager modes) and tap **Support / Feedback**. Send a message directly to our engineering and support team, and we will reply straight to your email inbox.
+2. **Direct Email:** Click to copy our support address and email us anytime at <span onClick={(e) => { e.preventDefault(); if (typeof navigator !== 'undefined') { navigator.clipboard.writeText('support@itsbandmath.com'); const originalText = e.target.innerText; e.target.innerText = 'Copied!'; setTimeout(() => e.target.innerText = originalText, 2000); } }} style={{cursor: 'pointer', color: 'var(--ifm-color-primary)', fontWeight: 'bold', textDecoration: 'underline'}} title="Click to copy email">support{'@'}itsbandmath.com</span>.
