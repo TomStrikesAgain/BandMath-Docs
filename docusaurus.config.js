@@ -37,7 +37,7 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'fr', 'de', 'es', 'pl'],
   },
 
   presets: [
@@ -61,6 +61,7 @@ const config = {
       "@easyops-cn/docusaurus-search-local",
       {
         hashed: true,
+        language: ["en", "fr", "de", "es", "pl"],
       },
     ],
   ],
@@ -86,7 +87,12 @@ const config = {
           alt: 'BandMath Logo',
           src: 'img/logo.png',
         },
-        items: [],
+        items: [
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          },
+        ],
       },
       footer: {
         style: 'dark',

@@ -1,0 +1,10 @@
+{
+  "title": {
+    "message": "BandMath Wissensdatenbank",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "BandMath Logo",
+    "description": "The alt text of navbar logo"
+  }
+}

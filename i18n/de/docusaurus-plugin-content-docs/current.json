@@ -1,0 +1,42 @@
+{
+  "version.label": {
+    "message": "Weiter",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Getting Started": {
+    "message": "Erste Schritte",
+    "description": "The label for category 'Getting Started' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Features": {
+    "message": "Funktionen",
+    "description": "The label for category 'Features' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Events & The Closing Room": {
+    "message": "Events & Abrechnung",
+    "description": "The label for category 'Events & The Closing Room' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Accept Payments": {
+    "message": "Zahlungen Akzeptieren",
+    "description": "The label for category 'Accept Payments' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Team Management": {
+    "message": "Team-Verwaltung",
+    "description": "The label for category 'Team Management' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Billing & Account": {
+    "message": "Abrechnung & Konto",
+    "description": "The label for category 'Billing & Account' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Settings & Preferences": {
+    "message": "Einstellungen & Präferenzen",
+    "description": "The label for category 'Settings & Preferences' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Advanced Workflows": {
+    "message": "Erweiterte Workflows",
+    "description": "The label for category 'Advanced Workflows' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Troubleshooting": {
+    "message": "Fehlerbehebung",
+    "description": "The label for category 'Troubleshooting' in sidebar 'tutorialSidebar'"
+  }
+}
