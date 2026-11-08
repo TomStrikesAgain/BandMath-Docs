@@ -134,10 +134,7 @@ export function AskBandMathModal({
           <div className="flex items-center gap-2.5">
             <Sparkles className="w-4 h-4 text-[#E5FE00]" />
             <span className="font-display font-bold text-sm uppercase tracking-wider text-white">
-              Ask BandMath AI & Instant Guide Search
-            </span>
-            <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono bg-[#1C1C1C] border border-white/15 text-[#E5FE00] rounded-none">
-              GEMINI 2.5 FLASH-LITE
+              BandMath Instant Search Guide
             </span>
           </div>
           <button
@@ -208,26 +205,11 @@ export function AskBandMathModal({
           </div>
         )}
 
-        {/* Conversation Body or Starter Prompts */}
+        {/* Conversation Body */}
         <div className="max-h-[65vh] overflow-y-auto p-5 space-y-5">
           {turns.length === 0 && !loading && (
-            <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-3">
-                Popular Touring & Closing Room Questions
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {ui.starterPills.map((pill, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => submitQuestion(pill)}
-                    className="text-left p-3.5 bg-[#141414] hover:bg-[#1C1C1C] border border-white/12 hover:border-[#E5FE00] text-xs text-zinc-200 hover:text-white transition-colors flex items-start justify-between gap-2 cursor-pointer rounded-none"
-                  >
-                    <span>{pill}</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#E5FE00] shrink-0 mt-0.5" />
-                  </button>
-                ))}
-              </div>
+            <div className="py-6 text-center text-xs font-mono text-zinc-500">
+              Type a question above or search any guide title to get started.
             </div>
           )}
 
@@ -290,32 +272,14 @@ export function AskBandMathModal({
         </div>
 
         {/* Footer */}
-        <div className="px-5 py-3 bg-[#141414] border-t border-white/12 flex flex-wrap items-center justify-between gap-2 text-[11px] text-zinc-400">
+        <div className="px-5 py-2.5 bg-[#141414] border-t border-white/12 flex items-center justify-end text-[11px] text-zinc-400">
           <span>
-            Grounded strictly in official BandMath documentation • Press{" "}
+            Press{" "}
             <kbd className="px-1.5 py-0.5 bg-[#0A0A0A] border border-white/15 font-mono text-zinc-300">
               ESC
             </kbd>{" "}
             to close
           </span>
-          <div className="flex items-center gap-3">
-            <a
-              href="https://blog.itsbandmath.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#E5FE00] underline"
-            >
-              Founder&apos;s Blog & Chronicle
-            </a>
-            <a
-              href="https://account.itsbandmath.com/joinbootstrappers"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#E5FE00] underline"
-            >
-              Bootstrapper&apos;s Club (€100)
-            </a>
-          </div>
         </div>
       </div>
     </div>

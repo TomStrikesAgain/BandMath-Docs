@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   description:
     "Official user guides, interactive workflows, and AI support for BandMath: Merch Stand POS, Multi-Band Closing Room, QR Door Terminals, Bouncer Mode, and Automated Debt Settlement.",
   metadataBase: new URL("https://learn.itsbandmath.com"),
+  icons: {
+    icon: "/img/logo.png",
+    apple: "/img/logo.png",
+  },
   openGraph: {
     title: "BandMath Knowledge Base & Interactive Guides",
     description:

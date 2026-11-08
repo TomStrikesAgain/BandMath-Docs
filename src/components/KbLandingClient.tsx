@@ -65,7 +65,7 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              triggerAskModal(heroInput || ui.starterPills[0]);
+              triggerAskModal(heroInput.trim());
             }}
             className="max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch bg-[#0A0A0A] border-2 border-white/25 focus-within:border-[#E5FE00] shadow-[0_0_50px_rgba(229,254,0,0.07)] transition-colors rounded-none"
           >
@@ -88,21 +88,6 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
               <span>{ui.askButton}</span>
             </button>
           </form>
-
-          {/* 4 Starter Question Pills */}
-          <div className="max-w-3xl mx-auto mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-left">
-            {ui.starterPills.map((pill, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => triggerAskModal(pill)}
-                className="p-3 bg-[#141414]/90 hover:bg-[#1C1C1C] border border-white/15 hover:border-[#E5FE00] text-xs text-zinc-200 hover:text-white flex items-center justify-between gap-2 transition-colors cursor-pointer rounded-none"
-              >
-                <span className="line-clamp-2">{pill}</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#E5FE00] shrink-0" />
-              </button>
-            ))}
-          </div>
 
           {/* Browse the Knowledge Base Archive CTA */}
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

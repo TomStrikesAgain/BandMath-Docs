@@ -111,9 +111,9 @@ export function KbShell({
               className="flex items-center gap-2.5 group"
             >
               <img
-                src="/img/logo.svg"
+                src="/img/logo.png"
                 alt="BandMath Logo"
-                className="w-7 h-7 object-contain"
+                className="w-8 h-8 object-contain"
               />
               <div className="flex flex-col">
                 <span className="font-display font-bold text-base tracking-tight text-white group-hover:text-[#E5FE00] transition-colors leading-none">
@@ -224,9 +224,9 @@ export function KbShell({
           <div>
             <div className="flex items-center gap-2">
               <img
-                src="/img/logo.svg"
+                src="/img/logo.png"
                 alt="BandMath"
-                className="w-5 h-5 object-contain"
+                className="w-6 h-6 object-contain"
               />
               <span className="font-display font-bold text-sm text-white">
                 BANDMATH KNOWLEDGE BASE
