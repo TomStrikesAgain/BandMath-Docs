@@ -1,14 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   Sparkles,
   ArrowRight,
   BookOpen,
   Smartphone,
-  Terminal,
-  ShieldCheck,
 } from "lucide-react";
 import {
   SupportedLocale,
@@ -25,6 +23,11 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
   const ui = UI_STRINGS[locale] || UI_STRINGS.en;
   const bundle = getLocaleBundle(locale);
   const [heroInput, setHeroInput] = useState("");
+  const heroInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    heroInputRef.current?.focus();
+  }, []);
 
   const triggerAskModal = (queryText: string) => {
     if (typeof window !== "undefined") {
@@ -47,12 +50,6 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
       {/* Hero Section: AI-First Support Hub */}
       <section className="relative border-b border-white/15 bg-gradient-to-b from-[#141414] to-[#0A0A0A] py-16 sm:py-24 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Top Brutalist Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#141414] border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-[#E5FE00] mb-6 rounded-none">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{ui.hubBadge}</span>
-          </div>
-
           <h1 className="font-display text-4xl sm:text-6xl font-bold text-white tracking-tight leading-[1.08] mb-5">
             {ui.hubTitle}
           </h1>
@@ -69,15 +66,17 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
             }}
             className="max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch bg-[#0A0A0A] border-2 border-white/25 focus-within:border-[#E5FE00] shadow-[0_0_50px_rgba(229,254,0,0.07)] transition-colors rounded-none"
           >
-            <div className="flex-1 flex items-center px-4 py-3.5">
-              <Terminal className="w-5 h-5 text-[#E5FE00] mr-3 shrink-0" />
+            <div className="flex-1 flex items-center px-5 py-3.5">
               <input
+                ref={heroInputRef}
                 type="text"
+                autoFocus
                 value={heroInput}
                 maxLength={600}
                 onChange={(e) => setHeroInput(e.target.value)}
-                placeholder={ui.askPlaceholder}
-                className="w-full bg-transparent text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none"
+                placeholder=""
+                aria-label={ui.hubTitle}
+                className="w-full bg-transparent text-sm sm:text-base text-white caret-[#E5FE00] focus:outline-none"
               />
             </div>
             <button

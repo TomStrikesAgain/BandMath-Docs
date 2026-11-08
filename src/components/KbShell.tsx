@@ -182,15 +182,15 @@ export function KbShell({
                 href="https://account.itsbandmath.com/joinbootstrappers"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 text-[#E5FE00] hover:underline inline-flex items-center gap-1 font-mono"
+                className="px-3 py-1.5 text-zinc-300 hover:text-[#E5FE00] inline-flex items-center gap-1 transition-colors"
               >
                 <span>{ui.BootstrappersLink}</span>
-                <ExternalLink className="w-3 h-3" />
+                <ExternalLink className="w-3 h-3 opacity-70" />
               </a>
             </nav>
           </div>
 
-          {/* Right: Search / ✨ Ask AI (⌘K) + 5-Locale Switcher */}
+          {/* Right: Search + 5-Locale Switcher */}
           <div className="flex items-center gap-2.5">
             <button
               type="button"
@@ -198,13 +198,9 @@ export function KbShell({
                 setInitialModalQuery("");
                 setAskModalOpen(true);
               }}
-              className="flex items-center gap-2.5 px-3.5 py-2 bg-[#141414] hover:bg-[#1C1C1C] border border-white/20 hover:border-[#E5FE00] text-xs text-white transition-colors cursor-pointer rounded-none"
+              className="px-4 py-2 bg-[#141414] hover:bg-[#1C1C1C] border border-white/20 hover:border-[#E5FE00] text-xs font-medium text-white transition-colors cursor-pointer rounded-none"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#E5FE00]" />
-              <span className="font-medium">{ui.searchAskButton}</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-[#0A0A0A] border border-white/15 text-zinc-400 rounded-none">
-                ⌘K
-              </kbd>
+              Search
             </button>
 
             {/* Locale Dropdown Menu under Globe Icon */}
