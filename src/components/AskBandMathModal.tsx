@@ -46,6 +46,7 @@ export function AskBandMathModal({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const conversationContainerRef = useRef<HTMLDivElement>(null);
   const lastDispatchedQueryRef = useRef<string>("");
 
   const submitQuestion = async (questionText: string) => {
@@ -58,6 +59,9 @@ export function AskBandMathModal({
     setInput("");
     setError(null);
     setLoading(true);
+    if (conversationContainerRef.current) {
+      conversationContainerRef.current.scrollTop = 0;
+    }
 
     try {
       const res = await fetch("/api/kb-chat", {
@@ -125,6 +129,24 @@ export function AskBandMathModal({
       : [];
 
   if (!isOpen) return null;
+
+  // Group turns into Q&A exchanges and reverse so the newest exchange is always at the top
+  const exchanges: ChatTurn[][] = [];
+  for (let i = 0; i < turns.length; i++) {
+    const t = turns[i];
+    if (t.role === "user") {
+      const next = turns[i + 1];
+      if (next && next.role === "assistant") {
+        exchanges.push([t, next]);
+        i++;
+      } else {
+        exchanges.push([t]);
+      }
+    } else {
+      exchanges.push([t]);
+    }
+  }
+  const newestFirstExchanges = [...exchanges].reverse();
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm p-4 sm:pt-16 overflow-y-auto">
@@ -205,62 +227,14 @@ export function AskBandMathModal({
           </div>
         )}
 
-        {/* Conversation Body */}
-        <div className="max-h-[65vh] overflow-y-auto p-5 space-y-5">
+        {/* Conversation Body (Newest Exchange First at Top) */}
+        <div
+          ref={conversationContainerRef}
+          className="max-h-[65vh] overflow-y-auto p-5 space-y-6"
+        >
           {turns.length === 0 && !loading && (
             <div className="py-6 text-center text-xs font-mono text-zinc-500">
               Type a question above or search any guide title to get started.
-            </div>
-          )}
-
-          {turns.map((turn, idx) => (
-            <div
-              key={idx}
-              className={
-                turn.role === "user"
-                  ? "bg-[#141414] border border-white/15 p-3.5 rounded-none"
-                  : "bg-[#111111] border-l-4 border-l-[#E5FE00] border border-white/15 p-4 rounded-none"
-              }
-            >
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-[#E5FE00]">
-                  {turn.role === "user" ? "YOU" : "ASK BANDMATH AI"}
-                </span>
-              </div>
-              {turn.role === "user" ? (
-                <p className="text-sm text-white font-medium m-0">{turn.content}</p>
-              ) : (
-                <div className="text-sm text-zinc-200">
-                  <MarkdownBlocks content={turn.content} />
-                  {turn.citations && turn.citations.length > 0 && (
-                    <div className="mt-4 pt-3 border-t border-white/10">
-                      <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2">
-                        Verified Source Guides
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {turn.citations.map((cit, cIdx) => (
-                          <Link
-                            key={cIdx}
-                            href={cit.url}
-                            onClick={onClose}
-                            className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#141414] hover:bg-[#1C1C1C] border border-white/15 hover:border-[#E5FE00] text-xs text-[#E5FE00] rounded-none"
-                          >
-                            <BookOpen className="w-3 h-3" />
-                            <span>{cit.title}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
-
-          {loading && (
-            <div className="flex items-center gap-3 p-4 bg-[#141414] border border-white/12 text-xs font-mono text-[#E5FE00] rounded-none">
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Searching BandMath Knowledge Base & computing answer...</span>
             </div>
           )}
 
@@ -269,6 +243,70 @@ export function AskBandMathModal({
               {error}
             </div>
           )}
+
+          {newestFirstExchanges.map((pair, exIdx) => {
+            const isLatestPending =
+              exIdx === 0 && loading && pair.length === 1 && pair[0].role === "user";
+            return (
+              <div
+                key={`exchange-${exchanges.length - exIdx}`}
+                className="space-y-3"
+              >
+                {pair.map((turn, tIdx) => (
+                  <div
+                    key={tIdx}
+                    className={
+                      turn.role === "user"
+                        ? "bg-[#141414] border border-white/15 p-3.5 rounded-none"
+                        : "bg-[#111111] border-l-4 border-l-[#E5FE00] border border-white/15 p-4 rounded-none"
+                    }
+                  >
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[#E5FE00]">
+                        {turn.role === "user" ? "YOU" : "BANDMATH GUIDE"}
+                      </span>
+                    </div>
+                    {turn.role === "user" ? (
+                      <p className="text-sm text-white font-medium m-0">
+                        {turn.content}
+                      </p>
+                    ) : (
+                      <div className="text-sm text-zinc-200">
+                        <MarkdownBlocks content={turn.content} />
+                        {turn.citations && turn.citations.length > 0 && (
+                          <div className="mt-4 pt-3 border-t border-white/10">
+                            <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                              Verified Source Guides
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {turn.citations.map((cit, cIdx) => (
+                                <Link
+                                  key={cIdx}
+                                  href={cit.url}
+                                  onClick={onClose}
+                                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#141414] hover:bg-[#1C1C1C] border border-white/15 hover:border-[#E5FE00] text-xs text-[#E5FE00] rounded-none"
+                                >
+                                  <BookOpen className="w-3 h-3" />
+                                  <span>{cit.title}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                {isLatestPending && (
+                  <div className="flex items-center gap-3 p-4 bg-[#141414] border-l-4 border-l-[#E5FE00] border border-white/15 text-xs font-mono text-[#E5FE00] rounded-none">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Searching BandMath Knowledge Base...</span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Footer */}
