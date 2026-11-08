@@ -190,7 +190,7 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
       "Instant answers grounded in our official touring guides, Closing Room deal sheets, Stripe Tap to Pay setup, and multi-member ledger math.",
     askPlaceholder:
       "Ask how to settle a multi-band show, pair a QR door terminal, or split tour gas...",
-    askButton: "ASK BANDMATH",
+    askButton: "SEARCH GUIDES",
     browseArchiveCta: "Browse the Knowledge Base Archive →",
     starterPills: [
       "How does the Multi-Band Closing Room settle door tickets & shared expenses?",
@@ -217,7 +217,7 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
       "Réponses instantanées basées sur nos guides officiels : Clôture multi-groupes, terminaux QR, Tap to Pay et grand livre.",
     askPlaceholder:
       "Demandez comment clôturer un concert multi-groupes, jumeler un terminal QR ou partager des frais...",
-    askButton: "DEMANDER À BANDMATH",
+    askButton: "RECHERCHER",
     browseArchiveCta: "Parcourir les guides complets →",
     starterPills: [
       "Comment fonctionne la Salle de Clôture multi-groupes ?",
@@ -244,7 +244,7 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
       "Sofortige Antworten aus unseren offiziellen Tour-Guides: Closing Room, QR-Terminals, Tap to Pay und Band-Buchhaltung.",
     askPlaceholder:
       "Frag nach Multi-Band-Abrechnungen, QR-Terminals, Bouncer-Modus oder Tankkosten-Splits...",
-    askButton: "BANDMATH FRAGEN",
+    askButton: "SUCHEN",
     browseArchiveCta: "Zum kompletten Handbuch-Archiv →",
     starterPills: [
       "Wie rechnet der Multi-Band Closing Room Abendkasse und Gagen ab?",
@@ -271,7 +271,7 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
       "Respuestas instantáneas basadas en nuestras guías oficiales: Sala de Cierre, terminales QR, Tap to Pay y contabilidad de gira.",
     askPlaceholder:
       "Pregunta cómo liquidar un concierto multibanda, vincular un terminal QR o dividir gastos...",
-    askButton: "PREGUNTAR A BANDMATH",
+    askButton: "BUSCAR",
     browseArchiveCta: "Explorar el archivo de guías →",
     starterPills: [
       "¿Cómo liquida entradas y gastos la Sala de Cierre multibanda?",
@@ -298,7 +298,7 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
       "Natychmiastowe odpowiedzi na podstawie oficjalnych przewodników: Pokój Rozliczeń, terminale QR, Tap to Pay i księgowość w trasie.",
     askPlaceholder:
       "Zapytaj jak rozliczyć koncert wielu zespołów, sparować terminal QR lub podzielić koszty paliwa...",
-    askButton: "ZAPYTAJ BANDMATH",
+    askButton: "SZUKAJ",
     browseArchiveCta: "Przeglądaj archiwum poradników →",
     starterPills: [
       "Jak Pokój Rozliczeń rozlicza bilety na bramce i wspólne koszty?",

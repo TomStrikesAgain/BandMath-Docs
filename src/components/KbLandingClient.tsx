@@ -64,7 +64,7 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
               e.preventDefault();
               triggerAskModal(heroInput.trim());
             }}
-            className="max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch bg-[#0A0A0A] border-2 border-white/25 focus-within:border-[#E5FE00] shadow-[0_0_50px_rgba(229,254,0,0.07)] transition-colors rounded-none"
+            className="max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch bg-[#0A0A0A] border-2 border-white/25 shadow-[0_0_50px_rgba(229,254,0,0.07)] transition-colors rounded-none"
           >
             <div className="flex-1 flex items-center px-5 py-3.5">
               <input
@@ -76,14 +76,13 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
                 onChange={(e) => setHeroInput(e.target.value)}
                 placeholder=""
                 aria-label={ui.hubTitle}
-                className="w-full bg-transparent text-sm sm:text-base text-white caret-[#E5FE00] focus:outline-none"
+                className="w-full bg-transparent text-sm sm:text-base text-white caret-white focus:outline-none"
               />
             </div>
             <button
               type="submit"
               className="px-6 py-4 bg-[#E5FE00] hover:bg-[#d4ec00] text-black font-display font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-colors rounded-none shrink-0"
             >
-              <Sparkles className="w-4 h-4" />
               <span>{ui.askButton}</span>
             </button>
           </form>
