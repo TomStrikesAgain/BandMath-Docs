@@ -31,7 +31,7 @@ W trybie **Band** utworzysz swój pierwszy **Profil Zespołu** (lub dołączysz 
 
 Podczas konfiguracji wybierz walutę bazową zespołu (np. `EUR`, `USD`, `GBP`, `PLN`).
 
-![Band Creation Dashboard](https://itsbandmath.com/automated-assets/onboarding/05_onboarding_flow_2.png)
+![Band Creation Dashboard](./assets/band-creation-dashboard.png)
 
 :::note
 BandMath wykonuje wszystkie obliczenia na liczbach całkowitych (groszach/centach), więc waluta pełni rolę **symbolu wyświetlania**. W przypadku tras zagranicznych sprawdź poradnik [Trasy Wielowalutowe](../Advanced_Workflows/02_Multi_Currency_Touring.md).
@@ -48,7 +48,7 @@ Po utworzeniu zespołu BandMath automatycznie tworzy specjalne konta systemowe:
 
 Możesz być członkiem nieograniczonej liczby zespołów oraz Administratorem maksymalnie 5 zespołów jednocześnie. Przełączaj się między zespołami za pomocą listy rozwijanej w **User Settings**.
 
-![Band Dropdown](https://itsbandmath.com/automated-assets/user_settings/03_switch_band_sheet.png)
+![Band Dropdown](./assets/band-dropdown.png)
 
 ## Kolejne Kroki
 

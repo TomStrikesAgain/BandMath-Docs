@@ -31,7 +31,7 @@ Im **Band**-Modus erstellst du dein **Band-Profil** (oder trittst einer bestehen
 
 Wähle bei der Einrichtung die Basiswährung deiner Band (z. B. `EUR`, `USD`, `GBP`, `PLN`).
 
-![Band Creation Dashboard](https://itsbandmath.com/automated-assets/onboarding/05_onboarding_flow_2.png)
+![Band Creation Dashboard](./assets/band-creation-dashboard.png)
 
 :::note
 BandMath berechnet alle Beträge exakt in ganzzahligen Cents. Das Währungssymbol dient als **Anzeigesymbol** und kann jederzeit in den Einstellungen geändert werden. Für Auslandstourneen lies unseren Leitfaden [Multi-Währungs-Tourneen](../Advanced_Workflows/02_Multi_Currency_Touring.md).
@@ -48,7 +48,7 @@ Beim Erstellen deiner Band legt BandMath automatisch Systemprofile für die dopp
 
 Du kannst Mitglied in beliebig vielen Bands und gleichzeitig Admin für bis zu 5 Bands sein. Über das Dropdown-Menü in den **User Settings** wechselst du jederzeit zwischen deinen Bands.
 
-![Band Dropdown](https://itsbandmath.com/automated-assets/user_settings/03_switch_band_sheet.png)
+![Band Dropdown](./assets/band-dropdown.png)
 
 ## Nächste Schritte
 

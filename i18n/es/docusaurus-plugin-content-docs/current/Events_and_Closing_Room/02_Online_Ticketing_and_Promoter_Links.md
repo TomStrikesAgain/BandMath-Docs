@@ -4,9 +4,11 @@ sidebar_label: Online Ticketing & Promo Links
 ---
 # Online Ticketing, First-Sale Lock & Promoter Attribution Links
 
-On DIY and independent tours, the person who creates the event on the calendar isn't always the merchant who holds the Stripe account for online ticket pre-sales. Sometimes the **Venue** sells the pre-sale tickets, sometimes the **Tour Manager** runs the box office, and sometimes the **Headliner** handles ticketing for a local bill.
+On DIY and independent tours, the person who creates the event on the calendar isn't always the merchant who holds the Stripe account for online ticket pre-sales. Sometimes the **Venue** sells the pre-sale tickets, sometimes the **Promoter / Tour Manager** runs the box office, and sometimes the **Headliner** handles ticketing for a local bill.
 
 BandMath handles all three scenarios seamlessly with our **3-State Online Ticketing Claim** and automatic **Promoter Attribution Links**.
+
+![Fan Ticketing WebCheckout](./assets/fan-ticketing-checkout.png)
 
 ---
 
@@ -15,10 +17,10 @@ BandMath handles all three scenarios seamlessly with our **3-State Online Ticket
 Every event with ticket tiers moves through three clear states:
 
 ### State 1: Unclaimed (Free Setup)
-Any free `Band`, `Venue`, or `Tour Manager` account can create an event and configure ticket tiers, pricing, capacities, and the [Event Ticket Tax Rate](../Advanced_Workflows/04_Touring_Tax_and_Nightly_Settlements.md#tier-1-standardized-event-ticket-tax-rate) before a merchant is assigned.
+Any free `Band`, `Venue`, `Promoter`, or `Tour Manager` account can create an event and configure ticket tiers, pricing, capacities, VIP promo codes, and the [Event Ticket Tax Rate](../Advanced_Workflows/04_Touring_Tax_and_Nightly_Settlements.md#tier-1-standardized-event-ticket-tax-rate) before a merchant is assigned.
 
 ### State 2: Claimed & Switchable (`0` Tickets Sold)
-Any participant on the show with an active Pro subscription and connected Stripe account—whether the **Venue**, the **Tour Manager**, or **any Band on the bill**—can tap **`[ CLAIM ONLINE TICKETING ]`**.
+Any participant on the show with an active Merchant subscription and connected Stripe account—whether the **Venue**, the **Promoter**, the **Tour Manager**, or **any Band on the bill**—can tap **`[ CLAIM ONLINE TICKETING ]`**.
 * As long as **`0` tickets have been sold**, the designated ticketing merchant can still be switched if the promoter and bands decide a different party should run the online box office.
 
 ### State 3: Permanently Locked on Ticket #1 (`🔒`)

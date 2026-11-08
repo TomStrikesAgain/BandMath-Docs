@@ -31,7 +31,7 @@ When operating in the **Band** persona, you will be prompted to create your firs
 
 During setup, select your band's base currency (e.g., `EUR`, `USD`, `GBP`, `PLN`).
 
-![Band Creation Dashboard](https://itsbandmath.com/automated-assets/onboarding/05_onboarding_flow_2.png)
+![Band Creation Dashboard](./assets/band-creation-dashboard.png)
 
 :::note
 BandMath handles all math natively using exact integer cents, which means the currency setting is a **display symbol**. You can change your workspace's currency symbol at any time in settings. For tours across currency borders, check out our [Multi-Currency Touring](../Advanced_Workflows/02_Multi_Currency_Touring.md) guide.
@@ -52,7 +52,7 @@ BandMath supports multiple bands under a single login! You can be a member of an
 
 To switch between your bands, open **User Settings** and use the **Band Switcher** dropdown to select the active band workspace.
 
-![Band Dropdown](https://itsbandmath.com/automated-assets/user_settings/03_switch_band_sheet.png)
+![Band Dropdown](./assets/band-dropdown.png)
 
 ## Next Steps
 

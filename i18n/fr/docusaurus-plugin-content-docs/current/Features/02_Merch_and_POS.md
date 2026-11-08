@@ -21,7 +21,7 @@ When the house lights come up and fifty fans rush the merch table at once, speed
 * **At-Cost Member Purchases, Discounts & Tips:** Toggle between **Retail** and **At Cost** for band member purchases, apply custom cart discounts, or log fan tips on the fly.
 * **Customer Email Receipts:** Send digital receipts straight from the checkout screen.
 
-![POS Checkout Cart](https://itsbandmath.com/automated-assets/pos_flow/03_cart_review.png)
+![POS Checkout Cart](./assets/pos-checkout-cart.png)
 
 ## 3. Event Merch Window & Closing Room Integration
 

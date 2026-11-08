@@ -31,7 +31,7 @@ En mode **Band**, vous êtes invité à créer votre premier **Profil de Groupe*
 
 Lors de la configuration, sélectionnez la devise principale de votre groupe (ex. `EUR`, `USD`, `GBP`, `PLN`).
 
-![Band Creation Dashboard](https://itsbandmath.com/automated-assets/onboarding/05_onboarding_flow_2.png)
+![Band Creation Dashboard](./assets/band-creation-dashboard.png)
 
 :::note
 BandMath effectue tous les calculs en centimes entiers : la devise choisie est uniquement un **symbole d'affichage**. Pour les tournées internationales, consultez notre guide [Tournées Multi-Devises](../Advanced_Workflows/02_Multi_Currency_Touring.md).
@@ -48,7 +48,7 @@ BandMath effectue tous les calculs en centimes entiers : la devise choisie est u
 
 Vous pouvez être membre d'un nombre illimité de groupes et Administrateur de jusqu'à 5 groupes simultanément. Utilisez le menu déroulant dans **User Settings** pour passer d'un groupe à l'autre.
 
-![Band Dropdown](https://itsbandmath.com/automated-assets/user_settings/03_switch_band_sheet.png)
+![Band Dropdown](./assets/band-dropdown.png)
 
 ## Prochaines Étapes
 

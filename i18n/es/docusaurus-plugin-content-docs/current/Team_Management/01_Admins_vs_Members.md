@@ -2,7 +2,7 @@
 
 BandMath uses a simple but strict role-based permission system to ensure your financial data remains secure and organized. There are two primary roles in any band workspace: **Admins** and **Members**.
 
-![Admin vs Member Roles](https://itsbandmath.com/automated-assets/band_settings/01_band_settings_top.png)
+![Admin vs Member Roles](./assets/admin-member-roles.png)
 
 ## Admins
 

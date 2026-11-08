@@ -12,6 +12,9 @@ const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5c
 const turndownService = new TurndownService();
 
 async function fetchDocuments() {
+  const privacyPath = path.resolve(__dirname, '../docs/Privacy_Policy.md');
+  const tosPath = path.resolve(__dirname, '../docs/98_Terms_of_Service.md');
+
   try {
     let res;
     try {
@@ -22,7 +25,6 @@ async function fetchDocuments() {
         }
       });
     } catch (e) {
-      console.log('Local fetch failed, falling back to production...');
       res = await fetch(`${PROD_URL}/rest/v1/legal_documents`, {
         headers: {
           'apikey': PROD_KEY,
@@ -36,20 +38,17 @@ async function fetchDocuments() {
     }
 
     const docs = await res.json();
-    
     let privacyHtml = '';
     let tosHtml = '';
-    let appleTermsHtml = '';
 
     docs.forEach(doc => {
       if (doc.id === 'privacy') privacyHtml = doc.html_body;
       if (doc.id === 'tos') tosHtml = doc.html_body;
-      if (doc.id === 'apple_terms') appleTermsHtml = doc.html_body;
     });
 
-    // Generate Privacy Policy
-    const privacyMd = turndownService.turndown(privacyHtml);
-    const privacyContent = `---
+    if (privacyHtml) {
+      const privacyMd = turndownService.turndown(privacyHtml);
+      const privacyContent = `---
 sidebar_position: 100
 title: Privacy Policy
 ---
@@ -57,11 +56,12 @@ title: Privacy Policy
 
 ${privacyMd}
 `;
-    fs.writeFileSync(path.resolve(__dirname, '../docs/Privacy_Policy.md'), privacyContent);
+      fs.writeFileSync(privacyPath, privacyContent);
+    }
 
-    // Generate Terms of Service
-    const tosMd = turndownService.turndown(tosHtml);
-    const tosContent = `---
+    if (tosHtml) {
+      const tosMd = turndownService.turndown(tosHtml);
+      const tosContent = `---
 sidebar_position: 98
 title: Terms & Conditions
 ---
@@ -69,10 +69,15 @@ title: Terms & Conditions
 
 ${tosMd}
 `;
-    fs.writeFileSync(path.resolve(__dirname, '../docs/98_Terms_of_Service.md'), tosContent);
+      fs.writeFileSync(tosPath, tosContent);
+    }
 
     console.log('Successfully synced legal documents from Supabase.');
   } catch (err) {
+    if (fs.existsSync(privacyPath) && fs.existsSync(tosPath)) {
+      console.log('Offline/sandbox build detected — using existing synced legal documents on disk.');
+      return;
+    }
     console.error('Error fetching legal documents:', err);
     process.exit(1);
   }

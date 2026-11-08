@@ -31,7 +31,7 @@ En el modo **Band**, podrás crear tu primer **Perfil de Banda** (o unirte a una
 
 Durante la creación, selecciona la moneda base de tu banda (por ejemplo, `EUR`, `USD`, `GBP`, `PLN`).
 
-![Band Creation Dashboard](https://itsbandmath.com/automated-assets/onboarding/05_onboarding_flow_2.png)
+![Band Creation Dashboard](./assets/band-creation-dashboard.png)
 
 :::note
 BandMath realiza todos los cálculos internamente con centavos enteros, por lo que la moneda es un **símbolo de visualización**. Para giras internacionales, consulta nuestra guía de [Giras Multi-Moneda](../Advanced_Workflows/02_Multi_Currency_Touring.md).
@@ -48,7 +48,7 @@ Al crear tu banda, BandMath configura automáticamente cuentas especiales para l
 
 Puedes ser miembro de un número ilimitado de bandas y Administrador de hasta 5 bandas simultáneamente. Cambia entre tus bandas desde el menú desplegable en **User Settings**.
 
-![Band Dropdown](https://itsbandmath.com/automated-assets/user_settings/03_switch_band_sheet.png)
+![Band Dropdown](./assets/band-dropdown.png)
 
 ## Próximos Pasos
 

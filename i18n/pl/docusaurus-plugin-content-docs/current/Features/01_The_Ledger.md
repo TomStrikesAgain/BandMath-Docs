@@ -8,31 +8,23 @@ Adding, modifying, and deleting transactions is simple. BandMath supports record
 
 ### Income
 Anything from nightly venue payouts, to tips, to merch sales.
-<div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
-  <img src="https://itsbandmath.com/automated-assets/financials/add_income/03_add_income_empty.png" alt="Add Income" style={{width: '49%'}} />
-  <img src="https://itsbandmath.com/automated-assets/financials/add_income/04_add_income_filled.png" alt="Add Income Filled" style={{width: '49%'}} />
-</div>
+
+![Add Income](./assets/add-modify-and-delete-transactions_02.png)
 
 ### Expenses
 Gas for the van, hotels, gear repairs, or just a round of beers at the bar.
-<div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
-  <img src="https://itsbandmath.com/automated-assets/financials/add_expense/03_add_expense_empty.png" alt="Add Expense" style={{width: '49%'}} />
-  <img src="https://itsbandmath.com/automated-assets/financials/add_expense/04_add_expense_filled.png" alt="Add Expense Filled" style={{width: '49%'}} />
-</div>
+
+![Add Expense](./assets/add-modify-and-delete-transactions_01.png)
 
 ### Transfers
 Moving money between the Band Bank, VAT Bank, or individual members.
-<div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
-  <img src="https://itsbandmath.com/automated-assets/financials/add_transfer/03_add_transfer_empty.png" alt="Add Transfer" style={{width: '49%'}} />
-  <img src="https://itsbandmath.com/automated-assets/financials/add_transfer/04_add_transfer_filled.png" alt="Add Transfer Filled" style={{width: '49%'}} />
-</div>
+
+![Add Transfer](./assets/add-modify-and-delete-transactions_03.png)
 
 ### Modifying & Deleting
 You have full editing capabilities to ensure the ledger is always perfectly accurate.
-<div style={{display: 'flex', justifyContent: 'space-between'}}>
-  <img src="https://itsbandmath.com/automated-assets/financials/modify_expense/04_transaction_detail.png" alt="Transaction Detail" style={{width: '49%'}} />
-  <img src="https://itsbandmath.com/automated-assets/financials/modify_expense/05_modify_expense_filled.png" alt="Modify Expense" style={{width: '49%'}} />
-</div>
+
+![Modify Transaction](./assets/shared-expenses-credits_01.png)
 
 ## Shared Expenses & Credits
 
@@ -40,7 +32,7 @@ Touring is a team effort. Anyone in the band can pay for an expense and automati
 
 Similarly, anyone can take a payout (like the cash from the venue) and automatically credit the other members for their cut.
 
-![Shared Expenses](https://itsbandmath.com/automated-assets/04-tab3.png)
+![Shared Expenses](./assets/shared-expenses-credits_02.png)
 
 ## Automated Debt Settlement
 
@@ -48,10 +40,7 @@ This is the magic of BandMath. Instead of creating a complex web of "who owes wh
 
 It outputs the absolute simplest way to settle all debts with the fewest number of cash transfers.
 
-<div style={{display: 'flex', justifyContent: 'space-between'}}>
-  <img src="https://itsbandmath.com/automated-assets/financials/settle_up/02_payment_sheet_empty.png" alt="Settle Up" style={{width: '49%'}} />
-  <img src="https://itsbandmath.com/automated-assets/financials/settle_up/03_payment_sheet_filled.png" alt="Settle Up Filled" style={{width: '49%'}} />
-</div>
+![Automated Debt Settlement](./assets/automated-debt-settlement_01.png)
 
 ## Advanced Profit Splitting (The Penny Catcher)
 
@@ -65,8 +54,4 @@ Need to settle a multi-band show, calculate a venue merch cut, or split door tic
 
 When you sell merch or log taxable income, the tax portion of the sale is automatically transferred to the **[VAT Bank](../Team_Management/06_The_VAT_Bank.md)**. This ensures you don't accidentally spend money that you owe to the government.
 
-<div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/04_venue_split_gross.png" alt="Venue Split Gross" style={{width: '32%'}} />
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/05_venue_split_net.png" alt="Venue Split Net" style={{width: '32%'}} />
-  <img src="https://itsbandmath.com/automated-assets/merch_and_venue_split/06_venue_split_who_paid_out.png" alt="Venue Split Payout" style={{width: '32%'}} />
-</div>
+![Event Settlement & Ledger Sync](./assets/shared-expenses-credits_03.png)

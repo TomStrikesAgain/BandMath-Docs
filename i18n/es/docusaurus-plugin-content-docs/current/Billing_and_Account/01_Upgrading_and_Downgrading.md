@@ -2,7 +2,7 @@
 
 BandMath offers flexible plans built for working musicians, independent venues, and tour managers. For garage bands and local acts, the core financial ledger, band calendar, setlist organizer, and show creation tools are 100% free. When you are ready to process live card payments—whether via **Tap to Pay**, **Stripe QR Codes**, or **Online Event Ticketing**—you can upgrade in seconds via our Web Accounts Portal.
 
-![Accounts Portal Billing](https://itsbandmath.com/automated-assets/web_portal/02_billing.png)
+![Accounts Portal Billing](./assets/pricing-tiers-upgrade.png)
 
 ## The Web Accounts Portal (`account.itsbandmath.com`)
 

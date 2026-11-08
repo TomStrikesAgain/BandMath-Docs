@@ -3,6 +3,9 @@
 
 # Production
 /build
+/.next
+/public/doc-assets
+/next-env.d.ts
 
 # Generated files
 .docusaurus
