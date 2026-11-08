@@ -120,104 +120,290 @@ function isAbusiveInput(text: string): boolean {
   return abusivePatterns.some((pattern) => pattern.test(lower));
 }
 
-// 5. Relevant Article Retrieval (Top-K Keyword & Title Scoring across Locale KB)
+// 5. Relevant Article Retrieval (Stopword-Filtered Whole-Word & Intent Scoring)
+const STOPWORDS = new Set([
+  "how",
+  "what",
+  "where",
+  "when",
+  "why",
+  "who",
+  "which",
+  "much",
+  "many",
+  "does",
+  "do",
+  "did",
+  "is",
+  "are",
+  "was",
+  "were",
+  "can",
+  "could",
+  "would",
+  "should",
+  "will",
+  "the",
+  "and",
+  "for",
+  "with",
+  "from",
+  "that",
+  "this",
+  "our",
+  "your",
+  "my",
+  "we",
+  "you",
+  "they",
+  "in",
+  "on",
+  "at",
+  "to",
+  "of",
+  "by",
+  "as",
+  "an",
+  "be",
+  "or",
+  "it",
+  "if",
+  "bandmath",
+  "app",
+  "use",
+  "using",
+  "work",
+  "works",
+  "get",
+  "make",
+  "comment",
+  "quel",
+  "quelle",
+  "quels",
+  "quelles",
+  "est",
+  "sont",
+  "dans",
+  "pour",
+  "avec",
+  "les",
+  "des",
+  "une",
+  "sur",
+  "par",
+  "plus",
+  "wie",
+  "was",
+  "wo",
+  "wann",
+  "ist",
+  "sind",
+  "für",
+  "mit",
+  "und",
+  "der",
+  "die",
+  "das",
+  "ein",
+  "eine",
+  "como",
+  "cómo",
+  "que",
+  "qué",
+  "cuanto",
+  "cuánto",
+  "para",
+  "con",
+  "los",
+  "las",
+  "una",
+  "por",
+  "jak",
+  "ile",
+  "czy",
+  "dla",
+  "jest",
+]);
+
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function countWholeWordMatches(haystack: string, word: string): number {
+  if (!word) return 0;
+  try {
+    // Match word boundaries or prefix stem (e.g. "subscription" matches "subscriptions")
+    const re = new RegExp(`\\b${escapeRegExp(word)}\\w*\\b`, "gi");
+    const matches = haystack.match(re);
+    return matches ? matches.length : 0;
+  } catch {
+    return 0;
+  }
+}
+
 function retrieveRelevantArticles(
   locale: SupportedLocale,
   query: string,
   topK = 5
 ): DocArticle[] {
   const bundle = getLocaleBundle(locale);
-  const tokens = query
+  const rawTokens = query
     .toLowerCase()
     .replace(/[^\p{L}\p{N}\s-]/gu, " ")
     .split(/\s+/)
-    .filter((w) => w.length >= 2);
+    .filter((w) => w.length >= 3 && !STOPWORDS.has(w));
+
+  const tokens = rawTokens.length > 0 ? rawTokens : ["tour", "first"];
+  const qLower = query.toLowerCase();
 
   const scored = bundle.articles.map((article) => {
     let score = 0;
     const titleLower = article.title.toLowerCase();
     const catLower = article.categoryLabel.toLowerCase();
-    const slugLower = article.slug.toLowerCase();
+    const slugLower = article.slug.toLowerCase().replace(/_/g, " ");
     const bodyLower = article.plainText.toLowerCase();
 
     for (const token of tokens) {
-      if (titleLower.includes(token)) score += 12;
-      if (slugLower.includes(token)) score += 10;
-      if (catLower.includes(token)) score += 5;
-      const occurrences = bodyLower.split(token).length - 1;
-      if (occurrences > 0) {
-        score += Math.min(occurrences * 2, 14);
+      const titleHits = countWholeWordMatches(titleLower, token);
+      const slugHits = countWholeWordMatches(slugLower, token);
+      const catHits = countWholeWordMatches(catLower, token);
+      const bodyHits = countWholeWordMatches(bodyLower, token);
+
+      if (titleHits > 0) score += 28;
+      if (slugHits > 0) score += 24;
+      if (catHits > 0) score += 12;
+      if (bodyHits > 0) {
+        score += Math.min(bodyHits * 4, 24);
       }
     }
 
-    // Domain boost rules
-    const qLower = query.toLowerCase();
+    // Domain & Intent Boost Rules
     if (
-      (qLower.includes("closing") ||
-        qLower.includes("clôture") ||
-        qLower.includes("settle") ||
-        qLower.includes("deal") ||
-        qLower.includes("split") ||
-        qLower.includes("door")) &&
-      article.categoryId === "Events_and_Closing_Room"
+      /\b(subscription|subscriptions|subscribe|cost|costs|price|pricing|plan|plans|tier|tiers|upgrade|downgrade|billing|monthly|lifetime|bootstrapper|bootstrappers|free|pro|abonnement|tarif|prix|kosten|preis|abo|suscripci[oó]n|precio|subskrypcj[ai]|cena)\b/i.test(
+        qLower
+      )
     ) {
-      score += 15;
+      if (article.slug.includes("Upgrading_and_Downgrading")) score += 60;
+      else if (article.categoryId === "Billing_and_Account") score += 25;
+      else if (article.slug === "FAQ") score += 15;
     }
+
     if (
-      (qLower.includes("qr") ||
-        qLower.includes("terminal") ||
-        qLower.includes("cash drop") ||
-        qLower.includes("bouncer") ||
-        qLower.includes("scan")) &&
+      /\b(cancel|cancellation|pause|delete workspace|export csv)\b/i.test(
+        qLower
+      ) &&
+      article.slug.includes("Cancellations_and_Data_Export")
+    ) {
+      score += 50;
+    }
+
+    if (
+      /\b(closing room|clôture|settle|settlement|deal sheet|venue cut|merch cut|shared pot|show envelope|payout)\b/i.test(
+        qLower
+      )
+    ) {
+      if (article.slug.includes("Multi_Band_Closing_Room")) score += 45;
+      else if (article.categoryId === "Events_and_Closing_Room") score += 20;
+    }
+
+    if (
+      /\b(show code|6-character|join show|create event|multi-band|lineup|headliner|opener)\b/i.test(
+        qLower
+      ) &&
+      article.slug.includes("Creating_and_Joining_Shows")
+    ) {
+      score += 45;
+    }
+
+    if (
+      /\b(online ticket|presale|pre-sale|claim online|first-sale lock|promoter link|referral|ref=)\b/i.test(
+        qLower
+      ) &&
+      article.slug.includes("Online_Ticketing_and_Promoter_Links")
+    ) {
+      score += 45;
+    }
+
+    if (
+      /\b(qr terminal|door terminal|cash drop|bouncer|door ticket|guest list|safety lock)\b/i.test(
+        qLower
+      ) &&
       article.slug.includes("Door_Tickets_and_Bouncer_Mode")
     ) {
-      score += 20;
+      score += 45;
     }
+
     if (
-      (qLower.includes("ledger") ||
-        qLower.includes("debt") ||
-        qLower.includes("dette") ||
-        qLower.includes("standing")) &&
+      /\b(ledger|debt|dette|standing|standings|who owes|balance)\b/i.test(
+        qLower
+      ) &&
       article.slug.includes("The_Ledger")
     ) {
-      score += 20;
+      score += 45;
     }
+
     if (
-      (qLower.includes("currency") ||
-        qLower.includes("foreign") ||
-        qLower.includes("float") ||
-        qLower.includes("devise")) &&
+      /\b(currency|currencies|foreign|merch float|exchange rate|abroad|international|devise)\b/i.test(
+        qLower
+      ) &&
       article.slug.includes("Multi_Currency_Touring")
     ) {
-      score += 20;
+      score += 45;
     }
+
     if (
-      (qLower.includes("tap to pay") ||
-        qLower.includes("stripe") ||
-        qLower.includes("fee") ||
-        qLower.includes("card")) &&
+      /\b(tap to pay|stripe|processing fee|card payment|1\.4%|reader|terminal)\b/i.test(
+        qLower
+      ) &&
       article.categoryId === "Accept_Payments"
     ) {
-      score += 15;
+      score += 35;
     }
+
     if (
-      (qLower.includes("bootstrapper") ||
-        qLower.includes("upgrade") ||
-        qLower.includes("price") ||
-        qLower.includes("pricing") ||
-        qLower.includes("pro") ||
-        qLower.includes("€100") ||
-        qLower.includes("€20")) &&
-      article.categoryId === "Billing_and_Account"
+      /\b(vat bank|sales tax|tax|vat|tva)\b/i.test(qLower) &&
+      (article.slug.includes("The_VAT_Bank") ||
+        article.slug.includes("Retroactive_VAT"))
     ) {
-      score += 18;
+      score += 45;
+    }
+
+    if (
+      /\b(band bank|business checking|communal)\b/i.test(qLower) &&
+      article.slug.includes("The_Band_Bank")
+    ) {
+      score += 45;
+    }
+
+    if (
+      /\b(shadow profile|ghost|download the app)\b/i.test(qLower) &&
+      article.slug.includes("Shadow_Profiles")
+    ) {
+      score += 45;
+    }
+
+    if (
+      /\b(penny catcher|rounding|fraction|cent)\b/i.test(qLower) &&
+      article.slug.includes("The_Penny_Catcher")
+    ) {
+      score += 45;
+    }
+
+    if (
+      /\b(refund|mistake|wrong sale)\b/i.test(qLower) &&
+      article.categoryId === "Troubleshooting"
+    ) {
+      score += 40;
     }
 
     return { article, score };
   });
 
   scored.sort((a, b) => b.score - a.score);
-  const top = scored.filter((s) => s.score > 0).slice(0, topK).map((s) => s.article);
+  const top = scored
+    .filter((s) => s.score > 0)
+    .slice(0, topK)
+    .map((s) => s.article);
 
   if (top.length === 0) {
     return bundle.articles.slice(0, 4);
@@ -258,25 +444,85 @@ function synthesizeOfflineKbAnswer(
     };
   }
 
+  // Direct Subscription / Pricing / Cost Answer
+  if (
+    /\b(subscription|subscriptions|subscribe|cost|costs|price|pricing|plan|plans|tier|tiers|upgrade|downgrade|billing|monthly|lifetime|bootstrapper|bootstrappers|abonnement|tarif|prix|kosten|preis|abo|suscripci[oó]n|precio|subskrypcj[ai]|cena)\b/i.test(
+      q
+    ) ||
+    (q.includes("how much") && !q.includes("fee") && !q.includes("tap to pay"))
+  ) {
+    const upgradeUrl =
+      locale === "en"
+        ? "/docs/Billing_and_Account/Upgrading_and_Downgrading"
+        : `/${locale}/docs/Billing_and_Account/Upgrading_and_Downgrading`;
+    const cancelUrl =
+      locale === "en"
+        ? "/docs/Billing_and_Account/Cancellations_and_Data_Export"
+        : `/${locale}/docs/Billing_and_Account/Cancellations_and_Data_Export`;
+
+    const reply = [
+      `BandMath offers three straightforward tiers managed via **[account.itsbandmath.com](https://account.itsbandmath.com)** (avoiding 30% App Store surcharges):`,
+      "",
+      `* **Free Tier (\`€0\` — Core Ledger & Events):** 100% free forever for unlimited expense & income splits, **Automated Debt Settlement**, **Band Calendar**, **Setlist Organizer**, creating or joining multi-band shows via 6-Character Show Code, and participating in nightly **Closing Room** settlements.`,
+      `* **Pro Merchant Plan (\`€20 / month\`):** Unlocks commercial **Merch Stand** Point-of-Sale (POS), **Tap to Pay** on iPhone & Android, **Stripe QR Codes**, **Online Event Ticketing**, the **Sales Analyzer**, and the **Inventory Analyzer**. *(Only one subscription is required per band workspace—covering every member in the band).*`,
+      `* **The Bootstrapper's Club (\`€100\` One-Time Lifetime Pass):** Strictly capped at **100 public founding spots**, unlocking lifetime Pro access for a single one-time payment with zero recurring monthly fees at **[account.itsbandmath.com/joinbootstrappers](https://account.itsbandmath.com/joinbootstrappers)**.`,
+      "",
+      `For step-by-step instructions on upgrading, switching personas, or pausing between tours, see **[Upgrading and Downgrading](${upgradeUrl})** and **[Cancellations and Data Export](${cancelUrl})**.`,
+    ].join("\n");
+
+    return {
+      reply,
+      citations: topArticles.slice(0, 4).map((a) => ({
+        title: a.title,
+        url: a.url,
+        category: a.categoryLabel,
+      })),
+    };
+  }
+
   const primary = topArticles[0];
   const secondary = topArticles.slice(1, 4);
 
-  // Extract concise bullet summary from primary article sections
-  const sectionBullets = primary.sections
+  // Score individual sections of the primary article against query tokens so the most relevant section comes first
+  const queryTokens = q
+    .replace(/[^\p{L}\p{N}\s-]/gu, " ")
+    .split(/\s+/)
+    .filter((w) => w.length >= 3 && !STOPWORDS.has(w));
+
+  const rankedSections = [...primary.sections].sort((a, b) => {
+    let scoreA = 0;
+    let scoreB = 0;
+    const textA = `${a.heading} ${a.content}`.toLowerCase();
+    const textB = `${b.heading} ${b.content}`.toLowerCase();
+    for (const tok of queryTokens) {
+      scoreA += countWholeWordMatches(a.heading.toLowerCase(), tok) * 10;
+      scoreA += countWholeWordMatches(textA, tok) * 2;
+      scoreB += countWholeWordMatches(b.heading.toLowerCase(), tok) * 10;
+      scoreB += countWholeWordMatches(textB, tok) * 2;
+    }
+    return scoreB - scoreA;
+  });
+
+  // Extract clean, well-formatted bullets from top matching sections
+  const sectionBullets = rankedSections
+    .filter((sec) => sec.heading.toLowerCase() !== primary.title.toLowerCase())
     .slice(0, 4)
     .map((sec) => {
       const cleanSnippet = sec.content
         .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
         .replace(/<[^>]+>/g, "")
-        .replace(/:::(note|tip|info|warning|danger|caution)/g, "")
-        .replace(/:::/g, "")
+        .replace(/:::(note|tip|info|warning|danger|caution).*$/gm, "")
+        .replace(/^:::$/gm, "")
+        .replace(/^---$/gm, "")
         .trim()
         .split(/\r?\n/)
-        .filter((l) => l.trim().length > 15)
+        .map((l) => l.trim().replace(/^[-*]\s+/, ""))
+        .filter((l) => l.length > 15 && !l.startsWith("|"))
         .slice(0, 2)
         .join(" ");
       return `* **${sec.heading}:** ${cleanSnippet}`;
     })
+    .filter((b) => b.length > 20)
     .join("\n");
 
   const relatedLinks = secondary
