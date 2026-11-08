@@ -76,7 +76,9 @@ function resolveInternalMarkdownHref(href, locale, currentCategory) {
     href.startsWith('http://') ||
     href.startsWith('https://') ||
     href.startsWith('#') ||
-    href.startsWith('mailto:')
+    href.startsWith('mailto:') ||
+    href.startsWith('/doc-assets/') ||
+    href.includes('/doc-assets/')
   ) {
     return href;
   }
@@ -273,8 +275,7 @@ function parseLocaleDocs(locale) {
         .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
           return `![${alt}](${rewriteImageSrc(src, locale, categoryId)})`;
         })
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (full, text, href) => {
-          if (full.startsWith('!')) return full;
+        .replace(/(?<!\!)\[([^\]]+)\]\(([^)]+)\)/g, (_, text, href) => {
           return `[${text}](${resolveInternalMarkdownHref(href, locale, categoryId)})`;
         });
 
@@ -361,8 +362,7 @@ function parseLocaleDocs(locale) {
       .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
         return `![${alt}](${rewriteImageSrc(src, locale, null)})`;
       })
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (full, text, href) => {
-        if (full.startsWith('!')) return full;
+      .replace(/(?<!\!)\[([^\]]+)\]\(([^)]+)\)/g, (_, text, href) => {
         return `[${text}](${resolveInternalMarkdownHref(href, locale, null)})`;
       });
 

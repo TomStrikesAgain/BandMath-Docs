@@ -99,3 +99,13 @@ Control document and category ordering explicitly:
 When working with translations (`LOCALIZATION_MASTER_PLAN.md`) or modifying site configuration:
 1. **Local Search Configuration:** The search plugin (`@easyops-cn/docusaurus-search-local`) in `docusaurus.config.js` **must** declare all enabled locales in its `language` array (e.g. `['en', 'fr', 'de', 'es', 'pl']`). If omitted, search indexing will silently fail for non-English locales.
 2. **AST Parsing for Translations:** Automated or AI translations must use AST parsing to translate text nodes only. Internal Markdown links (e.g., `[Link](./Path/To/Doc.md)`) must preserve their exact relative target paths to avoid breaking Docusaurus link validation.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
