@@ -206,22 +206,6 @@ export function DocArticleClient({
                 <X className="w-4 h-4" />
               </button>
             </div>
-            {/* Mobile Locale Switcher */}
-            <div className="flex items-center gap-1 mb-5 p-1 bg-[#141414] border border-white/15">
-              {SUPPORTED_LOCALES.map((loc) => (
-                <Link
-                  key={loc}
-                  href={loc === "en" ? `/docs/${article.routeSegments.join("/")}` : `/${loc}/docs/${article.routeSegments.join("/")}`}
-                  className={`flex-1 text-center py-1 text-xs font-mono font-bold ${
-                    loc === locale
-                      ? "bg-[#E5FE00] text-black"
-                      : "text-zinc-400"
-                  }`}
-                >
-                  {LOCALE_LABELS[loc]}
-                </Link>
-              ))}
-            </div>
             {SidebarContent}
           </div>
         </div>

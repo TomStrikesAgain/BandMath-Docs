@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -8,7 +8,7 @@ import {
   ExternalLink,
   Globe,
   Menu,
-  X,
+  ChevronDown,
 } from "lucide-react";
 import {
   LOCALE_LABELS,
@@ -36,6 +36,22 @@ export function KbShell({
 
   const [askModalOpen, setAskModalOpen] = useState(false);
   const [initialModalQuery, setInitialModalQuery] = useState("");
+  const [localeMenuOpen, setLocaleMenuOpen] = useState(false);
+  const localeMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close locale dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        localeMenuRef.current &&
+        !localeMenuRef.current.contains(e.target as Node)
+      ) {
+        setLocaleMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Global Cmd+K / Ctrl+K shortcut & Esc listener
   useEffect(() => {
@@ -191,25 +207,45 @@ export function KbShell({
               </kbd>
             </button>
 
-            {/* Locale Switcher: EN | FR | DE | ES | PL */}
-            <div className="hidden sm:flex items-center bg-[#141414] border border-white/15 p-0.5 rounded-none">
-              <Globe className="w-3.5 h-3.5 text-zinc-400 mx-1.5" />
-              {SUPPORTED_LOCALES.map((loc) => {
-                const active = loc === locale;
-                return (
-                  <Link
-                    key={loc}
-                    href={buildLocaleHref(loc)}
-                    className={`px-2 py-1 text-[11px] font-mono font-bold transition-colors rounded-none ${
-                      active
-                        ? "bg-[#E5FE00] text-black"
-                        : "text-zinc-400 hover:text-white"
-                    }`}
-                  >
-                    {LOCALE_LABELS[loc]}
-                  </Link>
-                );
-              })}
+            {/* Locale Dropdown Menu under Globe Icon */}
+            <div ref={localeMenuRef} className="relative">
+              <button
+                type="button"
+                onClick={() => setLocaleMenuOpen((prev) => !prev)}
+                className="flex items-center gap-1.5 px-2.5 py-2 bg-[#141414] hover:bg-[#1C1C1C] border border-white/20 hover:border-[#E5FE00] text-xs font-mono font-bold text-white transition-colors cursor-pointer rounded-none"
+                aria-label="Select language"
+              >
+                <Globe className="w-3.5 h-3.5 text-[#E5FE00]" />
+                <span>{LOCALE_LABELS[locale]}</span>
+                <ChevronDown
+                  className={`w-3 h-3 text-zinc-400 transition-transform ${
+                    localeMenuOpen ? "rotate-180 text-[#E5FE00]" : ""
+                  }`}
+                />
+              </button>
+
+              {localeMenuOpen && (
+                <div className="absolute right-0 mt-1.5 w-32 bg-[#141414] border border-white/25 shadow-2xl z-50 py-1 rounded-none">
+                  {SUPPORTED_LOCALES.map((loc) => {
+                    const active = loc === locale;
+                    return (
+                      <Link
+                        key={loc}
+                        href={buildLocaleHref(loc)}
+                        onClick={() => setLocaleMenuOpen(false)}
+                        className={`flex items-center justify-between px-3 py-2 text-xs font-mono font-bold transition-colors rounded-none ${
+                          active
+                            ? "bg-[#E5FE00] text-black"
+                            : "text-zinc-300 hover:bg-[#1C1C1C] hover:text-white"
+                        }`}
+                      >
+                        <span>{LOCALE_LABELS[loc]}</span>
+                        {active && <span className="text-[10px]">●</span>}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
         </div>

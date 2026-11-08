@@ -110,19 +110,13 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
 
       {/* Category Grid Section */}
       <section className="max-w-[1600px] mx-auto py-14 px-4 sm:px-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-white/15">
-          <div>
-            <h2 className="font-display text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">
-              {ui.categoriesHeading}
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-              Every guide includes our Sticky Right-Rail Phone Viewer that automatically crossfades app screens as you scroll.
-            </p>
-          </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#141414] border border-white/15 text-xs font-mono text-zinc-300 rounded-none">
-            <ShieldCheck className="w-4 h-4 text-[#E5FE00]" />
-            <span>5 Locales (EN • FR • DE • ES • PL)</span>
-          </div>
+        <div className="mb-8 pb-4 border-b border-white/15">
+          <h2 className="font-display text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">
+            {ui.categoriesHeading}
+          </h2>
+          <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+            Every guide includes our Sticky Right-Rail Phone Viewer that automatically crossfades app screens as you scroll.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
