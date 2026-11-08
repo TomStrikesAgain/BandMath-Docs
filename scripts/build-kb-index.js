@@ -208,6 +208,73 @@ function cleanTextForRag(markdown) {
     .trim();
 }
 
+function tokenizeForBm25(text) {
+  return (text || '')
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s€$£%-]/gu, ' ')
+    .split(/\s+/)
+    .map(w => w.replace(/^[-]+|[-]+$/g, ''))
+    .filter(w => w.length >= 2);
+}
+
+function extractFaqPairs(faqBody, locale) {
+  const pairs = [];
+  const detailRegex = /<details[^>]*>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/gi;
+  let idx = 0;
+  for (const match of faqBody.matchAll(detailRegex)) {
+    const question = match[1].replace(/<[^>]+>/g, '').trim();
+    const answerMarkdown = match[2].trim();
+    const linkedUrls = [];
+    const linkRegex = /(?<!\!)\[([^\]]+)\]\(([^)]+)\)/g;
+    for (const lm of answerMarkdown.matchAll(linkRegex)) {
+      const href = lm[2];
+      if (href.startsWith('/docs/') || href.startsWith(`/${locale}/docs/`)) {
+        linkedUrls.push(href.split('#')[0]);
+      }
+    }
+    pairs.push({
+      id: `${locale}:faq-${++idx}`,
+      question,
+      answerMarkdown,
+      plainText: cleanTextForRag(`${question}\n${answerMarkdown}`),
+      linkedUrls: Array.from(new Set(linkedUrls)),
+    });
+  }
+  return pairs;
+}
+
+function computeBm25Idf(articles, faqPairs) {
+  const docs = [
+    ...articles.map(a => `${a.title} ${a.categoryLabel} ${a.plainText}`),
+    ...faqPairs.map(f => f.plainText),
+  ];
+  const N = docs.length || 1;
+  const df = {};
+  let totalLen = 0;
+
+  for (const docText of docs) {
+    const tokens = tokenizeForBm25(docText);
+    totalLen += tokens.length;
+    const unique = new Set(tokens);
+    for (const tok of unique) {
+      df[tok] = (df[tok] || 0) + 1;
+    }
+  }
+
+  const idf = {};
+  for (const [tok, freq] of Object.entries(df)) {
+    // Standard Robertson-Spärck Jones BM25 IDF formula
+    const val = Math.log(1 + (N - freq + 0.5) / (freq + 0.5));
+    idf[tok] = Number(val.toFixed(4));
+  }
+
+  return {
+    avgDocLength: Math.round(totalLen / N) || 250,
+    docCount: N,
+    idf,
+  };
+}
+
 function parseLocaleDocs(locale) {
   const baseDir =
     locale === 'en'
@@ -402,6 +469,10 @@ function parseLocaleDocs(locale) {
   categories.sort((a, b) => a.position - b.position);
   rootArticles.sort((a, b) => a.position - b.position);
 
+  const faqArticle = articles.find(a => a.slug === 'FAQ');
+  const faqPairs = faqArticle ? extractFaqPairs(faqArticle.body, locale) : [];
+  const bm25 = computeBm25Idf(articles, faqPairs);
+
   return {
     categories,
     rootArticles: rootArticles.map(a => ({
@@ -415,6 +486,8 @@ function parseLocaleDocs(locale) {
       screenshotCount: a.screenshots.length,
     })),
     articles,
+    faqPairs,
+    bm25,
   };
 }
 

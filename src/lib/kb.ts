@@ -64,10 +64,26 @@ export interface DocArticle {
   screenshots: DocScreenshot[];
 }
 
+export interface FaqPair {
+  id: string;
+  question: string;
+  answerMarkdown: string;
+  plainText: string;
+  linkedUrls: string[];
+}
+
+export interface Bm25Stats {
+  avgDocLength: number;
+  docCount: number;
+  idf: Record<string, number>;
+}
+
 export interface LocaleBundle {
   categories: DocCategory[];
   rootArticles: DocArticleSummary[];
   articles: DocArticle[];
+  faqPairs?: FaqPair[];
+  bm25?: Bm25Stats;
 }
 
 const rawIndex = kbIndexData as unknown as {

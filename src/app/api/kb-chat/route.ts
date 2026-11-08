@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
-import { getLocaleBundle, normalizeLocale, SupportedLocale, DocArticle } from "@/lib/kb";
+import {
+  getLocaleBundle,
+  normalizeLocale,
+  SupportedLocale,
+  DocArticle,
+  FaqPair,
+} from "@/lib/kb";
 
 export const maxDuration = 60;
 
@@ -120,7 +126,7 @@ function isAbusiveInput(text: string): boolean {
   return abusivePatterns.some((pattern) => pattern.test(lower));
 }
 
-// 5. Relevant Article Retrieval (Stopword-Filtered Whole-Word & Intent Scoring)
+// 5. BM25 + FAQ Rosetta Stone + Musician Synonym Expansion Retrieval Engine
 const STOPWORDS = new Set([
   "how",
   "what",
@@ -225,199 +231,291 @@ const STOPWORDS = new Set([
   "jest",
 ]);
 
-function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// Musician & Touring Synonym Expansion Dictionary
+const TOURING_SYNONYM_GROUPS: Array<{ pattern: RegExp; expansion: string[] }> = [
+  {
+    pattern:
+      /\b(how much|cost|costs|price|pricing|subscription|subscriptions|subscribe|plan|plans|tier|tiers|upgrade|downgrade|billing|monthly|lifetime|bootstrapper|bootstrappers|free|pro|€20|€100|abonnement|tarif|prix|kosten|preis|abo|suscripci[oó]n|precio|subskrypcj[ai]|cena)\b/i,
+    expansion: [
+      "upgrading",
+      "downgrading",
+      "subscription",
+      "tiers",
+      "billing",
+      "bootstrapper",
+      "€20",
+      "€100",
+    ],
+  },
+  {
+    pattern:
+      /\b(door person|door guy|door staff|security|ticket scanner|scan tickets|will call|check in|guest list|hand my phone|bouncer|passcode|face id)\b/i,
+    expansion: ["bouncer", "scanner", "safety", "lock", "guest", "door"],
+  },
+  {
+    pattern:
+      /\b(hall fee|merch cut|venue cut|venue split|promoter split|guarantee|door deal|settlement|settle the show|closing room|deal sheet|shared pot|payout envelope)\b/i,
+    expansion: ["closing", "settlement", "deal", "shared", "envelope", "venue"],
+  },
+  {
+    pattern:
+      /\b(change|petty cash|till|drawer|cash box|cashbox|merch float|starting cash|shift drop|cash drop)\b/i,
+    expansion: ["cash", "float", "drop", "box", "reconciliation"],
+  },
+  {
+    pattern:
+      /\b(card reader|contactless|apple pay|google pay|tap to pay|processing fee|stripe fee|commission|1\.4%|€0\.10)\b/i,
+    expansion: ["tap", "stripe", "processing", "fees", "terminal"],
+  },
+  {
+    pattern:
+      /\b(foreign currency|abroad|international tour|uk|switzerland|pounds|francs|exchange rate|multi-currency)\b/i,
+    expansion: ["currency", "foreign", "float", "stripe", "qr"],
+  },
+  {
+    pattern:
+      /\b(who owes who|pay back|settle debts|split gas|reimburse|balances|standings|ledger)\b/i,
+    expansion: ["ledger", "automated", "debt", "settlement", "standings"],
+  },
+  {
+    pattern:
+      /\b(no app|doesn't have the app|won't download|session player|hire gun|shadow profile|ghost)\b/i,
+    expansion: ["shadow", "profiles", "admin", "member"],
+  },
+  {
+    pattern:
+      /\b(sales tax|vat|tax liability|government tax|retroactive tax)\b/i,
+    expansion: ["vat", "bank", "retroactive", "tax"],
+  },
+  {
+    pattern:
+      /\b(band checking|communal money|band account|business bank|band bank)\b/i,
+    expansion: ["band", "bank", "communal", "entity"],
+  },
+  {
+    pattern:
+      /\b(show code|6-character|join show|add band to bill|opener|support band|headliner)\b/i,
+    expansion: ["creating", "joining", "shows", "code", "lineup"],
+  },
+  {
+    pattern:
+      /\b(presale|pre-sale|online tickets|promoter link|referral link|attribution|first-sale lock)\b/i,
+    expansion: ["online", "ticketing", "promoter", "claim", "lock"],
+  },
+];
+
+function tokenizeForBm25(text: string): string[] {
+  return (text || "")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s€$£%-]/gu, " ")
+    .split(/\s+/)
+    .map((w) => w.replace(/^[-]+|[-]+$/g, ""))
+    .filter((w) => w.length >= 2 && !STOPWORDS.has(w));
 }
 
-function countWholeWordMatches(haystack: string, word: string): number {
-  if (!word) return 0;
-  try {
-    // Match word boundaries or prefix stem (e.g. "subscription" matches "subscriptions")
-    const re = new RegExp(`\\b${escapeRegExp(word)}\\w*\\b`, "gi");
-    const matches = haystack.match(re);
-    return matches ? matches.length : 0;
-  } catch {
-    return 0;
+function expandQueryTokens(query: string): {
+  rawTokens: string[];
+  expandedTokens: Array<{ term: string; weight: number }>;
+} {
+  const rawTokens = tokenizeForBm25(query);
+  const weightMap = new Map<string, number>();
+
+  for (const tok of rawTokens) {
+    weightMap.set(tok, 1.0);
   }
+
+  for (const group of TOURING_SYNONYM_GROUPS) {
+    if (group.pattern.test(query)) {
+      for (const syn of group.expansion) {
+        if (!weightMap.has(syn)) {
+          weightMap.set(syn, 0.65);
+        } else {
+          weightMap.set(syn, Math.max(weightMap.get(syn) || 1.0, 1.25));
+        }
+      }
+    }
+  }
+
+  const expandedTokens = Array.from(weightMap.entries()).map(
+    ([term, weight]) => ({ term, weight })
+  );
+
+  return { rawTokens, expandedTokens };
 }
 
-function retrieveRelevantArticles(
+function scoreTextBm25(
+  docText: string,
+  expandedTokens: Array<{ term: string; weight: number }>,
+  idfMap: Record<string, number>,
+  avgDocLength: number,
+  k1 = 1.5,
+  b = 0.75
+): number {
+  const docTokens = tokenizeForBm25(docText);
+  if (docTokens.length === 0) return 0;
+
+  const tfMap = new Map<string, number>();
+  for (const dt of docTokens) {
+    tfMap.set(dt, (tfMap.get(dt) || 0) + 1);
+  }
+
+  let score = 0;
+  const docLen = docTokens.length;
+
+  for (const { term, weight } of expandedTokens) {
+    // Exact token match + stem prefix match (for plurals/conjugations >= 4 chars)
+    let tf = tfMap.get(term) || 0;
+    if (tf === 0 && term.length >= 4) {
+      for (const [dt, count] of tfMap.entries()) {
+        if (dt.startsWith(term) || term.startsWith(dt)) {
+          tf += count * 0.8;
+        }
+      }
+    }
+    if (tf === 0) continue;
+
+    // Look up precomputed corpus IDF (default to high rarity 2.2 if unseen)
+    const idf = idfMap[term] !== undefined ? idfMap[term] : 2.0;
+    const numerator = tf * (k1 + 1);
+    const denominator = tf + k1 * (1 - b + b * (docLen / (avgDocLength || 250)));
+    score += idf * (numerator / denominator) * weight;
+  }
+
+  return score;
+}
+
+function retrieveRelevantArticlesAndFaqs(
   locale: SupportedLocale,
   query: string,
   topK = 5
-): DocArticle[] {
+): {
+  topArticles: DocArticle[];
+  matchedFaqs: Array<{ faq: FaqPair; score: number }>;
+} {
   const bundle = getLocaleBundle(locale);
-  const rawTokens = query
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s-]/gu, " ")
-    .split(/\s+/)
-    .filter((w) => w.length >= 3 && !STOPWORDS.has(w));
+  const idfMap = bundle.bm25?.idf || {};
+  const avgDocLength = bundle.bm25?.avgDocLength || 250;
+  const { expandedTokens } = expandQueryTokens(query);
 
-  const tokens = rawTokens.length > 0 ? rawTokens : ["tour", "first"];
-  const qLower = query.toLowerCase();
+  // 1. Score all FAQ Q&A pairs (Rosetta Stone Cross-Reference)
+  const faqPairs = bundle.faqPairs || [];
+  const scoredFaqs = faqPairs
+    .map((faq) => {
+      const qScore = scoreTextBm25(
+        faq.question,
+        expandedTokens,
+        idfMap,
+        12,
+        1.5,
+        0.5
+      );
+      const aScore = scoreTextBm25(
+        faq.plainText,
+        expandedTokens,
+        idfMap,
+        60,
+        1.5,
+        0.6
+      );
+      return {
+        faq,
+        score: qScore * 2.2 + aScore,
+      };
+    })
+    .filter((f) => f.score >= 2.2)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
 
-  const scored = bundle.articles.map((article) => {
-    let score = 0;
-    const titleLower = article.title.toLowerCase();
-    const catLower = article.categoryLabel.toLowerCase();
-    const slugLower = article.slug.toLowerCase().replace(/_/g, " ");
-    const bodyLower = article.plainText.toLowerCase();
-
-    for (const token of tokens) {
-      const titleHits = countWholeWordMatches(titleLower, token);
-      const slugHits = countWholeWordMatches(slugLower, token);
-      const catHits = countWholeWordMatches(catLower, token);
-      const bodyHits = countWholeWordMatches(bodyLower, token);
-
-      if (titleHits > 0) score += 28;
-      if (slugHits > 0) score += 24;
-      if (catHits > 0) score += 12;
-      if (bodyHits > 0) {
-        score += Math.min(bodyHits * 4, 24);
-      }
+  // Map canonical URLs boosted by top matching FAQ entries
+  const faqLinkedUrlBoost = new Map<string, number>();
+  scoredFaqs.forEach((sf, rankIdx) => {
+    const boostWeight = rankIdx === 0 ? 14 : rankIdx === 1 ? 8 : 5;
+    for (const url of sf.faq.linkedUrls) {
+      faqLinkedUrlBoost.set(
+        url.toLowerCase(),
+        (faqLinkedUrlBoost.get(url.toLowerCase()) || 0) + boostWeight
+      );
     }
-
-    // Domain & Intent Boost Rules
-    if (
-      /\b(subscription|subscriptions|subscribe|cost|costs|price|pricing|plan|plans|tier|tiers|upgrade|downgrade|billing|monthly|lifetime|bootstrapper|bootstrappers|free|pro|abonnement|tarif|prix|kosten|preis|abo|suscripci[oó]n|precio|subskrypcj[ai]|cena)\b/i.test(
-        qLower
-      )
-    ) {
-      if (article.slug.includes("Upgrading_and_Downgrading")) score += 60;
-      else if (article.categoryId === "Billing_and_Account") score += 25;
-      else if (article.slug === "FAQ") score += 15;
-    }
-
-    if (
-      /\b(cancel|cancellation|pause|delete workspace|export csv)\b/i.test(
-        qLower
-      ) &&
-      article.slug.includes("Cancellations_and_Data_Export")
-    ) {
-      score += 50;
-    }
-
-    if (
-      /\b(closing room|clôture|settle|settlement|deal sheet|venue cut|merch cut|shared pot|show envelope|payout)\b/i.test(
-        qLower
-      )
-    ) {
-      if (article.slug.includes("Multi_Band_Closing_Room")) score += 45;
-      else if (article.categoryId === "Events_and_Closing_Room") score += 20;
-    }
-
-    if (
-      /\b(show code|6-character|join show|create event|multi-band|lineup|headliner|opener)\b/i.test(
-        qLower
-      ) &&
-      article.slug.includes("Creating_and_Joining_Shows")
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(online ticket|presale|pre-sale|claim online|first-sale lock|promoter link|referral|ref=)\b/i.test(
-        qLower
-      ) &&
-      article.slug.includes("Online_Ticketing_and_Promoter_Links")
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(qr terminal|door terminal|cash drop|bouncer|door ticket|guest list|safety lock)\b/i.test(
-        qLower
-      ) &&
-      article.slug.includes("Door_Tickets_and_Bouncer_Mode")
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(ledger|debt|dette|standing|standings|who owes|balance)\b/i.test(
-        qLower
-      ) &&
-      article.slug.includes("The_Ledger")
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(currency|currencies|foreign|merch float|exchange rate|abroad|international|devise)\b/i.test(
-        qLower
-      ) &&
-      article.slug.includes("Multi_Currency_Touring")
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(tap to pay|stripe|processing fee|card payment|1\.4%|reader|terminal)\b/i.test(
-        qLower
-      ) &&
-      article.categoryId === "Accept_Payments"
-    ) {
-      score += 35;
-    }
-
-    if (
-      /\b(vat bank|sales tax|tax|vat|tva)\b/i.test(qLower) &&
-      (article.slug.includes("The_VAT_Bank") ||
-        article.slug.includes("Retroactive_VAT"))
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(band bank|business checking|communal)\b/i.test(qLower) &&
-      article.slug.includes("The_Band_Bank")
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(shadow profile|ghost|download the app)\b/i.test(qLower) &&
-      article.slug.includes("Shadow_Profiles")
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(penny catcher|rounding|fraction|cent)\b/i.test(qLower) &&
-      article.slug.includes("The_Penny_Catcher")
-    ) {
-      score += 45;
-    }
-
-    if (
-      /\b(refund|mistake|wrong sale)\b/i.test(qLower) &&
-      article.categoryId === "Troubleshooting"
-    ) {
-      score += 40;
-    }
-
-    return { article, score };
   });
 
-  scored.sort((a, b) => b.score - a.score);
-  const top = scored
+  // 2. Score all KB Articles using Field-Weighted BM25 + Section-Peak BM25 + FAQ Cross-Ref Boost
+  const scoredArticles = bundle.articles.map((article) => {
+    const titleScore = scoreTextBm25(
+      `${article.title} ${article.slug.replace(/_/g, " ")}`,
+      expandedTokens,
+      idfMap,
+      8,
+      1.5,
+      0.4
+    );
+    const catScore = scoreTextBm25(
+      article.categoryLabel,
+      expandedTokens,
+      idfMap,
+      4,
+      1.5,
+      0.4
+    );
+    const bodyScore = scoreTextBm25(
+      article.plainText,
+      expandedTokens,
+      idfMap,
+      avgDocLength,
+      1.5,
+      0.75
+    );
+
+    // Best individual section score so focused sections inside long guides aren't diluted
+    let maxSectionScore = 0;
+    for (const sec of article.sections) {
+      const sScore = scoreTextBm25(
+        `${sec.heading} ${sec.content}`,
+        expandedTokens,
+        idfMap,
+        75,
+        1.5,
+        0.6
+      );
+      if (sScore > maxSectionScore) maxSectionScore = sScore;
+    }
+
+    const crossRefBoost =
+      faqLinkedUrlBoost.get(article.url.toLowerCase()) || 0;
+
+    const totalScore =
+      titleScore * 2.5 +
+      catScore * 0.8 +
+      bodyScore * 1.0 +
+      maxSectionScore * 1.4 +
+      crossRefBoost;
+
+    return { article, score: totalScore };
+  });
+
+  scoredArticles.sort((a, b) => b.score - a.score);
+  const topArticles = scoredArticles
     .filter((s) => s.score > 0)
     .slice(0, topK)
     .map((s) => s.article);
 
-  if (top.length === 0) {
-    return bundle.articles.slice(0, 4);
-  }
-  return top;
+  return {
+    topArticles:
+      topArticles.length > 0 ? topArticles : bundle.articles.slice(0, 4),
+    matchedFaqs: scoredFaqs,
+  };
 }
 
-// 6. Deterministic Offline Synthesis Fallback
+// 6. Deterministic Offline Synthesis Fallback (BM25 + FAQ Rosetta Stone Grounded)
 function synthesizeOfflineKbAnswer(
   locale: SupportedLocale,
   query: string,
-  topArticles: DocArticle[]
+  topArticles: DocArticle[],
+  matchedFaqs: Array<{ faq: FaqPair; score: number }>
 ): { reply: string; citations: Array<{ title: string; url: string; category: string }> } {
   const q = query.toLowerCase();
+  const bundle = getLocaleBundle(locale);
+  const idfMap = bundle.bm25?.idf || {};
+  const { expandedTokens } = expandQueryTokens(query);
 
   // Cross-domain founder / engineering story check
   if (
@@ -483,30 +581,21 @@ function synthesizeOfflineKbAnswer(
   const primary = topArticles[0];
   const secondary = topArticles.slice(1, 4);
 
-  // Score individual sections of the primary article against query tokens so the most relevant section comes first
-  const queryTokens = q
-    .replace(/[^\p{L}\p{N}\s-]/gu, " ")
-    .split(/\s+/)
-    .filter((w) => w.length >= 3 && !STOPWORDS.has(w));
-
+  // Score individual sections of the primary article using BM25 IDF weights
   const rankedSections = [...primary.sections].sort((a, b) => {
-    let scoreA = 0;
-    let scoreB = 0;
-    const textA = `${a.heading} ${a.content}`.toLowerCase();
-    const textB = `${b.heading} ${b.content}`.toLowerCase();
-    for (const tok of queryTokens) {
-      scoreA += countWholeWordMatches(a.heading.toLowerCase(), tok) * 10;
-      scoreA += countWholeWordMatches(textA, tok) * 2;
-      scoreB += countWholeWordMatches(b.heading.toLowerCase(), tok) * 10;
-      scoreB += countWholeWordMatches(textB, tok) * 2;
-    }
+    const scoreA =
+      scoreTextBm25(a.heading, expandedTokens, idfMap, 6, 1.5, 0.4) * 2.5 +
+      scoreTextBm25(a.content, expandedTokens, idfMap, 70, 1.5, 0.6);
+    const scoreB =
+      scoreTextBm25(b.heading, expandedTokens, idfMap, 6, 1.5, 0.4) * 2.5 +
+      scoreTextBm25(b.content, expandedTokens, idfMap, 70, 1.5, 0.6);
     return scoreB - scoreA;
   });
 
   // Extract clean, well-formatted bullets from top matching sections
   const sectionBullets = rankedSections
     .filter((sec) => sec.heading.toLowerCase() !== primary.title.toLowerCase())
-    .slice(0, 4)
+    .slice(0, 3)
     .map((sec) => {
       const cleanSnippet = sec.content
         .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
@@ -525,23 +614,32 @@ function synthesizeOfflineKbAnswer(
     .filter((b) => b.length > 20)
     .join("\n");
 
+  const topFaq = matchedFaqs[0];
   const relatedLinks = secondary
     .map((art) => `* **[${art.title}](${art.url})** *(${art.categoryLabel})*`)
     .join("\n");
 
-  const reply = [
-    `Based on the official **[${primary.title}](${primary.url})** guide in **${primary.categoryLabel}**:`,
-    "",
-    sectionBullets || primary.plainText.slice(0, 450) + "...",
-    "",
-    `Read the full step-by-step walkthrough with interactive screenshots in **[${primary.title}](${primary.url})**.`,
-    relatedLinks ? `\n**Related Guides:**\n${relatedLinks}` : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
+  const replyParts: string[] = [];
+
+  // If an FAQ entry strongly matches the user's conversational phrasing, lead with its direct answer
+  if (topFaq && topFaq.score >= 5.5) {
+    replyParts.push(topFaq.faq.answerMarkdown);
+    replyParts.push("");
+  }
+
+  replyParts.push(
+    `From **[${primary.title}](${primary.url})** *(${primary.categoryLabel})*:`
+  );
+  replyParts.push("");
+  replyParts.push(sectionBullets || primary.plainText.slice(0, 450) + "...");
+
+  if (relatedLinks) {
+    replyParts.push("");
+    replyParts.push(`**Related Guides:**\n${relatedLinks}`);
+  }
 
   return {
-    reply,
+    reply: replyParts.join("\n"),
     citations: topArticles.slice(0, 4).map((a) => ({
       title: a.title,
       url: a.url,
@@ -628,8 +726,12 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 6. Retrieve top relevant KB articles for RAG grounding
-    const topArticles = retrieveRelevantArticles(locale, cleanMessage, 5);
+    // 6. Retrieve top relevant KB articles & FAQ Rosetta Stone matches for RAG grounding
+    const { topArticles, matchedFaqs } = retrieveRelevantArticlesAndFaqs(
+      locale,
+      cleanMessage,
+      5
+    );
     const citations = topArticles.slice(0, 4).map((a) => ({
       title: a.title,
       url: a.url,
@@ -640,7 +742,12 @@ export async function POST(req: NextRequest) {
       process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || "";
 
     if (!apiKey || !checkGlobalDailyCircuitBreaker()) {
-      const offline = synthesizeOfflineKbAnswer(locale, cleanMessage, topArticles);
+      const offline = synthesizeOfflineKbAnswer(
+        locale,
+        cleanMessage,
+        topArticles,
+        matchedFaqs
+      );
       return NextResponse.json({
         reply: offline.reply,
         sig: signAssistantReply(offline.reply),
@@ -648,13 +755,27 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 7. Build grounded RAG prompt for Gemini 2.5 Flash-Lite
-    const ragContext = topArticles
-      .map(
-        (art, i) =>
-          `--- ARTICLE ${i + 1}: "${art.title}" (Category: ${art.categoryLabel}, Canonical Link: ${art.url}) ---\n${art.plainText.slice(0, 2200)}`
-      )
-      .join("\n\n");
+    // 7. Build grounded RAG prompt for Gemini 2.5 Flash-Lite (including matched FAQ Q&As + Top Articles)
+    const faqContext =
+      matchedFaqs.length > 0
+        ? `--- MATCHED FAQ Q&A PAIRS ---\n` +
+          matchedFaqs
+            .map(
+              (mf, idx) =>
+                `FAQ ${idx + 1}: Q: "${mf.faq.question}"\nA: ${mf.faq.answerMarkdown}`
+            )
+            .join("\n\n") +
+          `\n\n`
+        : "";
+
+    const ragContext =
+      faqContext +
+      topArticles
+        .map(
+          (art, i) =>
+            `--- ARTICLE ${i + 1}: "${art.title}" (Category: ${art.categoryLabel}, Canonical Link: ${art.url}) ---\n${art.plainText.slice(0, 2200)}`
+        )
+        .join("\n\n");
 
     const systemInstruction = `You are the official "Ask BandMath" Knowledge Base AI Assistant on learn.itsbandmath.com.
 Your job is to help working musicians, bands, independent venues, and tour managers understand and use BandMath with zero corporate jargon and 100% mathematical precision.
@@ -701,7 +822,12 @@ ${ragContext}`;
     );
 
     if (!geminiRes.ok) {
-      const offline = synthesizeOfflineKbAnswer(locale, cleanMessage, topArticles);
+      const offline = synthesizeOfflineKbAnswer(
+        locale,
+        cleanMessage,
+        topArticles,
+        matchedFaqs
+      );
       return NextResponse.json({
         reply: offline.reply,
         sig: signAssistantReply(offline.reply),
@@ -714,7 +840,12 @@ ${ragContext}`;
       data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
 
     if (!candidateText) {
-      const offline = synthesizeOfflineKbAnswer(locale, cleanMessage, topArticles);
+      const offline = synthesizeOfflineKbAnswer(
+        locale,
+        cleanMessage,
+        topArticles,
+        matchedFaqs
+      );
       return NextResponse.json({
         reply: offline.reply,
         sig: signAssistantReply(offline.reply),

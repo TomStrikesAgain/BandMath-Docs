@@ -1,5 +1,23 @@
 const { spawn } = require('child_process');
+const fs = require('fs');
 const path = require('path');
+const dotenv = require('dotenv');
+
+const rootDir = path.resolve(__dirname, '..');
+
+// Load environment variables from local or workspace .env files if present
+const candidateEnvPaths = [
+  path.join(rootDir, '.env.local'),
+  path.join(rootDir, '.env'),
+  path.resolve(rootDir, '../../tommares-portfolio/.env.local'),
+  path.resolve(rootDir, '../BandMath-Backend/supabase/.env.local'),
+];
+
+for (const envPath of candidateEnvPaths) {
+  if (fs.existsSync(envPath)) {
+    dotenv.config({ path: envPath, override: false });
+  }
+}
 
 // Parse port (default 3002) and ignore legacy Docusaurus flags like --no-open
 const args = process.argv.slice(2);
@@ -13,7 +31,7 @@ for (let i = 0; i < args.length; i++) {
 
 const nextBin = path.resolve(__dirname, '../node_modules/.bin/next');
 const child = spawn(nextBin, ['dev', '--webpack', '-p', port], {
-  cwd: path.resolve(__dirname, '..'),
+  cwd: rootDir,
   stdio: 'inherit',
   env: { ...process.env, PORT: port },
 });
