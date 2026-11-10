@@ -48,6 +48,17 @@ export function AskBandMathModal({
   const inputRef = useRef<HTMLInputElement>(null);
   const conversationContainerRef = useRef<HTMLDivElement>(null);
   const lastDispatchedQueryRef = useRef<string>("");
+  const sessionIdRef = useRef<string>("");
+
+  const getEphemeralSessionId = (): string => {
+    if (!sessionIdRef.current) {
+      sessionIdRef.current =
+        typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+          ? crypto.randomUUID()
+          : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    }
+    return sessionIdRef.current;
+  };
 
   const submitQuestion = async (questionText: string) => {
     const trimmed = questionText.trim().slice(0, 600);
@@ -69,6 +80,9 @@ export function AskBandMathModal({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           locale,
+          sessionId: getEphemeralSessionId(),
+          pagePath:
+            typeof window !== "undefined" ? window.location.pathname : "/",
           message: trimmed,
           history: turns.map((t) => ({
             role: t.role,
@@ -310,8 +324,9 @@ export function AskBandMathModal({
         </div>
 
         {/* Footer */}
-        <div className="px-5 py-2.5 bg-[#141414] border-t border-white/12 flex items-center justify-end text-[11px] text-zinc-400">
-          <span>
+        <div className="px-5 py-2.5 bg-[#141414] border-t border-white/12 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] text-zinc-400">
+          <span className="text-zinc-500">{ui.privacyCaption}</span>
+          <span className="shrink-0">
             Press{" "}
             <kbd className="px-1.5 py-0.5 bg-[#0A0A0A] border border-white/15 font-mono text-zinc-300">
               ESC

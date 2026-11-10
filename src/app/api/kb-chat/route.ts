@@ -126,6 +126,96 @@ function isAbusiveInput(text: string): boolean {
   return abusivePatterns.some((pattern) => pattern.test(lower));
 }
 
+// 4B. 0-Token Inline PII Scrubber & Flight Recorder Telemetry
+function scrubPii(text: string): string {
+  if (!text) return "";
+  return text
+    .replace(
+      /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g,
+      "[EMAIL_REDACTED]"
+    )
+    .replace(/(?:\+?\d[\d\s().-]{7,}\d)/g, (match) => {
+      const digitCount = match.replace(/\D/g, "").length;
+      return digitCount >= 8 ? "[PHONE_REDACTED]" : match;
+    });
+}
+
+function detectAutoFlag(
+  reply: string,
+  citationsCount: number
+): "none" | "knowledge_gap" | "voice_drift" {
+  if (
+    citationsCount === 0 ||
+    /\b(not documented|don't have information|cannot find|not covered in the current|contact support)\b/i.test(
+      reply
+    )
+  ) {
+    return "knowledge_gap";
+  }
+  return "none";
+}
+
+interface FlightRecorderTurnPayload {
+  sessionId: string;
+  userMessage: string;
+  assistantMessage: string;
+  locale: SupportedLocale;
+  pagePath: string;
+  modelName: "gemini-2.5-flash-lite" | "bm25-offline-synth";
+  latencyMs: number;
+  citationsCount: number;
+}
+
+async function logAiBotTurn(payload: FlightRecorderTurnPayload): Promise<void> {
+  try {
+    const isProd =
+      process.env.VERCEL_ENV === "production" ||
+      process.env.BM_ENV === "production";
+
+    const supabaseUrl = isProd
+      ? process.env.NEXT_PUBLIC_SUPABASE_URL ||
+        "https://gktdqqfghkmdsgtyzfmt.supabase.co"
+      : process.env.NEXT_PUBLIC_SUPABASE_URL || "http://127.0.0.1:54321";
+
+    const supabaseKey = isProd
+      ? process.env.SUPABASE_PUBLISHABLE_KEY ||
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+        "sb_publishable_jJ8t_kEHM_kk8n2oETDzNw_owlsZqxR"
+      : process.env.SUPABASE_ANON_KEY ||
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0";
+
+    const rpcBody = {
+      p_session_id: payload.sessionId.slice(0, 128),
+      p_bot_id: "ask_bandmath",
+      p_user_message: scrubPii(payload.userMessage).slice(0, 2000),
+      p_assistant_message: scrubPii(payload.assistantMessage).slice(0, 6000),
+      p_environment: isProd ? "production" : "sandbox",
+      p_persona_or_mode: "kb_support",
+      p_locale: payload.locale,
+      p_page_path: payload.pagePath.slice(0, 256),
+      p_model_name: payload.modelName,
+      p_latency_ms: Math.max(0, Math.round(payload.latencyMs)),
+      p_auto_flag: detectAutoFlag(
+        payload.assistantMessage,
+        payload.citationsCount
+      ),
+    };
+
+    await fetch(`${supabaseUrl}/rest/v1/rpc/log_ai_bot_turn`, {
+      method: "POST",
+      headers: {
+        apikey: supabaseKey,
+        Authorization: `Bearer ${supabaseKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(rpcBody),
+      signal: AbortSignal.timeout(1500),
+    });
+  } catch {
+    // Non-blocking flight recorder: silently ignore network or RPC failures
+  }
+}
+
 // 5. BM25 + FAQ Rosetta Stone + Musician Synonym Expansion Retrieval Engine
 const STOPWORDS = new Set([
   "how",
@@ -649,6 +739,7 @@ function synthesizeOfflineKbAnswer(
 }
 
 export async function POST(req: NextRequest) {
+  const startedAt = Date.now();
   try {
     // 1. Enforce Origin / Referer allowlist
     const host = req.headers.get("host") || "localhost:3002";
@@ -682,6 +773,14 @@ export async function POST(req: NextRequest) {
     const rawMessage = typeof body.message === "string" ? body.message : "";
     const locale = normalizeLocale(body.locale);
     const rawHistory = Array.isArray(body.history) ? body.history : [];
+    const sessionId =
+      typeof body.sessionId === "string" && body.sessionId.trim()
+        ? body.sessionId.trim().slice(0, 128)
+        : `anon-${Date.now().toString(36)}`;
+    const pagePath =
+      typeof body.pagePath === "string" && body.pagePath.trim()
+        ? body.pagePath.trim().slice(0, 256)
+        : "/";
 
     // 3. Input sanitization & 600-character limit
     const cleanMessage = rawMessage
@@ -748,6 +847,16 @@ export async function POST(req: NextRequest) {
         topArticles,
         matchedFaqs
       );
+      void logAiBotTurn({
+        sessionId,
+        userMessage: cleanMessage,
+        assistantMessage: offline.reply,
+        locale,
+        pagePath,
+        modelName: "bm25-offline-synth",
+        latencyMs: Date.now() - startedAt,
+        citationsCount: offline.citations.length,
+      });
       return NextResponse.json({
         reply: offline.reply,
         sig: signAssistantReply(offline.reply),
@@ -828,6 +937,16 @@ ${ragContext}`;
         topArticles,
         matchedFaqs
       );
+      void logAiBotTurn({
+        sessionId,
+        userMessage: cleanMessage,
+        assistantMessage: offline.reply,
+        locale,
+        pagePath,
+        modelName: "bm25-offline-synth",
+        latencyMs: Date.now() - startedAt,
+        citationsCount: offline.citations.length,
+      });
       return NextResponse.json({
         reply: offline.reply,
         sig: signAssistantReply(offline.reply),
@@ -846,12 +965,33 @@ ${ragContext}`;
         topArticles,
         matchedFaqs
       );
+      void logAiBotTurn({
+        sessionId,
+        userMessage: cleanMessage,
+        assistantMessage: offline.reply,
+        locale,
+        pagePath,
+        modelName: "bm25-offline-synth",
+        latencyMs: Date.now() - startedAt,
+        citationsCount: offline.citations.length,
+      });
       return NextResponse.json({
         reply: offline.reply,
         sig: signAssistantReply(offline.reply),
         citations: offline.citations,
       });
     }
+
+    void logAiBotTurn({
+      sessionId,
+      userMessage: cleanMessage,
+      assistantMessage: candidateText,
+      locale,
+      pagePath,
+      modelName: "gemini-2.5-flash-lite",
+      latencyMs: Date.now() - startedAt,
+      citationsCount: citations.length,
+    });
 
     return NextResponse.json({
       reply: candidateText,

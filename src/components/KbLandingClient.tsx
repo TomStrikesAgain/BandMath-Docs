@@ -87,6 +87,11 @@ export function KbLandingClient({ locale }: KbLandingClientProps) {
             </button>
           </form>
 
+          {/* Static 1-Line Localized Privacy Caption */}
+          <p className="max-w-3xl mx-auto mt-2.5 text-[11px] text-zinc-500 leading-relaxed">
+            {ui.privacyCaption}
+          </p>
+
           {/* Browse the Knowledge Base Archive CTA */}
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link

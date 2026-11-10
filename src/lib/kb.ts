@@ -196,6 +196,7 @@ export interface UILocaleStrings {
   MarketingSiteLink: string;
   FounderBlogLink: string;
   BootstrappersLink: string;
+  privacyCaption: string;
 }
 
 export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
@@ -225,6 +226,8 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
     MarketingSiteLink: "itsbandmath.com",
     FounderBlogLink: "Founder's Blog",
     BootstrappersLink: "Bootstrapper's Club",
+    privacyCaption:
+      "AI assistant · Questions are logged anonymously to improve answers—please avoid sharing sensitive personal info.",
   },
   fr: {
     hubBadge: "BASE DE CONNAISSANCES & SUPPORT IA BANDMATH",
@@ -252,6 +255,8 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
     MarketingSiteLink: "itsbandmath.com",
     FounderBlogLink: "Blog du Fondateur",
     BootstrappersLink: "Bootstrapper's Club",
+    privacyCaption:
+      "Assistant IA · Questions enregistrées anonymement pour améliorer les réponses—évitez les données personnelles sensibles.",
   },
   de: {
     hubBadge: "BANDMATH WISSENSDATENBANK & KI-SUPPORT",
@@ -279,6 +284,8 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
     MarketingSiteLink: "itsbandmath.com",
     FounderBlogLink: "Gründer-Blog",
     BootstrappersLink: "Bootstrapper's Club",
+    privacyCaption:
+      "KI-Assistent · Fragen werden anonym protokolliert, um Antworten zu verbessern – bitte keine sensiblen persönlichen Daten eingeben.",
   },
   es: {
     hubBadge: "BASE DE CONOCIMIENTOS Y SOPORTE IA DE BANDMATH",
@@ -306,6 +313,8 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
     MarketingSiteLink: "itsbandmath.com",
     FounderBlogLink: "Blog del Fundador",
     BootstrappersLink: "Bootstrapper's Club",
+    privacyCaption:
+      "Asistente IA · Las preguntas se registran de forma anónima para mejorar las respuestas; evite compartir datos personales sensibles.",
   },
   pl: {
     hubBadge: "BAZA WIEDZY I WSPARCIE AI BANDMATH",
@@ -333,5 +342,7 @@ export const UI_STRINGS: Record<SupportedLocale, UILocaleStrings> = {
     MarketingSiteLink: "itsbandmath.com",
     FounderBlogLink: "Blog Założyciela",
     BootstrappersLink: "Bootstrapper's Club",
+    privacyCaption:
+      "Asystent AI · Pytania są zapisywane anonimowo w celu ulepszania odpowiedzi — prosimy nie podawać wrażliwych danych osobowych.",
   },
 };
