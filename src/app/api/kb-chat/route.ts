@@ -349,8 +349,8 @@ const TOURING_SYNONYM_GROUPS: Array<{ pattern: RegExp; expansion: string[] }> = 
   },
   {
     pattern:
-      /\b(change|petty cash|till|drawer|cash box|cashbox|merch float|starting cash|shift drop|cash drop)\b/i,
-    expansion: ["cash", "float", "drop", "box", "reconciliation"],
+      /\b(change|petty cash|till|drawer|cash box|cashbox|merch float|starting cash|shift drop|cash drop|reconcile|count till)\b/i,
+    expansion: ["cash", "float", "drop", "box", "reconciliation", "reconcile", "till"],
   },
   {
     pattern:
@@ -359,8 +359,8 @@ const TOURING_SYNONYM_GROUPS: Array<{ pattern: RegExp; expansion: string[] }> = 
   },
   {
     pattern:
-      /\b(foreign currency|abroad|international tour|uk|switzerland|pounds|francs|exchange rate|multi-currency)\b/i,
-    expansion: ["currency", "foreign", "float", "stripe", "qr"],
+      /\b(foreign currency|abroad|international tour|uk|switzerland|poland|pounds|francs|zloty|pln|gbp|chf|exchange rate|multi-currency|home currency|base currency|change currency|currency locked)\b/i,
+    expansion: ["currency", "foreign", "float", "stripe", "qr", "reconcile", "till", "unlinked", "locked"],
   },
   {
     pattern:
@@ -1039,7 +1039,8 @@ Your job is to help working musicians, bands, independent venues, promoters, and
 3. FREE FOREVER CORE vs. PAID MERCHANT SUBSCRIPTIONS:
    - 100% Free Forever (€0): Core Expense/Income Ledger, Automated Debt Settlement, Band Bank, VAT Bank, Cash Box / Merch Float, Shadow Profiles, Cash POS, Bouncer Mode QR Scanner, QR Hardware Terminal Pairing with Shift Cash Drops, Setlist Organizer, Band Calendar, and Multi-Band Closing Room settlements.
    - Paid Merchant Subscriptions (managed at https://account.itsbandmath.com to avoid 30% App Store fees) strictly unlock live digital Stripe card payments (Tap to Pay on iPhone/Android, Stripe QR Codes, and Online Event Ticketing): Pro Plan (€20/mo in KB guides; persona-tiered plans in Terms) or the €100 One-Time Lifetime Bootstrapper's Club Pass (strictly capped at 100 founding spots at https://account.itsbandmath.com/joinbootstrappers). Only ONE subscription is required per band workspace to cover all band members (see [Upgrading and Downgrading](${localePrefix}/docs/Billing_and_Account/Upgrading_and_Downgrading)).
-4. MULTI-ORGANIZATION CLOSING ROOM: Connected via a 6-character Show Code. BandMath is a calculation and accounting utility, not an escrow agent or bank intermediary; marking an envelope "Paid" or "Commit to Ledger" records the ledger entry while actual payouts happen directly between show participants (see [The Multi-Band Closing Room](${localePrefix}/docs/Events_and_Closing_Room/Multi_Band_Closing_Room) and [Terms & Conditions](${localePrefix}/docs/Terms_of_Service)).
+4. MULTI-ORGANIZATION CLOSING ROOM: Connected via a 6-character Show Code. All workspaces linked via a 6-character Show Code must share the SAME Home Currency; visiting international bands with a different Home Currency stay as offline/unlinked slots on the Organizer's Deal Sheet with their email address (receiving the official itemized Closing Statement email in the venue's currency and logging their converted payout as normal Income in their own ledger). BandMath is a calculation and accounting utility, not an escrow agent or bank intermediary; marking an envelope "Paid" or "Commit to Ledger" records the ledger entry while actual payouts happen directly between show participants (see [The Multi-Band Closing Room](${localePrefix}/docs/Events_and_Closing_Room/Multi_Band_Closing_Room) and [Multi-Currency Touring](${localePrefix}/docs/Advanced_Workflows/Multi_Currency_Touring)).
+5. ONE HOME CURRENCY LAW & PHYSICAL CASHBOX TILL: Every workspace operates in one Home Currency (permanently locked once transactions, orders, or events exist). The built-in Cash Box ("Cashbox") has a strict non-negative floor (>= 0; seed your Merch Float via Transfer -> Cashbox before logging Cashbox expenses) and includes a 1-tap [ COUNT / RECONCILE TILL ] button on the Standings page that atomically logs payouts/deposits and any "FX & Till Reconciliation" adjustment across merch-cut recipients (see [The Cash Box](${localePrefix}/docs/Team_Management/The_Cash_Box) and [Multi-Currency Touring](${localePrefix}/docs/Advanced_Workflows/Multi_Currency_Touring)).
 
 STRICT RESPONSE RULES:
 1. Ground your answers in the Core BandMath Truths and Official Knowledge Base Context below. Never invent features, fees, or workflows.

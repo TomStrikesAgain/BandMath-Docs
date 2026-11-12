@@ -38,6 +38,10 @@ Forgot to join the show code before doors opened? **No problem.** A band can joi
 ### Unlocking as a Venue, Promoter, or Tour Manager
 If a band created the event first, the Venue, Promoter, or Tour Manager can enter the exact same **6-Character Show Code** in their **Events** hub to unlock the show, ring up Door Tickets, scan fans in Bouncer Mode, and coordinate the Closing Room.
 
+:::note International Shows & Same-Currency Linking Rule
+To keep every party's ledger 100% accurate, **all workspaces linked via a 6-Character Show Code must share the same Home Currency** (e.g., all `€ EUR` or all `£ GBP`). If your band is touring abroad and playing a venue whose Closing Room runs in a different currency (for example, a `€ EUR` band playing a `PLN` venue in Warsaw), **do not link via the Show Code**—instead, have the Organizer keep your band as an **offline/unlinked slot** with your email address (`contact_email`) so you still receive the official itemized **Event Closing Statement** by email! See **[Multi-Currency Touring](../Advanced_Workflows/02_Multi_Currency_Touring.md#b-foreign-venue-closing-rooms-vs-diy-headline-shows-abroad)** for details.
+:::
+
 ---
 
 ## 3. Run-of-Show Stage Times vs. The Event Merch Window

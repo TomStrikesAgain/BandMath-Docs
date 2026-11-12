@@ -69,5 +69,9 @@ Suppose the promoter hands your guitarist **John** a `€400` cash envelope at t
 ## 5. One-Tap Automated Final Closing Statement Emails
 
 Once the numbers are settled, tap **`[ EMAIL FINAL CLOSING RECEIPTS ]`**:
-* BandMath dispatches itemized, accountant-ready HTML closing statements to the **Venue**, the **Tour Manager / Promoter**, and **every Band on the bill**.
+* BandMath dispatches itemized, accountant-ready HTML closing statements to the **Venue**, the **Tour Manager / Promoter**, and **every Band on the bill** (including offline/unlinked band slots that have a `contact_email` on the Deal Sheet).
 * Each email is strictly **privacy-scoped**: the Venue and Closing Officer receive the full Master/House statement, while each Band receives the Shared Show Pot breakdown alongside their own band's itemized settlement and payout confirmation.
+
+:::tip International Touring Bands (Different Home Currency)
+Because a Multi-Band Closing Room runs in a single shared currency, visiting international bands whose workspace uses a different Home Currency (e.g., a `€ EUR` band playing a `£ GBP` or `PLN` venue) stay as **offline/unlinked slots** on the Organizer's Deal Sheet with their email address. They still receive the full itemized **Event Closing Statement** email in the venue's currency and simply log their converted payout as normal Income in their own Home Currency ledger! See **[Multi-Currency Touring](../Advanced_Workflows/02_Multi_Currency_Touring.md#b-foreign-venue-closing-rooms-vs-diy-headline-shows-abroad)**.
+:::
