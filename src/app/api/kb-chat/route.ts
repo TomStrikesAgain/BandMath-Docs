@@ -161,7 +161,7 @@ interface FlightRecorderTurnPayload {
   assistantMessage: string;
   locale: SupportedLocale;
   pagePath: string;
-  modelName: "gemini-2.5-flash-lite" | "bm25-offline-synth";
+  modelName: string;
   latencyMs: number;
   citationsCount: number;
 }
@@ -392,6 +392,34 @@ const TOURING_SYNONYM_GROUPS: Array<{ pattern: RegExp; expansion: string[] }> = 
       /\b(presale|pre-sale|online tickets|promoter link|referral link|attribution|first-sale lock)\b/i,
     expansion: ["online", "ticketing", "promoter", "claim", "lock"],
   },
+  {
+    pattern:
+      /\b(privacy|personal data|sell my data|sell data|selling data|sold|data broker|advertisers|third parties|third-party|gdpr|ccpa|cookies|tracking|camera|encryption|rls|mailing list|opt-in|delete my account|delete account|erase|anonymize|confidential|datos|privacidad|donn[eé]es|vie priv[eé]e|rgpd|datenschutz|prywatno[sś][cć])\b/i,
+    expansion: [
+      "privacy",
+      "policy",
+      "personal",
+      "advertisers",
+      "gdpr",
+      "cookies",
+      "deleted",
+      "anonymizes",
+      "processor",
+      "controller",
+    ],
+  },
+  {
+    pattern:
+      /\b(terms|conditions|legal|liability|merchant of record|chargeback|dispute|escrow|siret|warranty|arbitration)\b/i,
+    expansion: [
+      "terms",
+      "conditions",
+      "liability",
+      "merchant",
+      "record",
+      "disclaimer",
+    ],
+  },
 ];
 
 function tokenizeForBm25(text: string): string[] {
@@ -595,6 +623,50 @@ function retrieveRelevantArticlesAndFaqs(
   };
 }
 
+function buildFocusedArticleContext(
+  article: DocArticle,
+  expandedTokens: Array<{ term: string; weight: number }>,
+  idfMap: Record<string, number>,
+  maxChars = 2800
+): string {
+  if (article.plainText.length <= maxChars || article.sections.length <= 1) {
+    return article.plainText.slice(0, maxChars);
+  }
+
+  const scoredSections = article.sections.map((sec, idx) => {
+    const hScore =
+      scoreTextBm25(sec.heading, expandedTokens, idfMap, 6, 1.5, 0.4) * 2.5;
+    const cScore = scoreTextBm25(
+      sec.content,
+      expandedTokens,
+      idfMap,
+      70,
+      1.5,
+      0.6
+    );
+    return { sec, idx, score: hScore + cScore };
+  });
+
+  // Always include the first overview section + top 4 highest-scoring sections in reading order
+  const topScored = [...scoredSections]
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4);
+
+  const selectedIndices = new Set<number>([0]);
+  for (const item of topScored) {
+    selectedIndices.add(item.idx);
+  }
+
+  const orderedSections = Array.from(selectedIndices)
+    .sort((a, b) => a - b)
+    .map((idx) => {
+      const s = article.sections[idx];
+      return `### ${s.heading}\n${s.content.trim()}`;
+    });
+
+  return orderedSections.join("\n\n").slice(0, maxChars);
+}
+
 // 6. Deterministic Offline Synthesis Fallback (BM25 + FAQ Rosetta Stone Grounded)
 function synthesizeOfflineKbAnswer(
   locale: SupportedLocale,
@@ -605,7 +677,58 @@ function synthesizeOfflineKbAnswer(
   const q = query.toLowerCase();
   const bundle = getLocaleBundle(locale);
   const idfMap = bundle.bm25?.idf || {};
-  const { expandedTokens } = expandQueryTokens(query);
+  const { rawTokens, expandedTokens } = expandQueryTokens(query);
+
+  // Direct Privacy / Data Selling / GDPR / Account Deletion Answer
+  if (
+    /\b(sell my data|sell data|selling data|sell your data|privacy|personal data|advertisers|third parties|third-party|gdpr|ccpa|cookies|tracking|delete my account|delete account|anonymize|donn[eé]es personnelles|vie priv[eé]e|rgpd|datenschutz|privacidad)\b/i.test(
+      q
+    ) ||
+    (q.includes("sell") && q.includes("data"))
+  ) {
+    const privacyUrl =
+      locale === "en" ? "/docs/Privacy_Policy" : `/${locale}/docs/Privacy_Policy`;
+    const deletedUsersUrl =
+      locale === "en"
+        ? "/docs/Team_Management/Deleted_Users"
+        : `/${locale}/docs/Team_Management/Deleted_Users`;
+    const exportUrl =
+      locale === "en"
+        ? "/docs/Features/Data_Exports"
+        : `/${locale}/docs/Features/Data_Exports`;
+
+    const reply = [
+      `**No — BandMath will never sell your personal data or your fans' data to advertisers or third parties.**`,
+      "",
+      `From our official **[Privacy Policy](${privacyUrl})**:`,
+      "",
+      `* **Zero Data Selling or Ad Mining:** BandMath only collects the information strictly required to run your ledger, process Stripe subscriptions, deliver fan QR tickets and receipts, and generate accurate show settlements.`,
+      `* **Strict Transactional vs. Marketing Separation (GDPR):** BandMath acts as a **Data Processor** on behalf of each Event Organizer (the **Data Controller**). Fan emails collected for QR tickets or POS receipts are never automatically added to marketing lists—fan mailing lists are populated strictly via explicit opt-in consent and isolated by database Row-Level Security (RLS).`,
+      `* **Stripe KYC & Card Isolation:** Credit card numbers, bank routing details, and identity verification (KYC) are handled directly by Stripe. BandMath never stores full credit card numbers or government IDs.`,
+      `* **GDPR Right to Erasure & Ledger Anonymization:** You can export your data at any time via **[Data Exports](${exportUrl})** or delete your account inside User Settings. Under GDPR/CCPA, deleting your account wipes your personal data while anonymizing your historical slot as \`"Deleted User"\` so your bandmates' ledger math stays balanced (see **[Deleted Users](${deletedUsersUrl})**).`,
+    ].join("\n");
+
+    return {
+      reply,
+      citations: [
+        {
+          title: "Privacy Policy",
+          url: privacyUrl,
+          category: "Resources & Legal",
+        },
+        {
+          title: "Deleted Users",
+          url: deletedUsersUrl,
+          category: "Team Management",
+        },
+        {
+          title: "Data Exports",
+          url: exportUrl,
+          category: "Features",
+        },
+      ],
+    };
+  }
 
   // Cross-domain founder / engineering story check
   if (
@@ -711,8 +834,24 @@ function synthesizeOfflineKbAnswer(
 
   const replyParts: string[] = [];
 
-  // If an FAQ entry strongly matches the user's conversational phrasing, lead with its direct answer
-  if (topFaq && topFaq.score >= 5.5) {
+  // Require at least 2 distinct raw query token matches (or 100% of a 1-token query with score >= 9.0)
+  // in the FAQ question itself before prepending a verbatim FAQ answer.
+  let faqQuestionTokenMatches = 0;
+  if (topFaq) {
+    const faqQTokens = new Set(tokenizeForBm25(topFaq.faq.question));
+    for (const rt of rawTokens) {
+      if (faqQTokens.has(rt)) {
+        faqQuestionTokenMatches += 1;
+      }
+    }
+  }
+
+  if (
+    topFaq &&
+    topFaq.score >= 7.5 &&
+    (faqQuestionTokenMatches >= 2 ||
+      (rawTokens.length === 1 && faqQuestionTokenMatches === 1 && topFaq.score >= 9.5))
+  ) {
     replyParts.push(topFaq.faq.answerMarkdown);
     replyParts.push("");
   }
@@ -864,7 +1003,11 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 7. Build grounded RAG prompt for Gemini 2.5 Flash-Lite (including matched FAQ Q&As + Top Articles)
+    // 7. Build grounded RAG prompt for Gemini (including Core Truths + Matched FAQ Q&As + Focused Article Sections)
+    const bundle = getLocaleBundle(locale);
+    const idfMap = bundle.bm25?.idf || {};
+    const { expandedTokens } = expandQueryTokens(cleanMessage);
+
     const faqContext =
       matchedFaqs.length > 0
         ? `--- MATCHED FAQ Q&A PAIRS ---\n` +
@@ -882,81 +1025,134 @@ export async function POST(req: NextRequest) {
       topArticles
         .map(
           (art, i) =>
-            `--- ARTICLE ${i + 1}: "${art.title}" (Category: ${art.categoryLabel}, Canonical Link: ${art.url}) ---\n${art.plainText.slice(0, 2200)}`
+            `--- ARTICLE ${i + 1}: "${art.title}" (Category: ${art.categoryLabel}, Canonical Link: ${art.url}) ---\n${buildFocusedArticleContext(art, expandedTokens, idfMap, 2800)}`
         )
         .join("\n\n");
 
+    const localePrefix = locale === "en" ? "" : `/${locale}`;
     const systemInstruction = `You are the official "Ask BandMath" Knowledge Base AI Assistant on learn.itsbandmath.com.
-Your job is to help working musicians, bands, independent venues, and tour managers understand and use BandMath with zero corporate jargon and 100% mathematical precision.
+Your job is to help working musicians, bands, independent venues, promoters, and tour managers understand and use BandMath with zero corporate jargon and 100% mathematical precision.
 
-STRICT RULES:
-1. Ground your answers EXCLUSIVELY in the official BandMath Knowledge Base context provided below. Never invent features, fees, or workflows.
-2. ALWAYS include clickable Markdown links to the relevant Knowledge Base guides using their exact Canonical Link from the context, e.g. [The Multi-Band Closing Room](/docs/Events_and_Closing_Room/Multi_Band_Closing_Room).
+=== CORE BANDMATH TRUTHS (NON-NEGOTIABLE BASELINE) ===
+1. PRIVACY & ZERO DATA SELLING: BandMath NEVER sells personal data or fan data to advertisers, data brokers, or third parties. Under GDPR, each Event Organizer (Band, Venue, Promoter, or Tour Manager) is the Data Controller and BandMath is strictly the Data Processor. Transactional ticket/POS receipt emails are strictly separated from opt-in marketing mailing lists and isolated via PostgreSQL Row-Level Security (RLS). Stripe handles all card numbers and KYC directly. When a user deletes their account, personal data is wiped and their ledger slot is anonymized as "Deleted User" so band math remains intact (see [Privacy Policy](${localePrefix}/docs/Privacy_Policy) and [Deleted Users](${localePrefix}/docs/Team_Management/Deleted_Users)).
+2. ZERO PLATFORM COMMISSION: BandMath charges 0% platform commission on merch sales, door tickets, online pre-sale tickets, and show settlements. For digital card payments (Tap to Pay & Stripe QR), only standard Stripe processing fees apply (1.4% + €0.10 per transaction + €0.10 daily-batched Tap on Mobile fee; see [Tap to Pay](${localePrefix}/docs/Accept_Payments/Tap_to_Pay)).
+3. FREE FOREVER CORE vs. PAID MERCHANT SUBSCRIPTIONS:
+   - 100% Free Forever (€0): Core Expense/Income Ledger, Automated Debt Settlement, Band Bank, VAT Bank, Cash Box / Merch Float, Shadow Profiles, Cash POS, Bouncer Mode QR Scanner, QR Hardware Terminal Pairing with Shift Cash Drops, Setlist Organizer, Band Calendar, and Multi-Band Closing Room settlements.
+   - Paid Merchant Subscriptions (managed at https://account.itsbandmath.com to avoid 30% App Store fees) strictly unlock live digital Stripe card payments (Tap to Pay on iPhone/Android, Stripe QR Codes, and Online Event Ticketing): Pro Plan (€20/mo in KB guides; persona-tiered plans in Terms) or the €100 One-Time Lifetime Bootstrapper's Club Pass (strictly capped at 100 founding spots at https://account.itsbandmath.com/joinbootstrappers). Only ONE subscription is required per band workspace to cover all band members (see [Upgrading and Downgrading](${localePrefix}/docs/Billing_and_Account/Upgrading_and_Downgrading)).
+4. MULTI-ORGANIZATION CLOSING ROOM: Connected via a 6-character Show Code. BandMath is a calculation and accounting utility, not an escrow agent or bank intermediary; marking an envelope "Paid" or "Commit to Ledger" records the ledger entry while actual payouts happen directly between show participants (see [The Multi-Band Closing Room](${localePrefix}/docs/Events_and_Closing_Room/Multi_Band_Closing_Room) and [Terms & Conditions](${localePrefix}/docs/Terms_of_Service)).
+
+STRICT RESPONSE RULES:
+1. Ground your answers in the Core BandMath Truths and Official Knowledge Base Context below. Never invent features, fees, or workflows.
+2. ALWAYS include clickable Markdown links to the relevant Knowledge Base guides using their exact Canonical Link from the context, e.g. [The Multi-Band Closing Room](${localePrefix}/docs/Events_and_Closing_Room/Multi_Band_Closing_Room).
 3. Use canonical BandMath terminology: "Merch Stand", "The Ledger", "Band Bank", "VAT Bank", "Shadow Profiles", "The Closing Room", "The Sales Analyzer", "The Penny Catcher Algorithm", and "Merch Float".
-4. Keep your response concise (120 to 250 words), well-structured with bullet points or numbered steps.
+4. Keep your response concise (120 to 250 words), direct, and structured with clear bullet points or numbered steps.
 5. CROSS-DOMAIN ROUTING:
-   - If the user asks about the founder's story, how BandMath was built, AI engineering architecture, or studio build logs, direct them to the Founder's Blog at https://blog.itsbandmath.com.
-   - If the user asks about Tom Mares's career, CV, or hiring him, direct them to https://tommares.com.
-   - If the user asks where to sign up or join the €100 lifetime Bootstrapper's Club, link to https://account.itsbandmath.com/joinbootstrappers and https://itsbandmath.com.
+   - Founder's story, how BandMath was built, AI studio architecture, or daily build logs -> https://blog.itsbandmath.com
+   - Tom Mares's career, CV, or hiring -> https://tommares.com
+   - Signing up or claiming the €100 lifetime Bootstrapper's Club pass -> https://account.itsbandmath.com/joinbootstrappers and https://itsbandmath.com
 6. Respond in the language matching locale "${locale}" (or the language the user wrote in).
 
 OFFICIAL KNOWLEDGE BASE CONTEXT:
 ${ragContext}`;
 
-    const contents = [
-      ...verifiedHistory.map((h) => ({
-        role: h.role,
-        parts: [{ text: h.text }],
-      })),
-      {
-        role: "user",
-        parts: [{ text: cleanMessage }],
-      },
-    ];
+    // Build strictly alternating user -> model contents for Gemini v1beta API
+    const formattedContents: Array<{
+      role: "user" | "model";
+      parts: Array<{ text: string }>;
+    }> = [];
 
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: systemInstruction }] },
-          contents,
-          generationConfig: {
-            temperature: 0.25,
-            maxOutputTokens: 500,
-          },
-        }),
+    for (const h of verifiedHistory) {
+      if (formattedContents.length === 0 && h.role === "model") {
+        continue;
       }
-    );
+      const prev = formattedContents[formattedContents.length - 1];
+      if (prev && prev.role === h.role) {
+        prev.parts[0].text += `\n\n${h.text}`;
+      } else {
+        formattedContents.push({
+          role: h.role,
+          parts: [{ text: h.text }],
+        });
+      }
+    }
 
-    if (!geminiRes.ok) {
-      const offline = synthesizeOfflineKbAnswer(
-        locale,
-        cleanMessage,
-        topArticles,
-        matchedFaqs
-      );
-      void logAiBotTurn({
-        sessionId,
-        userMessage: cleanMessage,
-        assistantMessage: offline.reply,
-        locale,
-        pagePath,
-        modelName: "bm25-offline-synth",
-        latencyMs: Date.now() - startedAt,
-        citationsCount: offline.citations.length,
-      });
-      return NextResponse.json({
-        reply: offline.reply,
-        sig: signAssistantReply(offline.reply),
-        citations: offline.citations,
+    const wrappedUserMessage = `<user_input>\n${cleanMessage}\n</user_input>`;
+    if (
+      formattedContents.length > 0 &&
+      formattedContents[formattedContents.length - 1].role === "user"
+    ) {
+      formattedContents[formattedContents.length - 1].parts[0].text += `\n\n${wrappedUserMessage}`;
+    } else {
+      formattedContents.push({
+        role: "user",
+        parts: [{ text: wrappedUserMessage }],
       });
     }
 
-    const data = await geminiRes.json();
-    const candidateText =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+    // Cascade across active 2026 Gemini models (matching tommares-portfolio)
+    const candidateModels = [
+      "gemini-3.1-flash-lite",
+      "gemini-3.5-flash-lite",
+      "gemini-3.8-flash",
+      "gemini-2.5-flash-lite",
+    ];
+
+    let candidateText = "";
+    let usedModel = "";
+
+    const reqBody = JSON.stringify({
+      system_instruction: { parts: [{ text: systemInstruction }] },
+      contents: formattedContents,
+      generationConfig: {
+        temperature: 0.25,
+        maxOutputTokens: 550,
+      },
+    });
+
+    for (let i = 0; i < candidateModels.length; i++) {
+      const model = candidateModels[i];
+      if (i > 0 && !checkGlobalDailyCircuitBreaker()) break;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 14000);
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey,
+          },
+          signal: controller.signal,
+          body: reqBody,
+        });
+        clearTimeout(timeout);
+
+        if (res.ok) {
+          const data = await res.json();
+          const extracted = (data?.candidates?.[0]?.content?.parts || [])
+            .map((p: { text?: string }) => p?.text || "")
+            .join("")
+            .trim();
+          if (extracted) {
+            candidateText = extracted;
+            usedModel = model;
+            break;
+          }
+        } else {
+          const errText = await res.text().catch(() => "");
+          console.warn(
+            `[API/KB-CHAT] Model ${model} returned ${res.status}: ${errText.slice(0, 200)}`
+          );
+        }
+      } catch (err) {
+        clearTimeout(timeout);
+        console.warn(
+          `[API/KB-CHAT] Model ${model} request failed:`,
+          (err as Error)?.name || "error"
+        );
+      }
+    }
 
     if (!candidateText) {
       const offline = synthesizeOfflineKbAnswer(
@@ -988,7 +1184,7 @@ ${ragContext}`;
       assistantMessage: candidateText,
       locale,
       pagePath,
-      modelName: "gemini-2.5-flash-lite",
+      modelName: usedModel || "gemini-3.1-flash-lite",
       latencyMs: Date.now() - startedAt,
       citationsCount: citations.length,
     });

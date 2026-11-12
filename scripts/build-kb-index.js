@@ -178,10 +178,10 @@ function extractSectionsAndScreens(body, locale, categoryId, docTitle) {
       inCodeFence = !inCodeFence;
     }
     if (!inCodeFence) {
-      const hMatch = line.match(/^(#{2,3})\s+(.+)$/);
+      const hMatch = line.match(/^(#{2,4})\s+(.+)$/);
       if (hMatch) {
         flushSection();
-        currentHeading = hMatch[2].trim();
+        currentHeading = hMatch[2].replace(/\\\./g, '.').trim();
         currentId = slugifyHeading(currentHeading) || `section-${sections.length + 1}`;
         currentLines = [];
         continue;
