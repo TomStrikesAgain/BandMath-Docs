@@ -6,6 +6,7 @@ const DOCS_DIR = path.join(ROOT, 'docs');
 const I18N_DIR = path.join(ROOT, 'i18n');
 const OUTPUT_DIR = path.join(ROOT, 'src', 'data');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'kb_search_index.json');
+const BOT_CONFIG_FILE = path.join(OUTPUT_DIR, 'bandmath_bot_config.json');
 const MARKETING_DATA_DIR = path.resolve(
   ROOT,
   '../BandMath-Backend/BandMath-Marketing/src/data'
@@ -13,6 +14,10 @@ const MARKETING_DATA_DIR = path.resolve(
 const MARKETING_OUTPUT_FILE = path.join(
   MARKETING_DATA_DIR,
   'kb_search_index.json'
+);
+const MARKETING_BOT_CONFIG_FILE = path.join(
+  MARKETING_DATA_DIR,
+  'bandmath_bot_config.json'
 );
 const LOCALES = ['en', 'fr', 'de', 'es', 'pl'];
 
@@ -522,9 +527,12 @@ function main() {
   fs.writeFileSync(OUTPUT_FILE, serialized, 'utf8');
   if (fs.existsSync(MARKETING_DATA_DIR)) {
     fs.writeFileSync(MARKETING_OUTPUT_FILE, serialized, 'utf8');
+    if (fs.existsSync(BOT_CONFIG_FILE)) {
+      fs.copyFileSync(BOT_CONFIG_FILE, MARKETING_BOT_CONFIG_FILE);
+    }
   }
   console.log(
-    `[build-kb-index] Built src/data/kb_search_index.json (+ synced to BandMath-Marketing) across ${LOCALES.length} locales (${totalArticles} total articles, ${totalScreenshots} mapped section screenshots).`
+    `[build-kb-index] Built src/data/kb_search_index.json (+ synced to BandMath-Marketing alongside bandmath_bot_config.json) across ${LOCALES.length} locales (${totalArticles} total articles, ${totalScreenshots} mapped section screenshots).`
   );
 }
 

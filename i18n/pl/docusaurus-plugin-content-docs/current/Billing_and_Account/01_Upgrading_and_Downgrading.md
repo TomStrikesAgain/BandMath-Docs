@@ -6,7 +6,7 @@ BandMath offers flexible plans built for working musicians, independent venues, 
 
 ## The Web Accounts Portal (`account.itsbandmath.com`)
 
-To keep subscription costs low for independent artists and venues and avoid 30% App Store surcharges, all billing activities are managed through our dedicated Web Accounts Portal at **[account.itsbandmath.com](https://account.itsbandmath.com)**.
+All subscriptions and billing settings are managed through **[account.itsbandmath.com](https://account.itsbandmath.com)**—one unified, cross-platform portal that works seamlessly across **iOS, Android, and Web**, keeping billing simple and platform-agnostic with one subscription covering the whole band.
 
 ### Logging In with 6-Digit Email OTP
 You can sign in to **[account.itsbandmath.com](https://account.itsbandmath.com)** from any desktop or mobile browser using:

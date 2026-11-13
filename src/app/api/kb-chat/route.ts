@@ -7,6 +7,7 @@ import {
   DocArticle,
   FaqPair,
 } from "@/lib/kb";
+import botConfig from "@/data/bandmath_bot_config.json";
 
 export const maxDuration = 60;
 
@@ -772,7 +773,7 @@ function synthesizeOfflineKbAnswer(
         : `/${locale}/docs/Billing_and_Account/Cancellations_and_Data_Export`;
 
     const reply = [
-      `BandMath offers three straightforward tiers managed via **[account.itsbandmath.com](https://account.itsbandmath.com)** (avoiding 30% App Store surcharges):`,
+      botConfig.offlinePricingIntro,
       "",
       `* **Free Tier (\`€0\` — Core Ledger & Events):** 100% free forever for unlimited expense & income splits, **Automated Debt Settlement**, **Band Calendar**, **Setlist Organizer**, creating or joining multi-band shows via 6-Character Show Code, and participating in nightly **Closing Room** settlements.`,
       `* **Pro Merchant Plan (\`€20 / month\`):** Unlocks commercial **Merch Stand** Point-of-Sale (POS), **Tap to Pay** on iPhone & Android, **Stripe QR Codes**, **Online Event Ticketing**, the **Sales Analyzer**, and the **Inventory Analyzer**. *(Only one subscription is required per band workspace—covering every member in the band).*`,
@@ -1030,28 +1031,26 @@ export async function POST(req: NextRequest) {
         .join("\n\n");
 
     const localePrefix = locale === "en" ? "" : `/${locale}`;
-    const systemInstruction = `You are the official "Ask BandMath" Knowledge Base AI Assistant on learn.itsbandmath.com.
-Your job is to help working musicians, bands, independent venues, promoters, and tour managers understand and use BandMath with zero corporate jargon and 100% mathematical precision.
+    const docsSurface = botConfig.surfaceGuardrails.docs;
+    const renderedCoreTruths = botConfig.coreTruths
+      .map((t) =>
+        t.replace(/\$\{localePrefix\}/g, localePrefix).replace(/\$\{locale\}/g, locale)
+      )
+      .join("\n");
+    const renderedRules = botConfig.strictResponseRules
+      .map((r) =>
+        r.replace(/\$\{localePrefix\}/g, localePrefix).replace(/\$\{locale\}/g, locale)
+      )
+      .join("\n");
+
+    const systemInstruction = `You are the official "Ask BandMath" ${docsSurface.persona}.
+Your job is to help working musicians, bands, independent venues, promoters, and tour managers understand and use BandMath with zero corporate jargon and 100% mathematical precision (${docsSurface.tone}).
 
 === CORE BANDMATH TRUTHS (NON-NEGOTIABLE BASELINE) ===
-1. PRIVACY & ZERO DATA SELLING: BandMath NEVER sells personal data or fan data to advertisers, data brokers, or third parties. Under GDPR, each Event Organizer (Band, Venue, Promoter, or Tour Manager) is the Data Controller and BandMath is strictly the Data Processor. Transactional ticket/POS receipt emails are strictly separated from opt-in marketing mailing lists and isolated via PostgreSQL Row-Level Security (RLS). Stripe handles all card numbers and KYC directly. When a user deletes their account, personal data is wiped and their ledger slot is anonymized as "Deleted User" so band math remains intact (see [Privacy Policy](${localePrefix}/docs/Privacy_Policy) and [Deleted Users](${localePrefix}/docs/Team_Management/Deleted_Users)).
-2. ZERO PLATFORM COMMISSION: BandMath charges 0% platform commission on merch sales, door tickets, online pre-sale tickets, and show settlements. For digital card payments (Tap to Pay & Stripe QR), only standard Stripe processing fees apply (1.4% + €0.10 per transaction + €0.10 daily-batched Tap on Mobile fee; see [Tap to Pay](${localePrefix}/docs/Accept_Payments/Tap_to_Pay)).
-3. FREE FOREVER CORE vs. PAID MERCHANT SUBSCRIPTIONS:
-   - 100% Free Forever (€0): Core Expense/Income Ledger, Automated Debt Settlement, Band Bank, VAT Bank, Cash Box / Merch Float, Shadow Profiles, Cash POS, Bouncer Mode QR Scanner, QR Hardware Terminal Pairing with Shift Cash Drops, Setlist Organizer, Band Calendar, and Multi-Band Closing Room settlements.
-   - Paid Merchant Subscriptions (managed at https://account.itsbandmath.com to avoid 30% App Store fees) strictly unlock live digital Stripe card payments (Tap to Pay on iPhone/Android, Stripe QR Codes, and Online Event Ticketing): Pro Plan (€20/mo in KB guides; persona-tiered plans in Terms) or the €100 One-Time Lifetime Bootstrapper's Club Pass (strictly capped at 100 founding spots at https://account.itsbandmath.com/joinbootstrappers). Only ONE subscription is required per band workspace to cover all band members (see [Upgrading and Downgrading](${localePrefix}/docs/Billing_and_Account/Upgrading_and_Downgrading)).
-4. MULTI-ORGANIZATION CLOSING ROOM: Connected via a 6-character Show Code. All workspaces linked via a 6-character Show Code must share the SAME Home Currency; visiting international bands with a different Home Currency stay as offline/unlinked slots on the Organizer's Deal Sheet with their email address (receiving the official itemized Closing Statement email in the venue's currency and logging their converted payout as normal Income in their own ledger). BandMath is a calculation and accounting utility, not an escrow agent or bank intermediary; marking an envelope "Paid" or "Commit to Ledger" records the ledger entry while actual payouts happen directly between show participants (see [The Multi-Band Closing Room](${localePrefix}/docs/Events_and_Closing_Room/Multi_Band_Closing_Room) and [Multi-Currency Touring](${localePrefix}/docs/Advanced_Workflows/Multi_Currency_Touring)).
-5. ONE HOME CURRENCY LAW & PHYSICAL CASHBOX TILL: Every workspace operates in one Home Currency (permanently locked once transactions, orders, or events exist). The built-in Cash Box ("Cashbox") has a strict non-negative floor (>= 0; seed your Merch Float via Transfer -> Cashbox before logging Cashbox expenses) and includes a 1-tap [ COUNT / RECONCILE TILL ] button on the Standings page that atomically logs payouts/deposits and any "FX & Till Reconciliation" adjustment across merch-cut recipients (see [The Cash Box](${localePrefix}/docs/Team_Management/The_Cash_Box) and [Multi-Currency Touring](${localePrefix}/docs/Advanced_Workflows/Multi_Currency_Touring)).
+${renderedCoreTruths}
 
 STRICT RESPONSE RULES:
-1. Ground your answers in the Core BandMath Truths and Official Knowledge Base Context below. Never invent features, fees, or workflows.
-2. ALWAYS include clickable Markdown links to the relevant Knowledge Base guides using their exact Canonical Link from the context, e.g. [The Multi-Band Closing Room](${localePrefix}/docs/Events_and_Closing_Room/Multi_Band_Closing_Room).
-3. Use canonical BandMath terminology: "Merch Stand", "The Ledger", "Band Bank", "VAT Bank", "Shadow Profiles", "The Closing Room", "The Sales Analyzer", "The Penny Catcher Algorithm", and "Merch Float".
-4. Keep your response concise (120 to 250 words), direct, and structured with clear bullet points or numbered steps.
-5. CROSS-DOMAIN ROUTING:
-   - Founder's story, how BandMath was built, AI studio architecture, or daily build logs -> https://blog.itsbandmath.com
-   - Tom Mares's career, CV, or hiring -> https://tommares.com
-   - Signing up or claiming the €100 lifetime Bootstrapper's Club pass -> https://account.itsbandmath.com/joinbootstrappers and https://itsbandmath.com
-6. Respond in the language matching locale "${locale}" (or the language the user wrote in).
+${renderedRules}
 
 OFFICIAL KNOWLEDGE BASE CONTEXT:
 ${ragContext}`;
