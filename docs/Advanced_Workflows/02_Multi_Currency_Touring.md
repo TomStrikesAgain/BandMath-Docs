@@ -20,9 +20,9 @@ To accept card, Apple Pay, and Google Pay seamlessly abroad, switch to **[Stripe
 
 1. Build the fan's cart in the **Merch Stand** as usual.
 2. Select **Card** and tap **`Show QR Code`**.
-3. The fan scans the QR code with their own smartphone camera and pays via **Apple Pay**, **Google Pay**, or card on a localized Stripe Checkout page.
+3. The fan scans the QR code with their own smartphone camera and pays via **Apple Pay**, **Google Pay**, or card on a Stripe Checkout page.
 4. Because the transaction originates on the fan's device rather than your NFC hardware, it bypasses Tap to Pay's physical location lock.
-5. **Automatic FX to Your Home Currency:** Your Merch Stand prices remain in your Home Currency (`€`, `£`, or `$`). The fan's card network (or **Stripe Adaptive Pricing**, if enabled in your Stripe Dashboard) converts the charge automatically, and Stripe deposits the exact **Home Currency** proceeds into your **[Band Bank](../Team_Management/04_The_Band_Bank.md)**.
+5. **Automatic FX to Your Home Currency:** By default, **Stripe bills the fan's card in your Home Currency** (e.g., `€25.00 EUR`, `£`, or `$`), and the **fan's own card network converts the charge automatically** at checkout (unless you explicitly enable *Stripe Adaptive Pricing* in your Stripe Dashboard). Stripe then deposits the exact **Home Currency** proceeds directly into your **[Band Bank](../Team_Management/04_The_Band_Bank.md)**.
 
 :::tip Basement Venue Wi-Fi Tip
 Unlike offline cash logging, **Stripe QR Codes require both your phone and the fan's phone to have internet access** (mobile data or Wi-Fi). When playing underground basement clubs abroad where international roaming drops, write the venue's guest Wi-Fi network and password right on your merch sign!
@@ -96,20 +96,17 @@ Because a physical cash pouch cannot hold negative paper bills, BandMath strictl
 If a foreign promoter hands you **`£300 GBP`** in physical bills at the end of the night and you put those bills into the `Cashbox` pouch:
 * **In BandMath:** Check the rough Google rate (`£300 ≈ €355`) and log an **Income** (`"London Show Guarantee"`, **Paid to: `Cashbox`**) for **`€355.00`**.
 
-### 3. Spending Foreign Cash on the Road (Why Rough Estimates Self-Cancel!)
+### 3. Spending Foreign Cash on the Road
 Smart touring bands don't hoard foreign cash for two weeks just to lose 8–12% at an airport currency booth—they **spend their foreign cash locally** on fuel, highway tolls, venue parking, local sound engineers, and band per diems!
 
 Whenever you pull foreign bills out of the pouch to pay a shared band expense (e.g., `£50 GBP` cash for the local sound engineer or venue parking):
-* **In BandMath:** Log an **Expense** (`"Sound Engineer"`, **Paid by: `Cashbox`**) at a quick mental estimate in your Home Currency (e.g., **`€60.00`**) and snap a photo of the receipt. (BandMath displays your live `"Available in Cashbox"` balance right inside the Expense screen so you always know how much book value is in the pouch).
+* **In BandMath:** Log an **Expense** (`"Sound Engineer"`, **Paid by: `Cashbox`**) at a quick estimate in your Home Currency (e.g., **`€60.00`**) and snap a photo of the receipt. (BandMath displays your live `"Available in Cashbox"` balance right inside the Expense screen and enforces a non-negative `>= 0` floor—so always seed your **Merch Float** or log cash sales first!).
 
-:::tip Why Mid-Tour Cash Estimates Mathematically Self-Cancel to `€0.00`
-You never need to look up exact daily exchange rates when spending shared tour cash out of the `Cashbox`!
+:::tip How Mid-Tour `Cashbox` Estimates Reconcile at End of Tour
+You don't need to stress over exact daily exchange rates when spending shared tour cash out of the `Cashbox`:
 
-**Here is the mathematical proof:** Suppose that `£50` cash payment was really worth `€58.50`, and you roughly logged it as **`€60.00`**. Logging `€60.00` reduces your `Cashbox` book balance by `€1.50` extra today—which automatically shrinks your end-of-tour till reconciliation adjustment by the **exact same `€1.50`** on the last day of the tour (`€60.00 + €70.00 = €58.50 + €71.50 = €130.00`).
-
-**Every mid-tour estimation error cancels out to `€0.00` automatically!**
-
-*(The only exception: if an individual bandmate takes foreign bills out of the pouch for **personal** spending—like buying vinyl records or pub drinks—log a **Transfer** from **`Cashbox` → `Member`** using the 3-second Google rate so their bandmates don't subsidize personal cash).*
+* **Any minor estimation gap washes into your end-of-tour `[ COUNT / RECONCILE TILL ]` adjustment:** Suppose a `£50` cash payment was worth `€58.50` and you logged it as **`€60.00`**. Logging `€60.00` reduces your `Cashbox` book balance by `€1.50` more today, which reduces the remaining `"FX & Till Reconciliation"` adjustment at the end of the tour by the exact same `€1.50`.
+* **When to use the quick 3-second Google rate instead of a rough guess:** Because `"FX & Till Reconciliation"` is split across your band's **merch-cut recipients** (`receives_merch_cut = true`), any band where every touring member shares the merch cut sees those minor differences wash out evenly across the same people. However, if you have **non-merch-cut members** on the tour (such as a hired sound tech or session player splitting fuel/hotel expenses) or if a bandmate takes foreign bills out of the pouch for **personal** spending (`Transfer: Cashbox → Member`), check the quick Google rate so every member's split stays exact!
 :::
 
 ---
