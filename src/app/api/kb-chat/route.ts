@@ -421,6 +421,19 @@ const TOURING_SYNONYM_GROUPS: Array<{ pattern: RegExp; expansion: string[] }> = 
       "disclaimer",
     ],
   },
+  {
+    pattern:
+      /\b(charter|agreement|spreadsheet|excel|google sheets|consumables|strings|drumsticks|band fund|band pot|pool money|why bandmath|when to settle|autonomy)\b/i,
+    expansion: [
+      "charter",
+      "agreement",
+      "trust",
+      "consumables",
+      "spreadsheet",
+      "threshold",
+      "settle",
+    ],
+  },
 ];
 
 function tokenizeForBm25(text: string): string[] {

@@ -5,6 +5,10 @@ sidebar_position: 1
 
 Ready to hit the road? Here is a quick 5-minute walkthrough of the core BandMath loop to get you started on your first tour.
 
+:::note Just Forming Your Band? Start with a Band Charter
+Before logging your first expense, take 20 minutes to align on what counts as a shared expense, spending autonomy limits, and when to settle up: **[Before You Hit the Road: The Band Charter](./00_The_Band_Charter.md)**.
+:::
+
 :::tip Playing as a Venue or Tour Manager?
 If you run a venue, promote shows, or manage tours for multiple artists, BandMath has a dedicated 3-tab workspace built specifically for box office ticketing, QR hardware door terminals, Bouncer QR scanning, and nightly multi-band settlements. Jump straight to the [Venues & Tour Managers Quickstart](./03_Venues_and_Tour_Managers.md).
 :::
