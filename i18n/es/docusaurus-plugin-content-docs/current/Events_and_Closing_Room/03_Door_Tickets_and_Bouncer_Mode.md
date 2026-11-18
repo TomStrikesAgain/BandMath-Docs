@@ -63,6 +63,25 @@ At an independent club or DIY show, a Band Admin, Tour Manager, or Venue Operato
 
 ![Bouncer Wrong Show Date Guard](./assets/bouncer-wrong-show-date.png)
 
+### Locking the Home Swipe Too: Android App Pinning & iOS Guided Access
+
+BandMath's **Bouncer Safety Lock** keeps door staff from switching tabs or viewing your band's finances *inside* BandMath. If you also want to block the phone's **Home swipe / App Switcher** so they cannot leave the BandMath app at all, pair it with your phone's built-in kiosk lock:
+
+#### On Android (App Pinning)
+1. **One-time setup:** Open Android **Settings** → **Security & privacy** (or **Security**) → **More security & privacy** (or **Advanced**) → **App pinning** *(called **Pin windows** on Samsung One UI)* and toggle it **On**. Turn on **Ask for PIN before unpinning** (or biometric unlock) so only you can unpin.
+2. **Pin BandMath:** Open BandMath, turn on **Bouncer Safety Lock**, and then open **Overview** *(Android's name for the **Recents / App Switcher** screen where your open app cards are stacked)*:
+   * **Gesture navigation (no bottom buttons):** Swipe up slowly from the very bottom edge of the screen and **hold** for half a second until your open app cards appear.
+   * **3-button navigation:** Tap the **square (`■`) Recents button** at the bottom of the screen.
+3. Tap the **BandMath app icon** at the top center of the BandMath card *(tap the icon itself, not the preview card)*, then tap **Pin** (or **Pin this app**).
+4. **To unpin:**
+   * **Gesture navigation:** Swipe up from the bottom edge and **hold** for a second, then enter your PIN / fingerprint / face unlock.
+   * **3-button navigation:** Press and **hold** both **Back (`◀`)** and **Recents (`■`)** at the same time, then enter your PIN / biometric unlock.
+
+#### On iPhone & iPad (Guided Access)
+1. **One-time setup:** Open iOS **Settings** → **Accessibility** → **Guided Access** and toggle it **On**. Tap **Passcode Settings** to set a Guided Access passcode (and optionally turn on **Face ID** or **Touch ID**).
+2. **Lock into BandMath:** Open BandMath and turn on **Bouncer Safety Lock**, then **triple-click the Side button** *(or Home button on older devices)* and tap **Start** in the top-right corner.
+3. **To exit:** **Triple-click the Side button** *(or double-click if Face ID / Touch ID is enabled)*, enter your passcode or authenticate, and tap **End** in the top-left corner.
+
 :::note Mobile Camera Requirement for Live QR Scanning
 Live camera QR ticket scanning in **Bouncer Mode** is a native mobile app feature available on **iOS and Android**. On desktop web browsers, you can view and search the live Guest List and check in attendees manually.
 :::

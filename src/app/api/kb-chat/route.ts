@@ -340,8 +340,8 @@ const TOURING_SYNONYM_GROUPS: Array<{ pattern: RegExp; expansion: string[] }> = 
   },
   {
     pattern:
-      /\b(door person|door guy|door staff|security|ticket scanner|scan tickets|will call|check in|guest list|hand my phone|bouncer|passcode|face id)\b/i,
-    expansion: ["bouncer", "scanner", "safety", "lock", "guest", "door"],
+      /\b(door person|door guy|door staff|security|ticket scanner|scan tickets|will call|check in|guest list|hand my phone|bouncer|passcode|face id|app pinning|pin app|pinning|pin windows|guided access|home swipe|overview|kiosk)\b/i,
+    expansion: ["bouncer", "scanner", "safety", "lock", "guest", "door", "pinning", "guided", "access", "overview"],
   },
   {
     pattern:
